@@ -1,0 +1,64 @@
+
+========================================================================
+  ALS
+========================================================================
+  Proteins: 47   Edges: 66
+  TC = 3.30 nats   (e^TC = 27)
+  D = 2.74 — BELOW the capacity line (3.03)
+  -> Hierarchically containable. Modular targeting viable.
+
+  KNOWN TARGETS (validation):
+  Rank  Protein          Bill Module Drug/status
+     1  TARDBP         0.7003      0  no approved drug (TDP-43 — central target, undruggable so far)
+     2  FUS            0.3709      0  no approved drug (target for antisense)
+     6  C9orf72        0.2363      1  antisense oligos in trials (WVE-004 discontinued)
+    13  ATXN2          0.1379      4  antisense oligos (BIIB105/ION541 in Phase I)
+    16  GRIN1          0.1095     15  memantine (off-label NMDA antagonist)
+    19  UNC13A         0.0945     14  no drug (UNC13A cryptic exon is a leading strategy)
+    20  STMN2          0.0945     13  no drug (stathmin-2 restoration is a leading strategy)
+    22  SLC1A2         0.0843     15  riluzole (approved)
+    23  SOD1           0.0811      6  tofersen (approved — antisense oligonucleotide)
+    36  TNF            0.0354     19  TNF inhibitors (epidemiological signal only)
+
+  NOVEL TARGETS (high bill, no approved drug):
+  Rank  Protein          Bill Module Degree Why interesting
+     3  HNRNPA1        0.2875      0      3  same module as TARDBP, FUS
+     4  SQSTM1         0.2669      7      6  high connectivity hub
+     5  TIA1           0.2405      4      3  same module as ATXN2
+     7  HNRNPA2B1      0.1912      2      2  above-median bill, no drug exists
+     8  VCP            0.1863      8      5  high connectivity hub
+     9  UPF1           0.1796      1      2  same module as C9orf72
+    10  VAPB           0.1604      9      3  above-median bill, no drug exists
+    11  OPTN           0.1559      7      4  high connectivity hub
+    12  UBQLN2         0.1403      6      3  same module as SOD1
+    14  NFKB1          0.1204     19      5  same module as TNF
+    15  GRIA2          0.1095     15      4  same module as GRIN1, SLC1A2
+    17  SOD2           0.1019     23      4  high connectivity hub
+    18  TBK1           0.0982      7      3  above-median bill, no drug exists
+    21  CHCHD10        0.0868     22      4  high connectivity hub
+
+  COMBINATION PROPOSALS (one target per module, by bill):
+    1. TARDBP       (module 0, bill=0.7003)
+       no approved drug (TDP-43 — central target, undruggable so far)
+    2. SQSTM1       (module 7, bill=0.2669) <- NOVEL
+       NO DRUG — novel target
+    3. TIA1         (module 4, bill=0.2405) <- NOVEL
+       NO DRUG — novel target
+    4. C9orf72      (module 1, bill=0.2363)
+       antisense oligos in trials (WVE-004 discontinued)
+    5. HNRNPA2B1    (module 2, bill=0.1912) <- NOVEL
+       NO DRUG — novel target
+
+  INTERACTION TARGETS (cross-module, high sensitivity):
+    SOD1         <-> SOD2          |sens|=0.032333  modules 6<->23  [one novel]
+    TARDBP       <-> UPF1          |sens|=0.024492  modules 0<->1  [one novel]
+    TARDBP       <-> VAPB          |sens|=0.024492  modules 0<->9  [one novel]
+    OPTN         <-> NFKB1         |sens|=0.017963  modules 7<->19  [both novel]
+    TBK1         <-> NFKB1         |sens|=0.017963  modules 7<->19  [both novel]
+    FUS          <-> SMN1          |sens|=0.017781  modules 0<->5  [one novel]
+    FUS          <-> MATR3         |sens|=0.017781  modules 0<->3  [one novel]
+    VAPB         <-> DCTN1         |sens|=0.017781  modules 9<->10  [both novel]
+
+  ENRICHMENT:
+    Top 10: 3/10 known targets (expected 2.1, enrichment 1.4x)
+    Top 20: 7/10 known targets (expected 4.3, enrichment 1.6x)

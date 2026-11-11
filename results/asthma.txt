@@ -1,0 +1,57 @@
+
+========================================================================
+  ASTHMA
+========================================================================
+  Proteins: 41   Edges: 156
+  TC = 2.78 nats   (e^TC = 16)
+  D = 4.04 — ABOVE the capacity line (3.03)
+  -> Globally entangled. Single-target therapy insufficient.
+
+  KNOWN TARGETS (validation):
+  Rank  Protein          Bill Module Drug/status
+    12  IL5            0.1494     14  mepolizumab, reslizumab
+    14  JAK1           0.1386     15  tofacitinib (in trials for asthma)
+    19  IL4R           0.0787     10  dupilumab (anti-IL4Rα, blocks IL-4 and IL-13)
+    22  IL33           0.0363     13  itepekimab, tozorakimab (in Phase III)
+    28  TSLP           0.0115      2  tezepelumab
+    29  IL5RA          0.0081     14  benralizumab
+    31  ALOX5          0.0057      0  zileuton (5-lipoxygenase inhibitor)
+    32  CYSLTR1        0.0055      4  montelukast, zafirlukast (leukotriene receptor antagonists)
+    41  PDE4D          0.0026     16  roflumilast (PDE4 inhibitor, for COPD/severe asthma)
+
+  NOVEL TARGETS (high bill, no approved drug):
+  Rank  Protein          Bill Module Degree Why interesting
+     1  IL6            0.2678      9     17  high connectivity hub
+     2  IFNG           0.2632      7     17  high connectivity hub
+     3  IL4            0.2621      7     19  high connectivity hub
+     4  TNF            0.2488      7     16  high connectivity hub
+     5  STAT3          0.2419     15     17  same module as JAK1
+     6  IL1B           0.2342      9     15  high connectivity hub
+     7  IL13           0.2213     10     16  same module as IL4R
+     8  IL10           0.2195      9     14  high connectivity hub
+     9  CXCL8          0.1877      3     13  high connectivity hub
+    10  IL17A          0.1816     11     12  above-median bill, no drug exists
+    11  TGFB1          0.1498     11     10  above-median bill, no drug exists
+    13  NFKB1          0.1433      8     11  above-median bill, no drug exists
+    15  STAT6          0.1127      5     11  above-median bill, no drug exists
+    16  JAK2           0.0955     15     11  same module as JAK1
+    17  RELA           0.0872      8      8  above-median bill, no drug exists
+
+  COMBINATION PROPOSALS (one target per module, by bill):
+    1. IL6          (module 9, bill=0.2678) <- NOVEL
+       NO DRUG — novel target
+    2. IFNG         (module 7, bill=0.2632) <- NOVEL
+       NO DRUG — novel target
+    3. STAT3        (module 15, bill=0.2419) <- NOVEL
+       NO DRUG — novel target
+    4. IL13         (module 10, bill=0.2213) <- NOVEL
+       NO DRUG — novel target
+    5. CXCL8        (module 3, bill=0.1877) <- NOVEL
+       NO DRUG — novel target
+
+  INTERACTION TARGETS (cross-module, high sensitivity):
+    ALOX5        <-> PTGS2         |sens|=0.007212  modules 0<->6  [one novel]
+
+  ENRICHMENT:
+    Top 10: 0/9 known targets (expected 2.2, enrichment 0.0x)
+    Top 20: 3/9 known targets (expected 4.4, enrichment 0.7x)

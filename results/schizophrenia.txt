@@ -1,0 +1,61 @@
+
+========================================================================
+  SCHIZOPHRENIA
+========================================================================
+  Proteins: 38   Edges: 44
+  TC = 3.90 nats   (e^TC = 49)
+  D = 2.03 — BELOW the capacity line (3.03)
+  -> Hierarchically containable. Modular targeting viable.
+
+  KNOWN TARGETS (validation):
+  Rank  Protein          Bill Module Drug/status
+     1  DRD2           0.5212      7  all antipsychotics (haloperidol, risperidone, olanzapine, etc.)
+     4  SLC6A3         0.3680      7  modafinil (DAT, for cognitive symptoms)
+    10  GRIN2B         0.2481     12  NMDA modulators (in trials)
+    15  DRD3           0.2075      7  cariprazine (D3-preferring)
+    17  HTR2A          0.1298      3  clozapine, olanzapine, quetiapine, lumateperone
+    18  HTR2C          0.0800      3  lorcaserin (metabolic side effects)
+    25  MTOR           0.0444      0  rapamycin (in trials for cognitive symptoms)
+    27  GRM5           0.0373     11  mGluR5 PAMs (in trials)
+
+  NOVEL TARGETS (high bill, no approved drug):
+  Rank  Protein          Bill Module Degree Why interesting
+     2  DRD4           0.5212      8      5  exceptionally high bill (>2 sigma)
+     3  COMT           0.5090      5      5  exceptionally high bill (>2 sigma)
+     5  NFKB1          0.3373     15      4  high connectivity hub
+     6  TNF            0.3336     15      4  high connectivity hub
+     7  SLC6A4         0.3297      8      4  high connectivity hub
+     8  IL1B           0.2646     15      3  above-median bill, no drug exists
+     9  IL6            0.2643     16      3  above-median bill, no drug exists
+    11  GRIN2A         0.2442     12      4  same module as GRIN2B
+    12  GRIA1          0.2327     11      4  same module as GRM5
+    13  AKT1           0.2277      0      4  same module as MTOR
+    14  GRIN1          0.2177     12      3  same module as GRIN2B
+    16  MAOA           0.1738      5      2  above-median bill, no drug exists
+    19  CACNA1C        0.0768      3      2  same module as HTR2A, HTR2C
+
+  COMBINATION PROPOSALS (one target per module, by bill):
+    1. DRD2         (module 7, bill=0.5212)
+       all antipsychotics (haloperidol, risperidone, olanzapine, etc.)
+    2. DRD4         (module 8, bill=0.5212) <- NOVEL
+       NO DRUG — novel target
+    3. COMT         (module 5, bill=0.5090) <- NOVEL
+       NO DRUG — novel target
+    4. NFKB1        (module 15, bill=0.3373) <- NOVEL
+       NO DRUG — novel target
+    5. IL6          (module 16, bill=0.2643) <- NOVEL
+       NO DRUG — novel target
+
+  INTERACTION TARGETS (cross-module, high sensitivity):
+    HTR2A        <-> SLC6A4        |sens|=0.028768  modules 3<->8  [one novel]
+    GRIN2A       <-> GRM3          |sens|=0.028613  modules 12<->13  [both novel]
+    DRD1         <-> DRD2          |sens|=0.020721  modules 6<->7  [one novel]
+    AKT1         <-> NFKB1         |sens|=0.013347  modules 0<->15  [both novel]
+    CNR1         <-> DRD2          |sens|=0.013239  modules 4<->7  [one novel]
+    AKT1         <-> TNF           |sens|=0.012808  modules 0<->15  [both novel]
+    COMT         <-> SLC6A4        |sens|=0.012727  modules 5<->8  [both novel]
+    COMT         <-> DRD4          |sens|=0.012700  modules 5<->8  [both novel]
+
+  ENRICHMENT:
+    Top 10: 3/8 known targets (expected 2.1, enrichment 1.4x)
+    Top 20: 6/8 known targets (expected 4.2, enrichment 1.4x)

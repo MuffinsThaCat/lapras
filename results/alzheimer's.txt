@@ -1,0 +1,64 @@
+
+========================================================================
+  ALZHEIMER'S
+========================================================================
+  Proteins: 45   Edges: 63
+  TC = 3.31 nats   (e^TC = 28)
+  D = 2.70 — BELOW the capacity line (3.03)
+  -> Hierarchically containable. Modular targeting viable.
+
+  KNOWN TARGETS (validation):
+  Rank  Protein          Bill Module Drug/status
+     1  APP            0.5823      0  anti-amyloid antibodies (lecanemab, donanemab, aducanumab)
+     2  MAPT           0.5766      6  anti-tau antibodies (semorinemab, zagotenemab); tau aggregation inhibitors
+     3  CDK5           0.2854      6  CDK5 inhibitors (roscovitine — preclinical for AD)
+     4  APOE           0.2613     20  ApoE-targeted therapies (gene therapy, antisense — early stage)
+     5  GSK3B          0.2428      6  GSK3 inhibitors (tideglusib, lithium — repurposed)
+     6  PSEN1          0.1921      1  gamma-secretase modulators (tarenflurbil — failed; avagacestat)
+     7  DYRK1A         0.1729      8  DYRK1A inhibitors (leucettine L41 — preclinical)
+    10  BACE1          0.1293      0  BACE inhibitors (verubecestat, atabecestat — failed Phase III)
+    11  IL1B           0.1195     14  IL-1 inhibitors (canakinumab — repurposing studies)
+    14  TREM2          0.1085     12  TREM2 agonist antibodies (AL002 — Phase II)
+    15  CHRNA7         0.1052     18  alpha7 nAChR agonists (encenicline — failed Phase III)
+    17  GRIN2B         0.0864     16  NMDA modulators (memantine — approved)
+    20  NFKB1          0.0806     12  NF-kB pathway inhibition (indirect targets)
+    29  NLRP3          0.0767     14  NLRP3 inhibitors (MCC950/CRID3, inzomelid — early trials)
+    30  BDNF           0.0707     17  BDNF mimetics (7,8-DHF — preclinical)
+
+  NOVEL TARGETS (high bill, no approved drug):
+  Rank  Protein          Bill Module Degree Why interesting
+     8  SORL1          0.1614     22      2  above-median bill, no drug exists
+     9  LRP1           0.1614     23      2  above-median bill, no drug exists
+    12  SYP            0.1179     15      2  above-median bill, no drug exists
+    13  CAMK2A         0.1167     16      4  same module as GRIN2B
+    16  DLG4           0.1006     15      3  above-median bill, no drug exists
+    18  NCSTN          0.0834      0      2  same module as APP, BACE1
+    19  SYK            0.0827     13      3  above-median bill, no drug exists
+    21  ADAM17         0.0790      3      1  above-median bill, no drug exists
+    22  IDE            0.0790      4      1  above-median bill, no drug exists
+
+  COMBINATION PROPOSALS (one target per module, by bill):
+    1. APP          (module 0, bill=0.5823)
+       anti-amyloid antibodies (lecanemab, donanemab, aducanumab)
+    2. MAPT         (module 6, bill=0.5766)
+       anti-tau antibodies (semorinemab, zagotenemab); tau aggregation inhibitors
+    3. APOE         (module 20, bill=0.2613)
+       ApoE-targeted therapies (gene therapy, antisense — early stage)
+    4. PSEN1        (module 1, bill=0.1921)
+       gamma-secretase modulators (tarenflurbil — failed; avagacestat)
+    5. DYRK1A       (module 8, bill=0.1729)
+       DYRK1A inhibitors (leucettine L41 — preclinical)
+
+  INTERACTION TARGETS (cross-module, high sensitivity):
+    MAPT         <-> SYP           |sens|=0.033553  modules 6<->15  [one novel]
+    APP          <-> IDE           |sens|=0.025240  modules 0<->4  [one novel]
+    APP          <-> NEP           |sens|=0.025240  modules 0<->5  [one novel]
+    APP          <-> SORL1         |sens|=0.018002  modules 0<->22  [one novel]
+    MAPT         <-> MARK4         |sens|=0.018002  modules 6<->11  [one novel]
+    MAPT         <-> PIN1          |sens|=0.018002  modules 6<->10  [one novel]
+    APP          <-> LRP1          |sens|=0.018002  modules 0<->23  [one novel]
+    DLG4         <-> GRIN2B        |sens|=0.018002  modules 15<->16  [one novel]
+
+  ENRICHMENT:
+    Top 10: 8/16 known targets (expected 3.6, enrichment 2.2x)
+    Top 20: 13/16 known targets (expected 7.1, enrichment 1.8x)

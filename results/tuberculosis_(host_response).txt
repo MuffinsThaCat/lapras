@@ -1,0 +1,61 @@
+
+========================================================================
+  TUBERCULOSIS (HOST RESPONSE)
+========================================================================
+  Proteins: 47   Edges: 181
+  TC = 2.90 nats   (e^TC = 18)
+  D = 4.03 — ABOVE the capacity line (3.03)
+  -> Globally entangled. Single-target therapy insufficient.
+
+  KNOWN TARGETS (validation):
+  Rank  Protein          Bill Module Drug/status
+     3  TNF            0.2782     17  TNF inhibitors INCREASE TB risk (contraindicated)
+     6  IFNG           0.2284     10  interferon-gamma (adjunct, in trials)
+    17  AKT1           0.1007      0  in trials for host-directed therapy
+    25  MTOR           0.0326      0  everolimus (host-directed therapy, in trials)
+    34  HIF1A          0.0160      7  DMOG and prolyl hydroxylase inhibitors (preclinical)
+    43  HMOX1          0.0062      8  heme oxygenase modulators (in trials)
+
+  NOVEL TARGETS (high bill, no approved drug):
+  Rank  Protein          Bill Module Degree Why interesting
+     1  NFKB1          0.2857     17     19  same module as TNF
+     2  IL6            0.2791     12     17  exceptionally high bill (>2 sigma)
+     4  STAT3          0.2654     14     21  exceptionally high bill (>2 sigma)
+     5  IL1B           0.2554     12     16  high connectivity hub
+     7  RELA           0.2137     17     17  same module as TNF
+     8  IL10           0.2054     10     14  same module as IFNG
+     9  TLR4           0.1795     16     13  high connectivity hub
+    10  TGFB1          0.1439     12     10  above-median bill, no drug exists
+    11  MYD88          0.1372     16     11  above-median bill, no drug exists
+    12  IL18           0.1370      4     10  above-median bill, no drug exists
+    13  TLR2           0.1285     19     10  above-median bill, no drug exists
+    14  MMP9           0.1120     15     10  above-median bill, no drug exists
+    15  STAT1          0.1116     13     11  above-median bill, no drug exists
+    16  IL17A          0.1011     10      8  same module as IFNG
+    18  JAK2           0.0796     14     10  above-median bill, no drug exists
+
+  COMBINATION PROPOSALS (one target per module, by bill):
+    1. NFKB1        (module 17, bill=0.2857) <- NOVEL
+       NO DRUG — novel target
+    2. IL6          (module 12, bill=0.2791) <- NOVEL
+       NO DRUG — novel target
+    3. STAT3        (module 14, bill=0.2654) <- NOVEL
+       NO DRUG — novel target
+    4. IFNG         (module 10, bill=0.2284)
+       interferon-gamma (adjunct, in trials)
+    5. TLR4         (module 16, bill=0.1795) <- NOVEL
+       NO DRUG — novel target
+
+  INTERACTION TARGETS (cross-module, high sensitivity):
+    MMP9         <-> NFKB1         |sens|=0.006617  modules 15<->17  [both novel]
+    IL23A        <-> JAK2          |sens|=0.006611  modules 11<->14  [both novel]
+    IL12B        <-> JAK2          |sens|=0.006604  modules 11<->14  [both novel]
+    MMP9         <-> TGFB1         |sens|=0.006591  modules 15<->12  [both novel]
+    MMP9         <-> RELA          |sens|=0.006577  modules 15<->17  [both novel]
+    IL23A        <-> STAT3         |sens|=0.006504  modules 11<->14  [both novel]
+    MMP1         <-> NFKB1         |sens|=0.006451  modules 15<->17  [both novel]
+    IL12B        <-> STAT3         |sens|=0.006451  modules 11<->14  [both novel]
+
+  ENRICHMENT:
+    Top 10: 2/6 known targets (expected 1.3, enrichment 1.6x)
+    Top 20: 3/6 known targets (expected 2.6, enrichment 1.2x)

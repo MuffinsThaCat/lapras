@@ -1,0 +1,61 @@
+
+========================================================================
+  MAJOR DEPRESSIVE DISORDER
+========================================================================
+  Proteins: 39   Edges: 59
+  TC = 4.65 nats   (e^TC = 104)
+  D = 1.98 — BELOW the capacity line (3.03)
+  -> Hierarchically containable. Modular targeting viable.
+
+  KNOWN TARGETS (validation):
+  Rank  Protein          Bill Module Drug/status
+     3  MAOA           0.4198      4  phenelzine, tranylcypromine (MAOIs)
+     7  MAOB           0.3653      4  selegiline (transdermal, for depression)
+    12  SLC6A4         0.1913     11  SSRIs (fluoxetine, sertraline, escitalopram)
+    14  GRIN2B         0.1620     10  esketamine (NMDA antagonist)
+    16  DRD2           0.1480      3  aripiprazole, brexpiprazole (augmentation)
+    24  SLC6A3         0.1213      3  bupropion (DAT/NET inhibitor)
+    25  MTOR           0.1130      8  ketamine activates mTOR signaling
+
+  NOVEL TARGETS (high bill, no approved drug):
+  Rank  Protein          Bill Module Degree Why interesting
+     1  NFKB1          0.4798     12      6  exceptionally high bill (>2 sigma)
+     2  AKT1           0.4761      0      7  exceptionally high bill (>2 sigma)
+     4  COMT           0.4169      4      6  same module as MAOA, MAOB
+     5  DDC            0.4125      6      5  high connectivity hub
+     6  TNF            0.3726     12      4  high connectivity hub
+     8  CREB1          0.3592      0      6  high connectivity hub
+     9  IL6            0.3501     13      4  high connectivity hub
+    10  IL1B           0.3324     12      4  high connectivity hub
+    11  IDO1           0.3039      6      4  high connectivity hub
+    13  NR3C1          0.1778      8      3  same module as MTOR
+    15  FKBP5          0.1617      8      3  same module as MTOR
+    17  GSK3B          0.1472      0      2  above-median bill, no drug exists
+    18  NLRP3          0.1453     15      2  above-median bill, no drug exists
+    19  MAPK1          0.1394     14      2  above-median bill, no drug exists
+
+  COMBINATION PROPOSALS (one target per module, by bill):
+    1. NFKB1        (module 12, bill=0.4798) <- NOVEL
+       NO DRUG — novel target
+    2. AKT1         (module 0, bill=0.4761) <- NOVEL
+       NO DRUG — novel target
+    3. MAOA         (module 4, bill=0.4198)
+       phenelzine, tranylcypromine (MAOIs)
+    4. DDC          (module 6, bill=0.4125) <- NOVEL
+       NO DRUG — novel target
+    5. IL6          (module 13, bill=0.3501) <- NOVEL
+       NO DRUG — novel target
+
+  INTERACTION TARGETS (cross-module, high sensitivity):
+    BDNF         <-> CREB1         |sens|=0.028543  modules 1<->0  [both novel]
+    AKT1         <-> MAPK1         |sens|=0.021659  modules 0<->14  [both novel]
+    CREB1        <-> MAPK1         |sens|=0.021347  modules 0<->14  [both novel]
+    IL1B         <-> NLRP3         |sens|=0.015773  modules 12<->15  [both novel]
+    NFKB1        <-> NLRP3         |sens|=0.015615  modules 12<->15  [both novel]
+    COMT         <-> DRD2          |sens|=0.014697  modules 4<->3  [one novel]
+    COMT         <-> SLC6A3        |sens|=0.014602  modules 4<->3  [one novel]
+    AKT1         <-> NFKB1         |sens|=0.010191  modules 0<->12  [both novel]
+
+  ENRICHMENT:
+    Top 10: 2/7 known targets (expected 1.8, enrichment 1.1x)
+    Top 20: 5/7 known targets (expected 3.6, enrichment 1.4x)

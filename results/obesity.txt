@@ -1,0 +1,63 @@
+
+========================================================================
+  OBESITY
+========================================================================
+  Proteins: 45   Edges: 80
+  TC = 2.81 nats   (e^TC = 17)
+  D = 2.74 — BELOW the capacity line (3.03)
+  -> Hierarchically containable. Modular targeting viable.
+
+  KNOWN TARGETS (validation):
+  Rank  Protein          Bill Module Drug/status
+     8  MC4R           0.1845      2  setmelanotide (for MC4R pathway obesity)
+    19  NPY2R          0.0530     16  in early trials
+    20  GHSR           0.0523     11  ghrelin receptor antagonists (in trials)
+    27  GLP1R          0.0315      6  semaglutide (Wegovy), liraglutide (Saxenda)
+    28  DPP4           0.0311      6  sitagliptin (modest weight effect)
+    36  GCGR           0.0169      9  survodutide (GLP1/glucagon dual, in trials)
+    37  GIPR           0.0164      9  tirzepatide (Zepbound, dual GIP/GLP1)
+    42  GDF15          0.0097     10  in early trials
+
+  NOVEL TARGETS (high bill, no approved drug):
+  Rank  Protein          Bill Module Degree Why interesting
+     1  LEP            0.4785      0     14  exceptionally high bill (>2 sigma)
+     2  POMC           0.3861      2      9  same module as MC4R
+     3  NPY            0.3608     16      9  same module as NPY2R
+     4  GHRL           0.3296     11      8  same module as GHSR
+     5  GCG            0.2768      9     11  same module as GCGR, GIPR
+     6  AGRP           0.2747      2      6  same module as MC4R
+     7  PYY            0.2689     16      7  same module as NPY2R
+     9  LEPR           0.1699      0      4  above-median bill, no drug exists
+    10  PPARG          0.1219     18      6  high connectivity hub
+    11  PPARGC1A       0.1131     18      6  high connectivity hub
+    12  IRS1           0.0726     13      5  above-median bill, no drug exists
+    13  ADIPOQ         0.0701      0      3  above-median bill, no drug exists
+    14  SIRT1          0.0645     18      4  above-median bill, no drug exists
+    15  MTOR           0.0576     15      4  above-median bill, no drug exists
+    16  TNF            0.0553     12      3  above-median bill, no drug exists
+
+  COMBINATION PROPOSALS (one target per module, by bill):
+    1. LEP          (module 0, bill=0.4785) <- NOVEL
+       NO DRUG — novel target
+    2. POMC         (module 2, bill=0.3861) <- NOVEL
+       NO DRUG — novel target
+    3. NPY          (module 16, bill=0.3608) <- NOVEL
+       NO DRUG — novel target
+    4. GHRL         (module 11, bill=0.3296) <- NOVEL
+       NO DRUG — novel target
+    5. GCG          (module 9, bill=0.2768) <- NOVEL
+       NO DRUG — novel target
+
+  INTERACTION TARGETS (cross-module, high sensitivity):
+    IRS1         <-> MTOR          |sens|=0.019580  modules 13<->15  [both novel]
+    IRS1         <-> SIRT1         |sens|=0.018028  modules 13<->18  [both novel]
+    IRS1         <-> LEP           |sens|=0.017950  modules 13<->0  [both novel]
+    GCG          <-> GHRL          |sens|=0.014290  modules 9<->11  [both novel]
+    GCG          <-> LEP           |sens|=0.014231  modules 9<->0  [both novel]
+    PCSK1        <-> POMC          |sens|=0.014056  modules 17<->2  [both novel]
+    GCG          <-> PYY           |sens|=0.014027  modules 9<->16  [both novel]
+    LEP          <-> TNF           |sens|=0.013895  modules 0<->12  [both novel]
+
+  ENRICHMENT:
+    Top 10: 1/8 known targets (expected 1.8, enrichment 0.6x)
+    Top 20: 3/8 known targets (expected 3.6, enrichment 0.8x)

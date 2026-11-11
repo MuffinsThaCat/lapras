@@ -1,0 +1,62 @@
+
+========================================================================
+  GLIOBLASTOMA
+========================================================================
+  Proteins: 49   Edges: 192
+  TC = 2.90 nats   (e^TC = 18)
+  D = 4.08 — ABOVE the capacity line (3.03)
+  -> Globally entangled. Single-target therapy insufficient.
+
+  KNOWN TARGETS (validation):
+  Rank  Protein          Bill Module Drug/status
+     2  EGFR           0.2734      6  erlotinib (poor results in GBM)
+    11  MTOR           0.1329     15  everolimus (in trials)
+    14  PDGFRA         0.1160     17  dasatinib (in trials, poor results)
+    18  BRAF           0.0933      3  dabrafenib (BRAF-mutant glioma)
+    29  CDK4           0.0285      4  palbociclib (in trials)
+    44  SMO            0.0055     18  vismodegib (in trials)
+    45  IDH1           0.0048      9  vorasidenib (IDH-mutant glioma, approved 2024)
+
+  NOVEL TARGETS (high bill, no approved drug):
+  Rank  Protein          Bill Module Degree Why interesting
+     1  PIK3CA         0.2975     17     21  same module as PDGFRA
+     3  KRAS           0.2647      3     21  same module as BRAF
+     4  PIK3R1         0.2588      7     19  exceptionally high bill (>2 sigma)
+     5  TP53           0.2197     13     25  high connectivity hub
+     6  SRC            0.2007     11     15  high connectivity hub
+     7  AKT1           0.1999      1     17  high connectivity hub
+     8  NRAS           0.1821      3     16  same module as BRAF
+     9  STAT3          0.1710     10     14  high connectivity hub
+    10  ERBB2          0.1590      6     12  same module as EGFR
+    12  MET            0.1287     11     10  above-median bill, no drug exists
+    13  PTEN           0.1184     17     10  same module as PDGFRA
+    15  RAF1           0.1138     12     10  above-median bill, no drug exists
+    16  ERBB3          0.1106      6      9  same module as EGFR
+    17  JAK2           0.1088     10     11  above-median bill, no drug exists
+    19  MYC            0.0906      5     13  high connectivity hub
+
+  COMBINATION PROPOSALS (one target per module, by bill):
+    1. PIK3CA       (module 17, bill=0.2975) <- NOVEL
+       NO DRUG — novel target
+    2. EGFR         (module 6, bill=0.2734)
+       erlotinib (poor results in GBM)
+    3. KRAS         (module 3, bill=0.2647) <- NOVEL
+       NO DRUG — novel target
+    4. PIK3R1       (module 7, bill=0.2588) <- NOVEL
+       NO DRUG — novel target
+    5. TP53         (module 13, bill=0.2197) <- NOVEL
+       NO DRUG — novel target
+
+  INTERACTION TARGETS (cross-module, high sensitivity):
+    FGFR1        <-> FGFR3         |sens|=0.005725  modules 7<->8  [both novel]
+    FGFR3        <-> KRAS          |sens|=0.005673  modules 8<->3  [both novel]
+    FGFR3        <-> NRAS          |sens|=0.005673  modules 8<->3  [both novel]
+    ATRX         <-> TP53          |sens|=0.005597  modules 2<->13  [both novel]
+    FGFR3        <-> SRC           |sens|=0.005427  modules 8<->11  [both novel]
+    FGFR3        <-> PIK3CA        |sens|=0.005415  modules 8<->17  [both novel]
+    ERBB2        <-> FGFR3         |sens|=0.005404  modules 6<->8  [both novel]
+    FGFR3        <-> JAK2          |sens|=0.005363  modules 8<->10  [both novel]
+
+  ENRICHMENT:
+    Top 10: 1/7 known targets (expected 1.4, enrichment 0.7x)
+    Top 20: 4/7 known targets (expected 2.9, enrichment 1.4x)

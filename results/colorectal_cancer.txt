@@ -1,0 +1,64 @@
+
+========================================================================
+  COLORECTAL CANCER
+========================================================================
+  Proteins: 47   Edges: 174
+  TC = 2.97 nats   (e^TC = 20)
+  D = 4.12 — ABOVE the capacity line (3.03)
+  -> Globally entangled. Single-target therapy insufficient.
+
+  KNOWN TARGETS (validation):
+  Rank  Protein          Bill Module Drug/status
+     3  EGFR           0.2735      5  cetuximab, panitumumab
+     7  KRAS           0.2084      4  sotorasib (G12C, in trials)
+    10  MTOR           0.1609      0  everolimus (off-label)
+    11  ERBB2          0.1388      7  trastuzumab + pertuzumab (HER2+)
+    12  MET            0.1306      5  capmatinib (in trials)
+    16  NRAS           0.0947      4  no approved targeted therapy
+    18  BRAF           0.0826      4  encorafenib + cetuximab
+    28  KDR            0.0385     12  ramucirumab, regorafenib
+    31  RET            0.0357     11  selpercatinib (in trials)
+
+  NOVEL TARGETS (high bill, no approved drug):
+  Rank  Protein          Bill Module Degree Why interesting
+     1  TP53           0.3374      3     25  exceptionally high bill (>2 sigma)
+     2  CTNNB1         0.2854      1     22  exceptionally high bill (>2 sigma)
+     4  AKT1           0.2676      0     16  same module as MTOR
+     5  PIK3CA         0.2657     12     16  same module as KDR
+     6  MYC            0.2125      8     15  high connectivity hub
+     8  STAT3          0.1654     11     11  same module as RET
+     9  PTEN           0.1645     12     10  same module as KDR
+    13  SMAD4          0.0963     17     10  high connectivity hub
+    14  SMAD3          0.0956     17      8  above-median bill, no drug exists
+    15  ERBB3          0.0953      7      7  same module as ERBB2
+    17  SMAD2          0.0846     17      7  above-median bill, no drug exists
+    19  FBXW7          0.0762      8      7  above-median bill, no drug exists
+    20  JAK2           0.0759     11      7  same module as RET
+    21  NOTCH1         0.0653      8      6  above-median bill, no drug exists
+    22  TERT           0.0612     19      6  above-median bill, no drug exists
+
+  COMBINATION PROPOSALS (one target per module, by bill):
+    1. TP53         (module 3, bill=0.3374) <- NOVEL
+       NO DRUG — novel target
+    2. CTNNB1       (module 1, bill=0.2854) <- NOVEL
+       NO DRUG — novel target
+    3. EGFR         (module 5, bill=0.2735)
+       cetuximab, panitumumab
+    4. AKT1         (module 0, bill=0.2676) <- NOVEL
+       NO DRUG — novel target
+    5. PIK3CA       (module 12, bill=0.2657) <- NOVEL
+       NO DRUG — novel target
+
+  INTERACTION TARGETS (cross-module, high sensitivity):
+    BRAF         <-> MAP2K1        |sens|=0.006713  modules 4<->14  [one novel]
+    KRAS         <-> MAP2K1        |sens|=0.006700  modules 4<->14  [one novel]
+    SMAD2        <-> TGFBR2        |sens|=0.006693  modules 17<->20  [both novel]
+    SMAD3        <-> TGFBR2        |sens|=0.006686  modules 17<->20  [both novel]
+    CTNNB1       <-> FGFR1         |sens|=0.006680  modules 1<->9  [both novel]
+    SMAD4        <-> TGFBR2        |sens|=0.006666  modules 17<->20  [both novel]
+    MAP2K1       <-> NRAS          |sens|=0.006599  modules 14<->4  [one novel]
+    FBXW7        <-> SOX9          |sens|=0.006586  modules 8<->18  [both novel]
+
+  ENRICHMENT:
+    Top 10: 3/9 known targets (expected 1.9, enrichment 1.6x)
+    Top 20: 7/9 known targets (expected 3.8, enrichment 1.8x)

@@ -1,0 +1,40 @@
+THE PERIODIC TABLE: D VALUES FOR 31 DISEASES
+Capacity line: D = 3.03
+Below → modular (single-target viable)  |  Above → global (combinations required)
+
+Disease                                       D  Verdict      Proteins   Edges      TC  Enrich
+---------------------------------------- ------  ------------ -------- ------- ------- -------
+Epilepsy                                   1.69  MODULAR            36      50    4.16    1.2x
+Major Depressive Disorder                  1.98  MODULAR            39      59    4.65    1.1x
+Schizophrenia                              2.03  MODULAR            38      44    3.90    1.4x
+Heart Failure                              2.10  MODULAR            46      90    3.47     n/a
+Sickle Cell Disease                        2.14  MODULAR            38      65    3.44    0.8x
+Atherosclerosis                            2.60  MODULAR            47     107    2.92    0.8x
+Obesity                                    2.74  MODULAR            45      80    2.81    0.6x
+Non-Alcoholic Fatty Liver Disease / NASH   2.75  MODULAR            41      76    2.99    0.8x
+Chronic Kidney Disease                     2.84  MODULAR            46     105    3.20    0.7x
+Parkinson's Disease                        3.07  GLOBAL             41      80    2.97    0.5x
+Idiopathic Pulmonary Fibrosis              3.22  GLOBAL             46     125    3.15    0.7x
+Systemic Lupus Erythematosus               3.35  GLOBAL             46     124    2.89    2.6x
+Huntington's Disease                       3.56  GLOBAL             45     106    2.89    2.2x
+Osteoporosis                               3.59  GLOBAL             44      84    3.04    1.8x
+HIV/AIDS                                   3.62  GLOBAL             43     112    2.86     n/a
+Systemic Fibrosis / Scleroderma            3.67  GLOBAL             43     130    3.05    2.6x
+Crohn's Disease                            3.71  GLOBAL             42     144    2.88    1.6x
+Type 2 Diabetes                            3.89  GLOBAL             49     131    3.05    0.5x
+Type 1 Diabetes                            4.02  GLOBAL             40     139    2.77    2.0x
+Breast Cancer                              4.03  GLOBAL             47     190    3.12    2.1x
+Tuberculosis (Host Response)               4.03  GLOBAL             47     181    2.90    1.6x
+Asthma                                     4.04  GLOBAL             41     156    2.78     n/a
+Ovarian Cancer                             4.05  GLOBAL             47     244    3.10    1.6x
+Glioblastoma                               4.08  GLOBAL             49     192    2.90    0.7x
+Multiple Sclerosis                         4.08  GLOBAL             44     125    2.82    2.2x
+Colorectal Cancer                          4.12  GLOBAL             47     174    2.97    1.6x
+Melanoma                                   4.15  GLOBAL             43     171    2.96     n/a
+Prostate Cancer                            4.20  GLOBAL             46     177    3.00    1.3x
+Lung Cancer (NSCLC)                        4.23  GLOBAL             46     220    2.98    1.4x
+Hepatocellular Carcinoma                   4.26  GLOBAL             48     185    2.93    1.4x
+Rheumatoid Arthritis                       4.50  GLOBAL             48     213    3.05    1.6x
+
+Below the line (modular):  9
+Above the line (global):  22

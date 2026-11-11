@@ -1,0 +1,62 @@
+
+========================================================================
+  HEPATOCELLULAR CARCINOMA
+========================================================================
+  Proteins: 48   Edges: 185
+  TC = 2.93 nats   (e^TC = 19)
+  D = 4.26 — ABOVE the capacity line (3.03)
+  -> Globally entangled. Single-target therapy insufficient.
+
+  KNOWN TARGETS (validation):
+  Rank  Protein          Bill Module Drug/status
+     1  EGFR           0.3029      7  erlotinib (in trials)
+     9  MTOR           0.1588      0  everolimus
+    17  PDGFRA         0.1208     19  sorafenib
+    18  MET            0.1174     17  cabozantinib
+    20  RAF1           0.0814     15  sorafenib
+    23  KDR            0.0393     13  sorafenib, lenvatinib, cabozantinib, regorafenib
+    26  FGFR4          0.0360      8  futibatinib (in trials)
+
+  NOVEL TARGETS (high bill, no approved drug):
+  Rank  Protein          Bill Module Degree Why interesting
+     2  PIK3CA         0.2967      7     19  same module as EGFR
+     3  KRAS           0.2395     15     19  same module as RAF1
+     4  STAT3          0.2189     12     16  high connectivity hub
+     5  TP53           0.2100      4     18  high connectivity hub
+     6  ERBB2          0.2059      7     15  same module as EGFR
+     7  AKT1           0.1984      0     17  same module as MTOR
+     8  CTNNB1         0.1769      3     16  high connectivity hub
+    10  IGF1R          0.1516     11     12  above-median bill, no drug exists
+    11  NRAS           0.1499     15     14  same module as RAF1
+    12  PDGFRB         0.1492     19     11  same module as PDGFRA
+    13  PTEN           0.1358      4     11  above-median bill, no drug exists
+    14  MYC            0.1313      6     13  high connectivity hub
+    15  JAK2           0.1306     12     11  above-median bill, no drug exists
+    16  JAK1           0.1287     12     11  above-median bill, no drug exists
+    19  CCND1          0.0882      6     10  above-median bill, no drug exists
+
+  COMBINATION PROPOSALS (one target per module, by bill):
+    1. EGFR         (module 7, bill=0.3029)
+       erlotinib (in trials)
+    2. KRAS         (module 15, bill=0.2395) <- NOVEL
+       NO DRUG — novel target
+    3. STAT3        (module 12, bill=0.2189) <- NOVEL
+       NO DRUG — novel target
+    4. TP53         (module 4, bill=0.2100) <- NOVEL
+       NO DRUG — novel target
+    5. AKT1         (module 0, bill=0.1984) <- NOVEL
+       NO DRUG — novel target
+
+  INTERACTION TARGETS (cross-module, high sensitivity):
+    CCND1        <-> RB1           |sens|=0.006046  modules 6<->5  [both novel]
+    RAF1         <-> RB1           |sens|=0.006046  modules 15<->5  [one novel]
+    IGF1R        <-> PIK3CA        |sens|=0.006033  modules 11<->7  [both novel]
+    IL6          <-> STAT3         |sens|=0.006021  modules 1<->12  [both novel]
+    IL6          <-> JAK1          |sens|=0.005979  modules 1<->12  [both novel]
+    CTNNB1       <-> IGF1R         |sens|=0.005973  modules 3<->11  [both novel]
+    IL6          <-> JAK2          |sens|=0.005955  modules 1<->12  [both novel]
+    CCNA2        <-> TP53          |sens|=0.005943  modules 5<->4  [both novel]
+
+  ENRICHMENT:
+    Top 10: 2/7 known targets (expected 1.5, enrichment 1.4x)
+    Top 20: 5/7 known targets (expected 2.9, enrichment 1.7x)

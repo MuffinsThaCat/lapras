@@ -1,0 +1,64 @@
+
+========================================================================
+  PANCREATIC CANCER
+========================================================================
+  Proteins: 59   Edges: 81
+  TC = 7.10 nats   (e^TC = 1211)
+  D = 1.56 — BELOW the capacity line (3.03)
+  -> Hierarchically containable. Modular targeting viable.
+
+  KNOWN TARGETS (validation):
+  Rank  Protein          Bill Module Drug/status
+     1  KRAS           0.5679      0  sotorasib/adagrasib (G12C only — ~1% of PDAC); G12D inhibitors in trials
+     5  MAP2K1         0.3859      1  trametinib (minimal single-agent activity in PDAC)
+    19  CDK4           0.2408      7  palbociclib (limited activity in PDAC)
+    21  BRCA1          0.2390     15  olaparib (approved for BRCA-mutant PDAC — ~5-7%)
+    22  MTOR           0.2275      5  everolimus (failed in PDAC trials)
+    31  BRCA2          0.1748     15  olaparib (approved for BRCA-mutant PDAC)
+    34  ATM            0.1566     16  ATR inhibitors in early trials
+    39  CD274          0.1165     20  pembrolizumab (MSI-high only — ~1% of PDAC)
+    40  SMO            0.1141     12  vismodegib (failed in PDAC — accelerated death)
+
+  NOVEL TARGETS (high bill, no approved drug):
+  Rank  Protein          Bill Module Degree Why interesting
+     2  SMAD2          0.4799     10      4  exceptionally high bill (>2 sigma)
+     3  CTNNB1         0.4346     13      5  exceptionally high bill (>2 sigma)
+     4  SMAD3          0.4168     10      3  above-median bill, no drug exists
+     6  TGFB1          0.3652     23      6  high connectivity hub
+     7  TGFBR1         0.3576      9      3  above-median bill, no drug exists
+     8  AKT1           0.3430      4      5  high connectivity hub
+     9  GSK3B          0.3324     14      4  high connectivity hub
+    10  SMAD4          0.3091     10      3  above-median bill, no drug exists
+    11  MYC            0.2816      8      6  high connectivity hub
+    12  RAF1           0.2770      0      2  same module as KRAS
+    13  BRAF           0.2770      0      2  same module as KRAS
+    14  FOXP3          0.2757     22      3  above-median bill, no drug exists
+    15  PIK3CA         0.2589      4      4  high connectivity hub
+    16  MAPK1          0.2545      1      4  same module as MAP2K1
+    17  RB1            0.2537      8      3  above-median bill, no drug exists
+
+  COMBINATION PROPOSALS (one target per module, by bill):
+    1. KRAS         (module 0, bill=0.5679)
+       sotorasib/adagrasib (G12C only — ~1% of PDAC); G12D inhibitors in trials
+    2. SMAD2        (module 10, bill=0.4799) <- NOVEL
+       NO DRUG — novel target
+    3. CTNNB1       (module 13, bill=0.4346) <- NOVEL
+       NO DRUG — novel target
+    4. MAP2K1       (module 1, bill=0.3859)
+       trametinib (minimal single-agent activity in PDAC)
+    5. TGFB1        (module 23, bill=0.3652) <- NOVEL
+       NO DRUG — novel target
+
+  INTERACTION TARGETS (cross-module, high sensitivity):
+    TP53         <-> CDKN2A        |sens|=0.030097  modules 6<->7  [both novel]
+    ACTA2        <-> TGFB1         |sens|=0.020064  modules 17<->23  [both novel]
+    KRAS         <-> PIK3CA        |sens|=0.018302  modules 0<->4  [one novel]
+    AKT1         <-> MDM2          |sens|=0.016720  modules 4<->6  [both novel]
+    MYC          <-> SMAD4         |sens|=0.013376  modules 8<->10  [both novel]
+    MMP9         <-> TGFB1         |sens|=0.013376  modules 19<->23  [both novel]
+    CD274        <-> HIF1A         |sens|=0.013376  modules 20<->24  [one novel]
+    MYC          <-> HIF1A         |sens|=0.013073  modules 8<->24  [both novel]
+
+  ENRICHMENT:
+    Top 10: 2/9 known targets (expected 1.5, enrichment 1.3x)
+    Top 20: 3/9 known targets (expected 3.1, enrichment 1.0x)

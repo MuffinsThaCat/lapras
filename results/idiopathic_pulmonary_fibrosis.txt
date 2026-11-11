@@ -1,0 +1,62 @@
+
+========================================================================
+  IDIOPATHIC PULMONARY FIBROSIS
+========================================================================
+  Proteins: 46   Edges: 125
+  TC = 3.15 nats   (e^TC = 23)
+  D = 3.22 — ABOVE the capacity line (3.03)
+  -> Globally entangled. Single-target therapy insufficient.
+
+  KNOWN TARGETS (validation):
+  Rank  Protein          Bill Module Drug/status
+     1  TGFB1          0.4082     17  pirfenidone (mechanism partially TGF-beta related)
+    14  IL13           0.1207      2  tralokinumab (in trials for IPF)
+    20  MTOR           0.0787      6  in trials
+    21  PDGFRB         0.0755     15  nintedanib
+    23  PDGFRA         0.0643     14  nintedanib (multi-kinase: PDGFR/FGFR/VEGFR)
+    24  FGFR1          0.0639      7  nintedanib
+    25  KDR            0.0622      7  nintedanib
+
+  NOVEL TARGETS (high bill, no approved drug):
+  Rank  Protein          Bill Module Degree Why interesting
+     2  AKT1           0.3322      0     13  exceptionally high bill (>2 sigma)
+     3  CTNNB1         0.2936      1     13  exceptionally high bill (>2 sigma)
+     4  TP53           0.2546      0     10  high connectivity hub
+     5  PIK3CA         0.2511      6     12  same module as MTOR
+     6  SMAD3          0.2369     16      9  high connectivity hub
+     7  SMAD2          0.2205     16      8  high connectivity hub
+     8  TNF            0.2018     11     10  high connectivity hub
+     9  SMAD4          0.1844     16      7  above-median bill, no drug exists
+    10  EGFR           0.1839      6     10  same module as MTOR
+    11  IL1B           0.1418     11      8  high connectivity hub
+    12  IL6            0.1335     11      7  above-median bill, no drug exists
+    13  IL4            0.1300      2      8  same module as IL13
+    15  TGFBR1         0.1098     17      5  same module as TGFB1
+    16  TGFBR2         0.1093     17      5  same module as TGFB1
+    17  MMP9           0.0984     13      8  high connectivity hub
+
+  COMBINATION PROPOSALS (one target per module, by bill):
+    1. TGFB1        (module 17, bill=0.4082)
+       pirfenidone (mechanism partially TGF-beta related)
+    2. AKT1         (module 0, bill=0.3322) <- NOVEL
+       NO DRUG — novel target
+    3. CTNNB1       (module 1, bill=0.2936) <- NOVEL
+       NO DRUG — novel target
+    4. PIK3CA       (module 6, bill=0.2511) <- NOVEL
+       NO DRUG — novel target
+    5. SMAD3        (module 16, bill=0.2369) <- NOVEL
+       NO DRUG — novel target
+
+  INTERACTION TARGETS (cross-module, high sensitivity):
+    EGFR         <-> PDGFRA        |sens|=0.011447  modules 6<->14  [one novel]
+    EGFR         <-> PDGFRB        |sens|=0.011424  modules 6<->15  [one novel]
+    PDGFRB       <-> PIK3CA        |sens|=0.011366  modules 15<->6  [one novel]
+    PDGFRA       <-> PIK3CA        |sens|=0.011309  modules 14<->6  [one novel]
+    EGFR         <-> PDGFB         |sens|=0.010894  modules 6<->15  [both novel]
+    EGFR         <-> PDGFA         |sens|=0.010837  modules 6<->14  [both novel]
+    FGF2         <-> PDGFRB        |sens|=0.010515  modules 7<->15  [one novel]
+    CCL2         <-> CXCR4         |sens|=0.010446  modules 2<->5  [both novel]
+
+  ENRICHMENT:
+    Top 10: 1/7 known targets (expected 1.5, enrichment 0.7x)
+    Top 20: 3/7 known targets (expected 3.0, enrichment 1.0x)

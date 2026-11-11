@@ -1,0 +1,61 @@
+
+========================================================================
+  MULTIPLE SCLEROSIS
+========================================================================
+  Proteins: 44   Edges: 125
+  TC = 2.82 nats   (e^TC = 17)
+  D = 4.08 — ABOVE the capacity line (3.03)
+  -> Globally entangled. Single-target therapy insufficient.
+
+  KNOWN TARGETS (validation):
+  Rank  Protein          Bill Module Drug/status
+     1  TNF            0.3537     13  TNF inhibitors worsen MS (contraindicated)
+     8  JAK1           0.1762     15  tofacitinib (in trials for MS)
+     9  IFNB1          0.1568      9  interferon beta-1a, beta-1b
+    17  IL2RA          0.0794     14  daclizumab (withdrawn)
+    23  CTLA4          0.0344      6  not targeted in MS
+    39  BTK            0.0098      2  tolebrutinib, fenebrutinib (in Phase III trials)
+
+  NOVEL TARGETS (high bill, no approved drug):
+  Rank  Protein          Bill Module Degree Why interesting
+     2  IFNG           0.3352     10     17  exceptionally high bill (>2 sigma)
+     3  IL6            0.3310     10     14  exceptionally high bill (>2 sigma)
+     4  STAT3          0.3295     15     17  same module as JAK1
+     5  NFKB1          0.2420     11     11  high connectivity hub
+     6  IL1B           0.2312     10     10  high connectivity hub
+     7  RELA           0.1769     11      8  above-median bill, no drug exists
+    10  CXCL10         0.1490      8     10  high connectivity hub
+    11  IL17A          0.1458     13      7  same module as TNF
+    12  JAK2           0.1348     15      9  same module as JAK1
+    13  MMP9           0.1286     18      6  above-median bill, no drug exists
+    14  CD86           0.0869      6      6  same module as CTLA4
+    15  TYK2           0.0855      9      7  same module as IFNB1
+    16  CD40           0.0854      5      6  above-median bill, no drug exists
+    18  IKBKB          0.0702     11      6  above-median bill, no drug exists
+    19  IL23A          0.0663     12      6  above-median bill, no drug exists
+
+  COMBINATION PROPOSALS (one target per module, by bill):
+    1. TNF          (module 13, bill=0.3537)
+       TNF inhibitors worsen MS (contraindicated)
+    2. IFNG         (module 10, bill=0.3352) <- NOVEL
+       NO DRUG — novel target
+    3. STAT3        (module 15, bill=0.3295) <- NOVEL
+       NO DRUG — novel target
+    4. NFKB1        (module 11, bill=0.2420) <- NOVEL
+       NO DRUG — novel target
+    5. IFNB1        (module 9, bill=0.1568)
+       interferon beta-1a, beta-1b
+
+  INTERACTION TARGETS (cross-module, high sensitivity):
+    STAT3        <-> SYK           |sens|=0.010097  modules 15<->2  [both novel]
+    CD40         <-> IKBKB         |sens|=0.009945  modules 5<->11  [both novel]
+    LCK          <-> STAT3         |sens|=0.009763  modules 16<->15  [both novel]
+    CD40         <-> TNF           |sens|=0.009662  modules 5<->13  [one novel]
+    CTLA4        <-> IFNG          |sens|=0.009571  modules 6<->10  [one novel]
+    CD86         <-> IFNG          |sens|=0.009571  modules 6<->10  [both novel]
+    CD80         <-> IFNG          |sens|=0.009561  modules 6<->10  [both novel]
+    CD86         <-> TNF           |sens|=0.009389  modules 6<->13  [one novel]
+
+  ENRICHMENT:
+    Top 10: 3/6 known targets (expected 1.4, enrichment 2.2x)
+    Top 20: 4/6 known targets (expected 2.7, enrichment 1.5x)

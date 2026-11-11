@@ -1,0 +1,55 @@
+
+========================================================================
+  PARKINSON'S DISEASE
+========================================================================
+  Proteins: 50   Edges: 510
+  TC = 3.11 nats   (e^TC = 22)
+  D = 4.24 — ABOVE the capacity line (3.03)
+  -> Globally entangled. Single-target therapy insufficient.
+
+  KNOWN TARGETS (validation):
+  Rank  Protein          Bill Module Drug/status
+     4  LRRK2          0.1819     15  LRRK2 inhibitors (in Phase II trials)
+    17  SLC6A3         0.0997      9  DAT — modulated by amphetamine (not PD treatment)
+    19  MAOB           0.0889      6  selegiline, rasagiline, safinamide
+    32  COMT           0.0460      6  entacapone, tolcapone, opicapone
+    33  SLC18A2        0.0450      7  tetrabenazine (VMAT2 inhibitor, for dyskinesia)
+    40  DRD2           0.0329      9  pramipexole, ropinirole, rotigotine
+    41  DDC            0.0325      7  levodopa/carbidopa (converts to dopamine)
+    45  DRD1           0.0226      9  dopamine agonists (partial)
+
+  NOVEL TARGETS (high bill, no approved drug):
+  Rank  Protein          Bill Module Degree Why interesting
+     1  SNCA           0.2492      0     44  exceptionally high bill (>2 sigma)
+     2  PRKN           0.2143     16     37  exceptionally high bill (>2 sigma)
+     3  PINK1          0.1948     16     36  exceptionally high bill (>2 sigma)
+     5  PARK7          0.1803     16     33  high connectivity hub
+     6  MAPT           0.1588      0     33  high connectivity hub
+     7  ATP13A2        0.1267      1     25  above-median bill, no drug exists
+     8  GBA            0.1264     10     27  high connectivity hub
+     9  VPS35          0.1194     15     24  same module as LRRK2
+    10  FBXO7          0.1143      1     22  above-median bill, no drug exists
+    11  TH             0.1135      7     29  same module as DDC, SLC18A2
+    12  BDNF           0.1120      3     31  high connectivity hub
+    13  HTRA2          0.1057      4     22  above-median bill, no drug exists
+    14  UCHL1          0.1046     12     23  above-median bill, no drug exists
+    15  CASP3          0.1000      4     24  above-median bill, no drug exists
+    16  PLA2G6         0.0998      1     22  above-median bill, no drug exists
+
+  COMBINATION PROPOSALS (one target per module, by bill):
+    1. SNCA         (module 0, bill=0.2492) <- NOVEL
+       NO DRUG — novel target
+    2. PRKN         (module 16, bill=0.2143) <- NOVEL
+       NO DRUG — novel target
+    3. LRRK2        (module 15, bill=0.1819)
+       LRRK2 inhibitors (in Phase II trials)
+    4. ATP13A2      (module 1, bill=0.1267) <- NOVEL
+       NO DRUG — novel target
+    5. GBA          (module 10, bill=0.1264) <- NOVEL
+       NO DRUG — novel target
+
+  INTERACTION TARGETS (cross-module, high sensitivity):
+
+  ENRICHMENT:
+    Top 10: 1/8 known targets (expected 1.6, enrichment 0.6x)
+    Top 20: 3/8 known targets (expected 3.2, enrichment 0.9x)

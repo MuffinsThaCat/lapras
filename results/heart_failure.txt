@@ -1,0 +1,60 @@
+
+========================================================================
+  HEART FAILURE
+========================================================================
+  Proteins: 46   Edges: 90
+  TC = 3.47 nats   (e^TC = 32)
+  D = 2.10 — BELOW the capacity line (3.03)
+  -> Hierarchically containable. Modular targeting viable.
+
+  KNOWN TARGETS (validation):
+  Rank  Protein          Bill Module Drug/status
+    23  AGTR1          0.0753      1  valsartan, losartan, candesartan
+    24  ACE            0.0739      0  enalapril, ramipril, lisinopril
+    30  NPR1           0.0444      9  sacubitril (neprilysin inhibitor + valsartan)
+    44  ADRB1          0.0094      3  metoprolol, bisoprolol, carvedilol
+    46  GLP1R          0.0089     10  semaglutide (in HFpEF trials)
+
+  NOVEL TARGETS (high bill, no approved drug):
+  Rank  Protein          Bill Module Degree Why interesting
+     1  AKT1           0.4168      4     12  exceptionally high bill (>2 sigma)
+     2  TNF            0.3733     11      8  exceptionally high bill (>2 sigma)
+     3  NFKB1          0.3634     11      8  exceptionally high bill (>2 sigma)
+     4  TGFB1          0.3206      7      8  high connectivity hub
+     5  MMP9           0.2906     12      8  high connectivity hub
+     6  IL1B           0.2754     11      6  high connectivity hub
+     7  CASP3          0.2612      6      7  high connectivity hub
+     8  IL6            0.2358     12      5  high connectivity hub
+     9  BCL2           0.1827      6      5  high connectivity hub
+    10  MAPK14         0.1625      4      5  high connectivity hub
+    11  MYBPC3         0.1457     14      6  high connectivity hub
+    12  MYH7           0.1445     14      6  high connectivity hub
+    13  MAPK1          0.1336      4      4  above-median bill, no drug exists
+    14  SIRT1          0.1302     13      5  high connectivity hub
+    15  BAX            0.1296      6      4  above-median bill, no drug exists
+
+  COMBINATION PROPOSALS (one target per module, by bill):
+    1. AKT1         (module 4, bill=0.4168) <- NOVEL
+       NO DRUG — novel target
+    2. TNF          (module 11, bill=0.3733) <- NOVEL
+       NO DRUG — novel target
+    3. TGFB1        (module 7, bill=0.3206) <- NOVEL
+       NO DRUG — novel target
+    4. MMP9         (module 12, bill=0.2906) <- NOVEL
+       NO DRUG — novel target
+    5. CASP3        (module 6, bill=0.2612) <- NOVEL
+       NO DRUG — novel target
+
+  INTERACTION TARGETS (cross-module, high sensitivity):
+    AKT1         <-> NFKB1         |sens|=0.011758  modules 4<->11  [both novel]
+    NFKB1        <-> SIRT1         |sens|=0.011651  modules 11<->13  [both novel]
+    AKT1         <-> TNF           |sens|=0.011283  modules 4<->11  [both novel]
+    MAPK14       <-> TNF           |sens|=0.011247  modules 4<->11  [both novel]
+    BCL2         <-> NFKB1         |sens|=0.011176  modules 6<->11  [both novel]
+    CASP3        <-> TNF           |sens|=0.011128  modules 6<->11  [both novel]
+    AKT1         <-> TGFB1         |sens|=0.010938  modules 4<->7  [both novel]
+    CASP3        <-> IL1B          |sens|=0.010903  modules 6<->11  [both novel]
+
+  ENRICHMENT:
+    Top 10: 0/5 known targets (expected 1.1, enrichment 0.0x)
+    Top 20: 0/5 known targets (expected 2.2, enrichment 0.0x)

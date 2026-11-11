@@ -1,0 +1,63 @@
+
+========================================================================
+  HUNTINGTON'S DISEASE
+========================================================================
+  Proteins: 45   Edges: 106
+  TC = 2.89 nats   (e^TC = 18)
+  D = 3.56 — ABOVE the capacity line (3.03)
+  -> Globally entangled. Single-target therapy insufficient.
+
+  KNOWN TARGETS (validation):
+  Rank  Protein          Bill Module Drug/status
+     2  HDAC1          0.2716     14  HDAC inhibitors (in trials)
+     7  SIRT1          0.2180     18  SRT1720 and analogs (in trials)
+     8  HDAC2          0.1885     14  HDAC inhibitors (in trials)
+     9  HTT            0.1764     13  HTT-lowering ASOs (tominersen failed Phase III)
+    11  HDAC3          0.1690      6  HDAC inhibitors (in trials)
+    16  MTOR           0.1042     15  rapamycin/everolimus (autophagy induction, in trials)
+    27  GRIN2B         0.0306     12  memantine (off-label for cognitive symptoms)
+    32  DRD2           0.0200      9  tetrabenazine, deutetrabenazine (VMAT2 for chorea)
+
+  NOVEL TARGETS (high bill, no approved drug):
+  Rank  Protein          Bill Module Degree Why interesting
+     1  TP53           0.4964      2     19  exceptionally high bill (>2 sigma)
+     3  NFKB1          0.2424     17     10  high connectivity hub
+     4  EP300          0.2410      6      8  same module as HDAC3
+     5  SP1            0.2390     14      8  same module as HDAC1, HDAC2
+     6  CREBBP         0.2250      6      8  same module as HDAC3
+    10  BCL2           0.1716      2      9  high connectivity hub
+    12  HSP90AA1       0.1492     15      8  same module as MTOR
+    13  BECN1          0.1345      1      7  above-median bill, no drug exists
+    14  SQSTM1         0.1243     19      7  above-median bill, no drug exists
+    15  BAX            0.1046      2      6  above-median bill, no drug exists
+    17  CASP3          0.0988      4      6  above-median bill, no drug exists
+    18  PPARGC1A       0.0709     18      4  same module as SIRT1
+    19  TGFB1          0.0586     20      4  above-median bill, no drug exists
+    20  DNAJB1         0.0571      7      4  above-median bill, no drug exists
+    21  STUB1          0.0488     15      3  same module as MTOR
+
+  COMBINATION PROPOSALS (one target per module, by bill):
+    1. TP53         (module 2, bill=0.4964) <- NOVEL
+       NO DRUG — novel target
+    2. HDAC1        (module 14, bill=0.2716)
+       HDAC inhibitors (in trials)
+    3. NFKB1        (module 17, bill=0.2424) <- NOVEL
+       NO DRUG — novel target
+    4. EP300        (module 6, bill=0.2410) <- NOVEL
+       NO DRUG — novel target
+    5. SIRT1        (module 18, bill=0.2180)
+       SRT1720 and analogs (in trials)
+
+  INTERACTION TARGETS (cross-module, high sensitivity):
+    GABRA1       <-> HAP1          |sens|=0.012288  modules 10<->13  [both novel]
+    HDAC1        <-> NFKB1         |sens|=0.009168  modules 14<->17  [one novel]
+    BCL2         <-> BECN1         |sens|=0.009168  modules 2<->1  [both novel]
+    EP300        <-> NFKB1         |sens|=0.009168  modules 6<->17  [both novel]
+    MTOR         <-> SQSTM1        |sens|=0.009122  modules 15<->19  [one novel]
+    SQSTM1       <-> TP53          |sens|=0.009112  modules 19<->2  [both novel]
+    HTT          <-> SQSTM1        |sens|=0.009085  modules 13<->19  [one novel]
+    NFKB1        <-> SP1           |sens|=0.009048  modules 17<->14  [both novel]
+
+  ENRICHMENT:
+    Top 10: 4/8 known targets (expected 1.8, enrichment 2.2x)
+    Top 20: 6/8 known targets (expected 3.6, enrichment 1.7x)

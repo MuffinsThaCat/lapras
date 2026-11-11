@@ -1,0 +1,56 @@
+
+========================================================================
+  RHEUMATOID ARTHRITIS
+========================================================================
+  Proteins: 48   Edges: 213
+  TC = 3.05 nats   (e^TC = 21)
+  D = 4.50 — ABOVE the capacity line (3.03)
+  -> Globally entangled. Single-target therapy insufficient.
+
+  KNOWN TARGETS (validation):
+  Rank  Protein          Bill Module Drug/status
+     2  TNF            0.2766     19  adalimumab, infliximab, etanercept, certolizumab, golimumab
+     4  IL6            0.2250     10  tocilizumab, sarilumab
+     7  IL1B           0.1791     12  anakinra, canakinumab (off-label)
+    17  IL17A          0.0991     10  secukinumab (in trials for RA)
+    18  JAK1           0.0969     13  tofacitinib, baricitinib, upadacitinib
+    27  JAK3           0.0471     14  tofacitinib
+    35  CTLA4          0.0281      7  abatacept (CTLA4-Ig fusion)
+    36  SYK            0.0242      2  fostamatinib
+    44  BTK            0.0106      2  fenebrutinib (in trials)
+
+  NOVEL TARGETS (high bill, no approved drug):
+  Rank  Protein          Bill Module Degree Why interesting
+     1  STAT3          0.3412     13     27  same module as JAK1
+     3  NFKB1          0.2478     19     19  same module as TNF
+     5  IFNG           0.2180     10     19  same module as IL6, IL17A
+     6  RELA           0.1871     19     15  same module as TNF
+     8  AKT1           0.1596      0     15  high connectivity hub
+     9  CXCL8          0.1457      3     12  above-median bill, no drug exists
+    10  STAT1          0.1415     13     13  same module as JAK1
+    11  TGFB1          0.1389      8     11  above-median bill, no drug exists
+    12  PIK3CA         0.1338     18     16  high connectivity hub
+    13  TP53           0.1306      1     13  high connectivity hub
+    14  CCL2           0.1293      3     11  above-median bill, no drug exists
+    15  JAK2           0.1163     11     13  high connectivity hub
+    16  MMP9           0.0998      8     10  above-median bill, no drug exists
+    19  IL1A           0.0910     12      8  same module as IL1B
+    20  MAPK1          0.0904     16     10  above-median bill, no drug exists
+
+  COMBINATION PROPOSALS (one target per module, by bill):
+    1. STAT3        (module 13, bill=0.3412) <- NOVEL
+       NO DRUG — novel target
+    2. TNF          (module 19, bill=0.2766)
+       adalimumab, infliximab, etanercept, certolizumab, golimumab
+    3. IL6          (module 10, bill=0.2250)
+       tocilizumab, sarilumab
+    4. IL1B         (module 12, bill=0.1791)
+       anakinra, canakinumab (off-label)
+    5. AKT1         (module 0, bill=0.1596) <- NOVEL
+       NO DRUG — novel target
+
+  INTERACTION TARGETS (cross-module, high sensitivity):
+
+  ENRICHMENT:
+    Top 10: 3/9 known targets (expected 1.9, enrichment 1.6x)
+    Top 20: 5/9 known targets (expected 3.8, enrichment 1.3x)

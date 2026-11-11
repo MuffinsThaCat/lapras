@@ -1,0 +1,62 @@
+
+========================================================================
+  CHRONIC KIDNEY DISEASE
+========================================================================
+  Proteins: 46   Edges: 105
+  TC = 3.20 nats   (e^TC = 25)
+  D = 2.84 — BELOW the capacity line (3.03)
+  -> Hierarchically containable. Modular targeting viable.
+
+  KNOWN TARGETS (validation):
+  Rank  Protein          Bill Module Drug/status
+     1  TGFB1          0.3930      4  in early trials
+    16  HIF1A          0.1042     10  roxadustat (HIF-PHI for CKD anemia)
+    20  MTOR           0.0824     13  everolimus (for ADPKD, in trials)
+    24  AGTR1          0.0731      1  losartan, irbesartan (renoprotective)
+    25  ACE            0.0727      0  enalapril, ramipril (renoprotective)
+    35  EPO            0.0165      7  epoetin alfa, darbepoetin (for CKD anemia)
+    46  GLP1R          0.0063      9  semaglutide (CKD benefit in trials)
+
+  NOVEL TARGETS (high bill, no approved drug):
+  Rank  Protein          Bill Module Degree Why interesting
+     2  AKT1           0.3600      2     13  exceptionally high bill (>2 sigma)
+     3  NFKB1          0.3073     11     10  exceptionally high bill (>2 sigma)
+     4  TNF            0.2965     11     10  high connectivity hub
+     5  MMP9           0.2340      6     10  high connectivity hub
+     6  SMAD3          0.2330     18      8  high connectivity hub
+     7  IL1B           0.2296     11      8  high connectivity hub
+     8  IL6            0.2161      3      7  high connectivity hub
+     9  MYC            0.2122     10      8  same module as HIF1A
+    10  SMAD2          0.1803     18      6  above-median bill, no drug exists
+    11  MAPK1          0.1699     10      7  same module as HIF1A
+    12  SMAD4          0.1500     18      5  above-median bill, no drug exists
+    13  CCL2           0.1286      3      5  above-median bill, no drug exists
+    14  PIK3CA         0.1121     13      6  same module as MTOR
+    15  PPARG          0.1099     17      5  above-median bill, no drug exists
+    17  MMP2           0.0937      4      6  same module as TGFB1
+
+  COMBINATION PROPOSALS (one target per module, by bill):
+    1. TGFB1        (module 4, bill=0.3930)
+       in early trials
+    2. AKT1         (module 2, bill=0.3600) <- NOVEL
+       NO DRUG — novel target
+    3. NFKB1        (module 11, bill=0.3073) <- NOVEL
+       NO DRUG — novel target
+    4. MMP9         (module 6, bill=0.2340) <- NOVEL
+       NO DRUG — novel target
+    5. SMAD3        (module 18, bill=0.2330) <- NOVEL
+       NO DRUG — novel target
+
+  INTERACTION TARGETS (cross-module, high sensitivity):
+    FN1          <-> MMP2          |sens|=0.013438  modules 5<->4  [both novel]
+    FN1          <-> TGFB1         |sens|=0.013252  modules 5<->4  [one novel]
+    FN1          <-> MMP9          |sens|=0.013180  modules 5<->6  [both novel]
+    COL1A1       <-> TGFB1         |sens|=0.012965  modules 5<->4  [one novel]
+    IL1B         <-> NLRP3         |sens|=0.010606  modules 11<->14  [both novel]
+    PDGFRB       <-> PIK3CA        |sens|=0.010510  modules 15<->13  [both novel]
+    KDR          <-> PIK3CA        |sens|=0.010510  modules 12<->13  [both novel]
+    NFKB1        <-> NLRP3         |sens|=0.010499  modules 11<->14  [both novel]
+
+  ENRICHMENT:
+    Top 10: 1/7 known targets (expected 1.5, enrichment 0.7x)
+    Top 20: 3/7 known targets (expected 3.0, enrichment 1.0x)

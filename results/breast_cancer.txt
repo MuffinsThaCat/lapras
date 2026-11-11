@@ -1,0 +1,65 @@
+
+========================================================================
+  BREAST CANCER
+========================================================================
+  Proteins: 47   Edges: 190
+  TC = 3.12 nats   (e^TC = 23)
+  D = 4.03 — ABOVE the capacity line (3.03)
+  -> Globally entangled. Single-target therapy insufficient.
+
+  KNOWN TARGETS (validation):
+  Rank  Protein          Bill Module Drug/status
+     2  BRCA1          0.2716      2  olaparib, talazoparib (PARP inhibitors)
+     3  AKT1           0.2349      0  capivasertib
+     4  ESR1           0.2316     10  tamoxifen, fulvestrant, aromatase inhibitors
+     6  PIK3CA         0.1722      9  alpelisib
+     8  EGFR           0.1624      6  lapatinib (dual HER2/EGFR)
+    13  BRCA2          0.1375      3  olaparib, talazoparib (PARP inhibitors)
+    14  MTOR           0.1350     15  everolimus
+    16  ERBB2          0.1294      9  trastuzumab, pertuzumab, T-DXd
+    20  CDK4           0.1007      5  palbociclib, ribociclib
+    30  CDK6           0.0345      5  palbociclib, ribociclib, abemaciclib
+    40  FGFR2          0.0114     11  futibatinib (in trials)
+
+  NOVEL TARGETS (high bill, no approved drug):
+  Rank  Protein          Bill Module Degree Why interesting
+     1  TP53           0.3553     19     26  exceptionally high bill (>2 sigma)
+     5  CCND1          0.1837      5     15  same module as CDK4, CDK6
+     7  STAT3          0.1669     13     12  high connectivity hub
+     9  MYC            0.1603     16     12  high connectivity hub
+    10  PIK3R1         0.1459      9     13  same module as ERBB2, PIK3CA
+    11  ATM            0.1449      2     13  same module as BRCA1
+    12  AKT2           0.1423      0     12  same module as AKT1
+    15  BARD1          0.1297      3     11  same module as BRCA2
+    17  RAD51          0.1254      3     11  same module as BRCA2
+    18  CHEK2          0.1221      2     11  same module as BRCA1
+    19  PTEN           0.1190     19     10  above-median bill, no drug exists
+    21  MDM2           0.0972      1      9  above-median bill, no drug exists
+    22  PGR            0.0816     10      8  same module as ESR1
+    23  RB1            0.0812      1      9  above-median bill, no drug exists
+
+  COMBINATION PROPOSALS (one target per module, by bill):
+    1. TP53         (module 19, bill=0.3553) <- NOVEL
+       NO DRUG — novel target
+    2. BRCA1        (module 2, bill=0.2716)
+       olaparib, talazoparib (PARP inhibitors)
+    3. AKT1         (module 0, bill=0.2349)
+       capivasertib
+    4. ESR1         (module 10, bill=0.2316)
+       tamoxifen, fulvestrant, aromatase inhibitors
+    5. CCND1        (module 5, bill=0.1837) <- NOVEL
+       NO DRUG — novel target
+
+  INTERACTION TARGETS (cross-module, high sensitivity):
+    FGFR1        <-> PIK3R1        |sens|=0.006212  modules 11<->9  [both novel]
+    CDK6         <-> RUNX1         |sens|=0.006162  modules 5<->4  [one novel]
+    FGFR1        <-> PIK3CA        |sens|=0.006051  modules 11<->9  [one novel]
+    CDH1         <-> FGFR1         |sens|=0.006038  modules 6<->11  [both novel]
+    CDK12        <-> RB1           |sens|=0.005702  modules 7<->1  [both novel]
+    FGFR2        <-> JAK2          |sens|=0.005696  modules 11<->13  [one novel]
+    BRCA2        <-> EMSY          |sens|=0.005628  modules 3<->8  [one novel]
+    FGFR2        <-> PIK3R1        |sens|=0.005621  modules 11<->9  [one novel]
+
+  ENRICHMENT:
+    Top 10: 5/11 known targets (expected 2.3, enrichment 2.1x)
+    Top 20: 9/11 known targets (expected 4.7, enrichment 1.9x)

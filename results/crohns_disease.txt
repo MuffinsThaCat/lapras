@@ -1,0 +1,63 @@
+
+========================================================================
+  CROHN'S DISEASE
+========================================================================
+  Proteins: 42   Edges: 144
+  TC = 2.88 nats   (e^TC = 18)
+  D = 3.71 — ABOVE the capacity line (3.03)
+  -> Globally entangled. Single-target therapy insufficient.
+
+  KNOWN TARGETS (validation):
+  Rank  Protein          Bill Module Drug/status
+     2  IL6            0.3115      7  tocilizumab (off-label)
+     4  TNF            0.2435      5  infliximab, adalimumab, certolizumab
+    10  JAK1           0.1561     11  upadacitinib, filgotinib
+    15  TYK2           0.1299     16  deucravacitinib (in trials)
+    20  IL23A          0.0664      8  risankizumab, guselkumab, mirikizumab
+    21  IL12B          0.0530      8  ustekinumab (IL-12/23 p40)
+    32  ITGA4          0.0131     10  vedolizumab (anti-α4β7), natalizumab (anti-α4)
+    40  SMAD7          0.0047     15  mongersen (failed Phase III)
+
+  NOVEL TARGETS (high bill, no approved drug):
+  Rank  Protein          Bill Module Degree Why interesting
+     1  STAT3          0.3713     11     21  same module as JAK1
+     3  IFNG           0.2746      5     15  same module as TNF
+     5  IL10           0.2276      7     12  same module as IL6
+     6  IL1B           0.2197      7     12  same module as IL6
+     7  NFKB1          0.2057      6     12  high connectivity hub
+     8  JAK2           0.1772     11     12  same module as JAK1
+     9  IL17A          0.1690      9     10  high connectivity hub
+    11  TGFB1          0.1549     15      9  same module as SMAD7
+    12  IL18           0.1352      2      9  above-median bill, no drug exists
+    13  RELA           0.1320      6      9  above-median bill, no drug exists
+    14  STAT4          0.1309     16      9  same module as TYK2
+    16  IL23R          0.1137      8      8  same module as IL12B, IL23A
+    17  IL22           0.0839      9      6  above-median bill, no drug exists
+    18  JAK3           0.0722     12      6  above-median bill, no drug exists
+    19  PTPN2          0.0709     12      6  above-median bill, no drug exists
+
+  COMBINATION PROPOSALS (one target per module, by bill):
+    1. STAT3        (module 11, bill=0.3713) <- NOVEL
+       NO DRUG — novel target
+    2. IL6          (module 7, bill=0.3115)
+       tocilizumab (off-label)
+    3. IFNG         (module 5, bill=0.2746) <- NOVEL
+       NO DRUG — novel target
+    4. NFKB1        (module 6, bill=0.2057) <- NOVEL
+       NO DRUG — novel target
+    5. IL17A        (module 9, bill=0.1690) <- NOVEL
+       NO DRUG — novel target
+
+  INTERACTION TARGETS (cross-module, high sensitivity):
+    NFKB1        <-> VCAM1         |sens|=0.008771  modules 6<->17  [both novel]
+    IL6          <-> OSM           |sens|=0.008762  modules 7<->13  [one novel]
+    RELA         <-> VCAM1         |sens|=0.008683  modules 6<->17  [both novel]
+    IRGM         <-> NLRP3         |sens|=0.008506  modules 0<->2  [both novel]
+    CASP1        <-> NOD2          |sens|=0.008409  modules 2<->0  [both novel]
+    MAPK14       <-> TNF           |sens|=0.008365  modules 1<->5  [one novel]
+    CARD9        <-> IKBKB         |sens|=0.008356  modules 1<->6  [both novel]
+    IKBKB        <-> RIPK2         |sens|=0.008312  modules 6<->14  [both novel]
+
+  ENRICHMENT:
+    Top 10: 3/8 known targets (expected 1.9, enrichment 1.6x)
+    Top 20: 5/8 known targets (expected 3.8, enrichment 1.3x)

@@ -1,0 +1,64 @@
+
+========================================================================
+  TYPE 2 DIABETES
+========================================================================
+  Proteins: 49   Edges: 131
+  TC = 3.05 nats   (e^TC = 21)
+  D = 3.89 — ABOVE the capacity line (3.03)
+  -> Globally entangled. Single-target therapy insufficient.
+
+  KNOWN TARGETS (validation):
+  Rank  Protein          Bill Module Drug/status
+     9  PPARG          0.1586      1  pioglitazone, rosiglitazone
+    14  INSR           0.1438     15  insulin (exogenous)
+    30  GLP1R          0.0318      3  semaglutide, liraglutide, dulaglutide, exenatide
+    32  DPP4           0.0315      3  sitagliptin, saxagliptin, linagliptin
+    33  GCK            0.0300      8  dorzagliatin (approved in China)
+    38  GIPR           0.0158      9  tirzepatide (dual GIP/GLP1 agonist)
+    46  GCGR           0.0072      7  glucagon receptor antagonists (in trials)
+    47  KCNJ11         0.0059      0  sulfonylureas (glipizide, glyburide)
+    48  ABCC8          0.0059      0  sulfonylureas
+
+  NOVEL TARGETS (high bill, no approved drug):
+  Rank  Protein          Bill Module Degree Why interesting
+     1  INS            0.4326     15     23  same module as INSR
+     2  AKT1           0.3081      2     13  exceptionally high bill (>2 sigma)
+     3  IRS1           0.2795     16     12  exceptionally high bill (>2 sigma)
+     4  MTOR           0.2145      2      9  high connectivity hub
+     5  PIK3CA         0.2098     16     10  high connectivity hub
+     6  FOXO1          0.1993      6     10  high connectivity hub
+     7  PPARGC1A       0.1759     12     10  high connectivity hub
+     8  AKT2           0.1742      2      8  high connectivity hub
+    10  LEP            0.1515     14      9  high connectivity hub
+    11  IRS2           0.1478     15      7  same module as INSR
+    12  SIRT1          0.1459      6      7  above-median bill, no drug exists
+    13  TNF            0.1441     13      8  high connectivity hub
+    15  SLC2A4         0.1303      1      6  same module as PPARG
+    16  NFKB1          0.1274     13      8  high connectivity hub
+    17  GCG            0.1067      7     11  same module as GCGR
+
+  COMBINATION PROPOSALS (one target per module, by bill):
+    1. INS          (module 15, bill=0.4326) <- NOVEL
+       NO DRUG — novel target
+    2. AKT1         (module 2, bill=0.3081) <- NOVEL
+       NO DRUG — novel target
+    3. IRS1         (module 16, bill=0.2795) <- NOVEL
+       NO DRUG — novel target
+    4. FOXO1        (module 6, bill=0.1993) <- NOVEL
+       NO DRUG — novel target
+    5. PPARGC1A     (module 12, bill=0.1759) <- NOVEL
+       NO DRUG — novel target
+
+  INTERACTION TARGETS (cross-module, high sensitivity):
+    AKT1         <-> GSK3B         |sens|=0.009588  modules 2<->10  [both novel]
+    GCG          <-> INS           |sens|=0.009502  modules 7<->15  [both novel]
+    AKT2         <-> GSK3B         |sens|=0.009473  modules 2<->10  [both novel]
+    GCG          <-> LEP           |sens|=0.009348  modules 7<->14  [both novel]
+    FGFR1        <-> PIK3CA        |sens|=0.009339  modules 5<->16  [both novel]
+    IAPP         <-> INS           |sens|=0.009224  modules 7<->15  [both novel]
+    FGFR1        <-> INS           |sens|=0.009070  modules 5<->15  [both novel]
+    GCG          <-> PCSK1         |sens|=0.008926  modules 7<->18  [both novel]
+
+  ENRICHMENT:
+    Top 10: 1/9 known targets (expected 1.8, enrichment 0.5x)
+    Top 20: 2/9 known targets (expected 3.7, enrichment 0.5x)

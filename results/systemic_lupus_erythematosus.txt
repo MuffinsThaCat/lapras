@@ -1,0 +1,62 @@
+
+========================================================================
+  SYSTEMIC LUPUS ERYTHEMATOSUS
+========================================================================
+  Proteins: 46   Edges: 124
+  TC = 2.89 nats   (e^TC = 18)
+  D = 3.35 — ABOVE the capacity line (3.03)
+  -> Globally entangled. Single-target therapy insufficient.
+
+  KNOWN TARGETS (validation):
+  Rank  Protein          Bill Module Drug/status
+     3  JAK1           0.2665     14  baricitinib (in trials)
+     4  IL6            0.2534     12  tocilizumab (in trials)
+     8  TYK2           0.2155     11  deucravacitinib (in trials)
+     9  IFNAR1         0.1996     11  anifrolumab (type I IFN receptor blocker)
+    26  CTLA4          0.0370      6  abatacept (in trials for lupus nephritis)
+    34  BTK            0.0124      1  fenebrutinib (in trials)
+    36  TNFSF13B       0.0114     17  belimumab (BLyS/BAFF inhibitor)
+
+  NOVEL TARGETS (high bill, no approved drug):
+  Rank  Protein          Bill Module Degree Why interesting
+     1  IFNG           0.3808     12     18  same module as IL6
+     2  STAT1          0.3157     14     13  same module as JAK1
+     5  IFNA1          0.2498      9     11  high connectivity hub
+     6  JAK2           0.2428     14     12  same module as JAK1
+     7  TNF            0.2169     16     12  high connectivity hub
+    10  IFNAR2         0.1977     10      8  high connectivity hub
+    11  NFKB1          0.1825     16      9  high connectivity hub
+    12  IL10           0.1429     12      8  same module as IL6
+    13  STAT4          0.1317     11      6  same module as IFNAR1, TYK2
+    14  MYD88          0.1184     15      8  high connectivity hub
+    15  IFNA2          0.0845     10      5  above-median bill, no drug exists
+    16  IRF7           0.0688      9      6  above-median bill, no drug exists
+    17  RELA           0.0653     16      4  above-median bill, no drug exists
+    18  ITGAM          0.0591      3      6  above-median bill, no drug exists
+    19  CD40           0.0514      4      4  above-median bill, no drug exists
+
+  COMBINATION PROPOSALS (one target per module, by bill):
+    1. IFNG         (module 12, bill=0.3808) <- NOVEL
+       NO DRUG — novel target
+    2. STAT1        (module 14, bill=0.3157) <- NOVEL
+       NO DRUG — novel target
+    3. IFNA1        (module 9, bill=0.2498) <- NOVEL
+       NO DRUG — novel target
+    4. TNF          (module 16, bill=0.2169) <- NOVEL
+       NO DRUG — novel target
+    5. TYK2         (module 11, bill=0.2155)
+       deucravacitinib (in trials)
+
+  INTERACTION TARGETS (cross-module, high sensitivity):
+    CD40         <-> TNF           |sens|=0.010823  modules 4<->16  [both novel]
+    CTLA4        <-> IFNG          |sens|=0.010721  modules 6<->12  [one novel]
+    CD40LG       <-> TNF           |sens|=0.010573  modules 4<->16  [both novel]
+    CD40LG       <-> IFNG          |sens|=0.010471  modules 4<->12  [both novel]
+    CTLA4        <-> IL10          |sens|=0.010460  modules 6<->12  [one novel]
+    CD40         <-> NFKB1         |sens|=0.010415  modules 4<->16  [both novel]
+    CD40         <-> IFNG          |sens|=0.010415  modules 4<->12  [both novel]
+    IFNG         <-> PDCD1         |sens|=0.010403  modules 12<->6  [both novel]
+
+  ENRICHMENT:
+    Top 10: 4/7 known targets (expected 1.5, enrichment 2.6x)
+    Top 20: 4/7 known targets (expected 3.0, enrichment 1.3x)

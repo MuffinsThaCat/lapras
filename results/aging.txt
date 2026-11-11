@@ -1,0 +1,59 @@
+
+========================================================================
+  AGING
+========================================================================
+  Proteins: 97   Edges: 2393
+  TC = 3.19 nats   (e^TC = 24)
+  D = 5.36 — ABOVE the capacity line (3.03)
+  -> Globally entangled. Single-target therapy insufficient.
+
+  KNOWN TARGETS (validation):
+  Rank  Protein          Bill Module Drug/status
+     1  TP53           0.1243      7  p53 reactivators (APR-246)
+     2  AKT1           0.1159      0  AKT inhibitors (capivasertib, ipatasertib)
+     4  MTOR           0.0978     16  mTOR inhibitors (rapamycin, everolimus)
+     5  PIK3CA         0.0924     31  PI3K inhibitors (alpelisib, idelalisib)
+     8  SIRT1          0.0868     18  SIRT1 activators (resveratrol, SRT1720)
+     9  PTEN           0.0858     31  no direct drug (tumor suppressor)
+    11  BCL2           0.0842      3  BCL2 inhibitors (venetoclax)
+    16  EGFR           0.0719     15  EGFR inhibitors (erlotinib, osimertinib)
+    17  NFKB1          0.0710     29  NF-kB pathway inhibitors (bortezomib indirectly)
+    27  TNF            0.0601     29  TNF inhibitors (infliximab, adalimumab)
+    28  IL6            0.0599     22  IL-6 inhibitors (tocilizumab, siltuximab)
+    43  IGF1           0.0416     21  IGF1R inhibitors (linsitinib)
+
+  NOVEL TARGETS (high bill, no approved drug):
+  Rank  Protein          Bill Module Degree Why interesting
+     3  MYC            0.1021      8     86  exceptionally high bill (>2 sigma)
+     6  STAT3          0.0894     23     75  high connectivity hub
+     7  CTNNB1         0.0884     11     76  high connectivity hub
+    10  HIF1A          0.0852     19     77  high connectivity hub
+    12  PIK3CB         0.0819     31     79  same module as PIK3CA, PTEN
+    13  PARP1          0.0762     30     76  high connectivity hub
+    14  CASP3          0.0745      6     74  high connectivity hub
+    15  FOXO3          0.0732      0     73  same module as AKT1
+    18  MDM2           0.0696      7     66  same module as TP53
+    19  EP300          0.0689     11     66  above-median bill, no drug exists
+    20  ATM            0.0688      2     80  high connectivity hub
+    21  CDKN1A         0.0649      7     64  same module as TP53
+    22  FOXO1          0.0638     18     69  same module as SIRT1
+    23  HSP90AA1       0.0638     15     70  same module as EGFR
+    24  BRCA1          0.0636      2     67  above-median bill, no drug exists
+
+  COMBINATION PROPOSALS (one target per module, by bill):
+    1. TP53         (module 7, bill=0.1243)
+       p53 reactivators (APR-246)
+    2. AKT1         (module 0, bill=0.1159)
+       AKT inhibitors (capivasertib, ipatasertib)
+    3. MYC          (module 8, bill=0.1021) <- NOVEL
+       NO DRUG — novel target
+    4. MTOR         (module 16, bill=0.0978)
+       mTOR inhibitors (rapamycin, everolimus)
+    5. PIK3CA       (module 31, bill=0.0924)
+       PI3K inhibitors (alpelisib, idelalisib)
+
+  INTERACTION TARGETS (cross-module, high sensitivity):
+
+  ENRICHMENT:
+    Top 10: 6/12 known targets (expected 1.2, enrichment 4.8x)
+    Top 20: 9/12 known targets (expected 2.5, enrichment 3.6x)

@@ -1,0 +1,61 @@
+
+========================================================================
+  MELANOMA
+========================================================================
+  Proteins: 43   Edges: 171
+  TC = 2.96 nats   (e^TC = 19)
+  D = 4.15 — ABOVE the capacity line (3.03)
+  -> Globally entangled. Single-target therapy insufficient.
+
+  KNOWN TARGETS (validation):
+  Rank  Protein          Bill Module Drug/status
+    15  MTOR           0.1140     15  everolimus (in trials)
+    17  BRAF           0.1125      5  vemurafenib, dabrafenib
+    23  CDK4           0.0496      6  palbociclib (in trials)
+    27  KIT            0.0442     13  imatinib (KIT-mutant)
+    31  MAP2K1         0.0336     14  trametinib, cobimetinib
+    32  MAP2K2         0.0329     14  trametinib (MEK1/2)
+
+  NOVEL TARGETS (high bill, no approved drug):
+  Rank  Protein          Bill Module Degree Why interesting
+     1  PIK3CA         0.3217      8     21  exceptionally high bill (>2 sigma)
+     2  TP53           0.2863     15     21  same module as MTOR
+     3  EGFR           0.2700      8     16  exceptionally high bill (>2 sigma)
+     4  HRAS           0.2268      5     18  same module as BRAF
+     5  STAT3          0.2058     11     14  high connectivity hub
+     6  AKT1           0.1950      0     16  high connectivity hub
+     7  NRAS           0.1949      5     17  same module as BRAF
+     8  ERBB2          0.1898      8     13  high connectivity hub
+     9  CTNNB1         0.1768      2     15  high connectivity hub
+    10  PTEN           0.1554     15     13  same module as MTOR
+    11  MYC            0.1480      7     12  above-median bill, no drug exists
+    12  PDGFRB         0.1299     17      9  above-median bill, no drug exists
+    13  CCND1          0.1207      6     11  same module as CDK4
+    14  JAK2           0.1163     11     10  above-median bill, no drug exists
+    16  PDGFRA         0.1130     17      8  above-median bill, no drug exists
+
+  COMBINATION PROPOSALS (one target per module, by bill):
+    1. PIK3CA       (module 8, bill=0.3217) <- NOVEL
+       NO DRUG — novel target
+    2. TP53         (module 15, bill=0.2863) <- NOVEL
+       NO DRUG — novel target
+    3. HRAS         (module 5, bill=0.2268) <- NOVEL
+       NO DRUG — novel target
+    4. STAT3        (module 11, bill=0.2058) <- NOVEL
+       NO DRUG — novel target
+    5. AKT1         (module 0, bill=0.1950) <- NOVEL
+       NO DRUG — novel target
+
+  INTERACTION TARGETS (cross-module, high sensitivity):
+    STK11        <-> TP53          |sens|=0.006525  modules 19<->15  [both novel]
+    KIT          <-> PIK3CA        |sens|=0.006519  modules 13<->8  [one novel]
+    KDR          <-> PIK3CA        |sens|=0.006473  modules 12<->8  [both novel]
+    KIT          <-> NRAS          |sens|=0.006414  modules 13<->5  [one novel]
+    CTNNB1       <-> MITF          |sens|=0.006348  modules 2<->13  [both novel]
+    PREX2        <-> PTEN          |sens|=0.006309  modules 18<->15  [both novel]
+    HRAS         <-> KIT           |sens|=0.006296  modules 5<->13  [one novel]
+    KIT          <-> STAT3         |sens|=0.006289  modules 13<->11  [one novel]
+
+  ENRICHMENT:
+    Top 10: 0/6 known targets (expected 1.4, enrichment 0.0x)
+    Top 20: 2/6 known targets (expected 2.8, enrichment 0.7x)

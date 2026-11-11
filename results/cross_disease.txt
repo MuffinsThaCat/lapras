@@ -1,0 +1,458 @@
+
+========================================================================
+  CROSS-DISEASE REPURPOSING CANDIDATES
+========================================================================
+  Proteins in the top 30% by bill across 2+ diseases
+
+  Protein      #Diseases  Diseases
+  --------     ---------  --------
+  TNF                 18  Multiple Sclerosis (top 0%); Rheumatoid Arthritis (top 2%); Systemic Lupus Erythematosus (top 13%); Type 1 Diabetes (top 5%); Type 2 Diabetes (top 24%); Non-Alcoholic Fatty Liver Disease / NASH (top 0%); Atherosclerosis (top 2%); Heart Failure (top 2%); Crohn's Disease (top 7%); Idiopathic Pulmonary Fibrosis (top 15%); Major Depressive Disorder (top 13%); Schizophrenia (top 13%); HIV/AIDS (top 2%); Tuberculosis (Host Response) (top 4%); Chronic Kidney Disease (top 7%); Sickle Cell Disease (top 3%); Asthma (top 7%); Systemic Fibrosis / Scleroderma (top 7%)
+  IL6                 17  Multiple Sclerosis (top 5%); Rheumatoid Arthritis (top 6%); Systemic Lupus Erythematosus (top 7%); Type 1 Diabetes (top 2%); Non-Alcoholic Fatty Liver Disease / NASH (top 7%); Atherosclerosis (top 4%); Heart Failure (top 15%); Crohn's Disease (top 2%); Idiopathic Pulmonary Fibrosis (top 24%); Major Depressive Disorder (top 21%); Schizophrenia (top 21%); HIV/AIDS (top 0%); Tuberculosis (Host Response) (top 2%); Chronic Kidney Disease (top 15%); Sickle Cell Disease (top 5%); Asthma (top 0%); Systemic Fibrosis / Scleroderma (top 5%)
+  NFKB1               16  Huntington's Disease (top 4%); Multiple Sclerosis (top 9%); Rheumatoid Arthritis (top 4%); Systemic Lupus Erythematosus (top 22%); Type 1 Diabetes (top 22%); Non-Alcoholic Fatty Liver Disease / NASH (top 2%); Atherosclerosis (top 0%); Heart Failure (top 4%); Crohn's Disease (top 14%); Major Depressive Disorder (top 0%); Schizophrenia (top 11%); HIV/AIDS (top 5%); Tuberculosis (Host Response) (top 0%); Chronic Kidney Disease (top 4%); Asthma (top 29%); Systemic Fibrosis / Scleroderma (top 16%)
+  IL1B                16  Multiple Sclerosis (top 11%); Rheumatoid Arthritis (top 12%); Type 1 Diabetes (top 20%); Non-Alcoholic Fatty Liver Disease / NASH (top 12%); Atherosclerosis (top 6%); Heart Failure (top 11%); Crohn's Disease (top 12%); Idiopathic Pulmonary Fibrosis (top 22%); Major Depressive Disorder (top 23%); Schizophrenia (top 18%); HIV/AIDS (top 9%); Tuberculosis (Host Response) (top 9%); Chronic Kidney Disease (top 13%); Sickle Cell Disease (top 8%); Asthma (top 12%); Systemic Fibrosis / Scleroderma (top 9%)
+  STAT3               15  Breast Cancer (top 13%); Lung Cancer (NSCLC) (top 17%); Colorectal Cancer (top 15%); Melanoma (top 9%); Prostate Cancer (top 17%); Hepatocellular Carcinoma (top 6%); Glioblastoma (top 16%); Ovarian Cancer (top 17%); Multiple Sclerosis (top 7%); Rheumatoid Arthritis (top 0%); Type 1 Diabetes (top 8%); Crohn's Disease (top 0%); Tuberculosis (Host Response) (top 6%); Asthma (top 10%); Systemic Fibrosis / Scleroderma (top 2%)
+  AKT1                14  Breast Cancer (top 4%); Lung Cancer (NSCLC) (top 13%); Colorectal Cancer (top 6%); Melanoma (top 12%); Prostate Cancer (top 2%); Hepatocellular Carcinoma (top 12%); Glioblastoma (top 12%); Ovarian Cancer (top 9%); Rheumatoid Arthritis (top 15%); Type 2 Diabetes (top 2%); Heart Failure (top 0%); Idiopathic Pulmonary Fibrosis (top 2%); Major Depressive Disorder (top 3%); Chronic Kidney Disease (top 2%)
+  TP53                12  Breast Cancer (top 0%); Lung Cancer (NSCLC) (top 7%); Colorectal Cancer (top 0%); Melanoma (top 2%); Prostate Cancer (top 0%); Hepatocellular Carcinoma (top 8%); Glioblastoma (top 8%); Ovarian Cancer (top 2%); Parkinson's Disease (top 15%); Huntington's Disease (top 0%); Rheumatoid Arthritis (top 25%); Idiopathic Pulmonary Fibrosis (top 7%)
+  PIK3CA              12  Breast Cancer (top 11%); Lung Cancer (NSCLC) (top 0%); Colorectal Cancer (top 9%); Melanoma (top 0%); Prostate Cancer (top 7%); Hepatocellular Carcinoma (top 2%); Glioblastoma (top 0%); Ovarian Cancer (top 0%); Rheumatoid Arthritis (top 23%); Type 2 Diabetes (top 8%); Idiopathic Pulmonary Fibrosis (top 9%); Chronic Kidney Disease (top 28%)
+  TGFB1               11  Rheumatoid Arthritis (top 21%); Type 1 Diabetes (top 18%); Non-Alcoholic Fatty Liver Disease / NASH (top 5%); Heart Failure (top 7%); Crohn's Disease (top 24%); Idiopathic Pulmonary Fibrosis (top 0%); Tuberculosis (Host Response) (top 19%); Osteoporosis (top 25%); Chronic Kidney Disease (top 0%); Asthma (top 24%); Systemic Fibrosis / Scleroderma (top 0%)
+  EGFR                 9  Breast Cancer (top 15%); Lung Cancer (NSCLC) (top 4%); Colorectal Cancer (top 4%); Melanoma (top 5%); Prostate Cancer (top 4%); Hepatocellular Carcinoma (top 0%); Glioblastoma (top 2%); Ovarian Cancer (top 4%); Idiopathic Pulmonary Fibrosis (top 20%)
+  MYC                  8  Breast Cancer (top 17%); Lung Cancer (NSCLC) (top 26%); Colorectal Cancer (top 11%); Melanoma (top 23%); Prostate Cancer (top 13%); Hepatocellular Carcinoma (top 27%); Ovarian Cancer (top 30%); Chronic Kidney Disease (top 17%)
+  CTNNB1               8  Lung Cancer (NSCLC) (top 20%); Colorectal Cancer (top 2%); Melanoma (top 19%); Prostate Cancer (top 9%); Hepatocellular Carcinoma (top 15%); Ovarian Cancer (top 13%); Idiopathic Pulmonary Fibrosis (top 4%); Osteoporosis (top 0%)
+  ERBB2                7  Lung Cancer (NSCLC) (top 22%); Colorectal Cancer (top 21%); Melanoma (top 16%); Prostate Cancer (top 28%); Hepatocellular Carcinoma (top 10%); Glioblastoma (top 18%); Ovarian Cancer (top 19%)
+  PTEN                 7  Lung Cancer (NSCLC) (top 28%); Colorectal Cancer (top 17%); Melanoma (top 21%); Prostate Cancer (top 20%); Hepatocellular Carcinoma (top 25%); Glioblastoma (top 24%); Ovarian Cancer (top 28%)
+  IFNG                 7  Multiple Sclerosis (top 2%); Rheumatoid Arthritis (top 8%); Systemic Lupus Erythematosus (top 0%); Type 1 Diabetes (top 0%); Crohn's Disease (top 5%); Tuberculosis (Host Response) (top 11%); Asthma (top 2%)
+  MMP9                 7  Multiple Sclerosis (top 27%); Non-Alcoholic Fatty Liver Disease / NASH (top 10%); Atherosclerosis (top 19%); Heart Failure (top 9%); Tuberculosis (Host Response) (top 28%); Chronic Kidney Disease (top 9%); Systemic Fibrosis / Scleroderma (top 12%)
+  MTOR                 6  Breast Cancer (top 28%); Colorectal Cancer (top 19%); Hepatocellular Carcinoma (top 17%); Glioblastoma (top 20%); Ovarian Cancer (top 21%); Type 2 Diabetes (top 6%)
+  KRAS                 6  Lung Cancer (NSCLC) (top 2%); Colorectal Cancer (top 13%); Prostate Cancer (top 26%); Hepatocellular Carcinoma (top 4%); Glioblastoma (top 4%); Ovarian Cancer (top 11%)
+  JAK2                 6  Hepatocellular Carcinoma (top 29%); Multiple Sclerosis (top 25%); Rheumatoid Arthritis (top 29%); Systemic Lupus Erythematosus (top 11%); Crohn's Disease (top 17%); Systemic Fibrosis / Scleroderma (top 26%)
+  JAK1                 6  Multiple Sclerosis (top 16%); Systemic Lupus Erythematosus (top 4%); Type 1 Diabetes (top 28%); Crohn's Disease (top 21%); HIV/AIDS (top 26%); Systemic Fibrosis / Scleroderma (top 19%)
+  NRAS                 5  Lung Cancer (NSCLC) (top 15%); Melanoma (top 14%); Hepatocellular Carcinoma (top 21%); Glioblastoma (top 14%); Ovarian Cancer (top 23%)
+  SIRT1                5  Huntington's Disease (top 13%); Type 2 Diabetes (top 22%); Non-Alcoholic Fatty Liver Disease / NASH (top 17%); Obesity (top 29%); Heart Failure (top 28%)
+  RELA                 5  Multiple Sclerosis (top 14%); Rheumatoid Arthritis (top 10%); Crohn's Disease (top 29%); HIV/AIDS (top 12%); Tuberculosis (Host Response) (top 13%)
+  CCL2                 5  Rheumatoid Arthritis (top 27%); Atherosclerosis (top 13%); HIV/AIDS (top 23%); Chronic Kidney Disease (top 26%); Systemic Fibrosis / Scleroderma (top 21%)
+  IL10                 5  Systemic Lupus Erythematosus (top 24%); Type 1 Diabetes (top 12%); Crohn's Disease (top 10%); Tuberculosis (Host Response) (top 15%); Asthma (top 17%)
+  PIK3R1               4  Breast Cancer (top 19%); Prostate Cancer (top 15%); Glioblastoma (top 6%); Ovarian Cancer (top 6%)
+  SMAD3                4  Colorectal Cancer (top 28%); Idiopathic Pulmonary Fibrosis (top 11%); Osteoporosis (top 14%); Chronic Kidney Disease (top 11%)
+  IL17A                4  Multiple Sclerosis (top 23%); Type 1 Diabetes (top 25%); Crohn's Disease (top 19%); Asthma (top 22%)
+  CXCL8                4  Rheumatoid Arthritis (top 17%); Atherosclerosis (top 9%); Sickle Cell Disease (top 11%); Asthma (top 20%)
+  STAT1                4  Rheumatoid Arthritis (top 19%); Systemic Lupus Erythematosus (top 2%); HIV/AIDS (top 14%); Tuberculosis (Host Response) (top 30%)
+  CCND1                3  Breast Cancer (top 9%); Melanoma (top 28%); Prostate Cancer (top 22%)
+  SRC                  3  Lung Cancer (NSCLC) (top 11%); Glioblastoma (top 10%); Ovarian Cancer (top 15%)
+  MET                  3  Lung Cancer (NSCLC) (top 24%); Colorectal Cancer (top 23%); Glioblastoma (top 22%)
+  SMAD4                3  Colorectal Cancer (top 26%); Idiopathic Pulmonary Fibrosis (top 17%); Chronic Kidney Disease (top 24%)
+  CASP3                3  Parkinson's Disease (top 17%); Non-Alcoholic Fatty Liver Disease / NASH (top 29%); Heart Failure (top 13%)
+  CXCL10               3  Multiple Sclerosis (top 20%); Non-Alcoholic Fatty Liver Disease / NASH (top 24%); HIV/AIDS (top 19%)
+  MYD88                3  Systemic Lupus Erythematosus (top 28%); HIV/AIDS (top 16%); Tuberculosis (Host Response) (top 21%)
+  PPARGC1A             3  Type 2 Diabetes (top 12%); Non-Alcoholic Fatty Liver Disease / NASH (top 22%); Obesity (top 22%)
+  PPARG                3  Type 2 Diabetes (top 16%); Non-Alcoholic Fatty Liver Disease / NASH (top 15%); Obesity (top 20%)
+  LEP                  3  Type 2 Diabetes (top 18%); Non-Alcoholic Fatty Liver Disease / NASH (top 20%); Obesity (top 0%)
+  IL18                 3  Atherosclerosis (top 15%); Crohn's Disease (top 26%); Tuberculosis (Host Response) (top 23%)
+  SMAD2                3  Idiopathic Pulmonary Fibrosis (top 13%); Osteoporosis (top 23%); Chronic Kidney Disease (top 20%)
+  IL4                  3  Idiopathic Pulmonary Fibrosis (top 26%); Asthma (top 5%); Systemic Fibrosis / Scleroderma (top 14%)
+  IL13                 3  Idiopathic Pulmonary Fibrosis (top 28%); Asthma (top 15%); Systemic Fibrosis / Scleroderma (top 23%)
+  BRCA1                2  Breast Cancer (top 2%); Prostate Cancer (top 11%)
+  AKT2                 2  Breast Cancer (top 23%); Type 2 Diabetes (top 14%)
+  HRAS                 2  Lung Cancer (NSCLC) (top 9%); Melanoma (top 7%)
+  PDGFRB               2  Melanoma (top 26%); Hepatocellular Carcinoma (top 23%)
+  IGF1R                2  Hepatocellular Carcinoma (top 19%); Ovarian Cancer (top 26%)
+  SLC6A3               2  Parkinson's Disease (top 27%); Schizophrenia (top 8%)
+  BCL2                 2  Huntington's Disease (top 20%); Heart Failure (top 17%)
+  IFNB1                2  Multiple Sclerosis (top 18%); HIV/AIDS (top 7%)
+  IFNA1                2  Systemic Lupus Erythematosus (top 9%); HIV/AIDS (top 28%)
+  IL2                  2  Type 1 Diabetes (top 10%); HIV/AIDS (top 21%)
+  IRS1                 2  Type 2 Diabetes (top 4%); Obesity (top 24%)
+  MMP2                 2  Non-Alcoholic Fatty Liver Disease / NASH (top 27%); Systemic Fibrosis / Scleroderma (top 28%)
+  ICAM1                2  Atherosclerosis (top 11%); Sickle Cell Disease (top 0%)
+  VCAM1                2  Atherosclerosis (top 21%); Sickle Cell Disease (top 13%)
+  MAPK1                2  Heart Failure (top 26%); Chronic Kidney Disease (top 22%)
+  COMT                 2  Major Depressive Disorder (top 8%); Schizophrenia (top 5%)
+  SLC6A4               2  Major Depressive Disorder (top 28%); Schizophrenia (top 16%)
+  GRIN2B               2  Schizophrenia (top 24%); Epilepsy (top 0%)
+  GRIN2A               2  Schizophrenia (top 26%); Epilepsy (top 8%)
+  GRIA1                2  Schizophrenia (top 29%); Epilepsy (top 3%)
+  TLR4                 2  Tuberculosis (Host Response) (top 17%); Sickle Cell Disease (top 18%)
+
+  STRONGEST (3+ diseases):
+
+  TNF:
+    Multiple Sclerosis            : top 0%, bill=0.3537
+    Rheumatoid Arthritis          : top 2%, bill=0.2766
+    Systemic Lupus Erythematosus  : top 13%, bill=0.2169
+    Type 1 Diabetes               : top 5%, bill=0.2620
+    Type 2 Diabetes               : top 24%, bill=0.1441
+    Non-Alcoholic Fatty Liver Disease / NASH: top 0%, bill=0.3850
+    Atherosclerosis               : top 2%, bill=0.3780
+    Heart Failure                 : top 2%, bill=0.3733
+    Crohn's Disease               : top 7%, bill=0.2435
+    Idiopathic Pulmonary Fibrosis : top 15%, bill=0.2018
+    Major Depressive Disorder     : top 13%, bill=0.3726
+    Schizophrenia                 : top 13%, bill=0.3336
+    HIV/AIDS                      : top 2%, bill=0.3199
+    Tuberculosis (Host Response)  : top 4%, bill=0.2782
+    Chronic Kidney Disease        : top 7%, bill=0.2965
+    Sickle Cell Disease           : top 3%, bill=0.4114
+    Asthma                        : top 7%, bill=0.2488
+    Systemic Fibrosis / Scleroderma: top 7%, bill=0.2806
+
+  IL6:
+    Multiple Sclerosis            : top 5%, bill=0.3310
+    Rheumatoid Arthritis          : top 6%, bill=0.2250
+    Systemic Lupus Erythematosus  : top 7%, bill=0.2534
+    Type 1 Diabetes               : top 2%, bill=0.2856
+    Non-Alcoholic Fatty Liver Disease / NASH: top 7%, bill=0.3603
+    Atherosclerosis               : top 4%, bill=0.3553
+    Heart Failure                 : top 15%, bill=0.2358
+    Crohn's Disease               : top 2%, bill=0.3115
+    Idiopathic Pulmonary Fibrosis : top 24%, bill=0.1335
+    Major Depressive Disorder     : top 21%, bill=0.3501
+    Schizophrenia                 : top 21%, bill=0.2643
+    HIV/AIDS                      : top 0%, bill=0.3778
+    Tuberculosis (Host Response)  : top 2%, bill=0.2791
+    Chronic Kidney Disease        : top 15%, bill=0.2161
+    Sickle Cell Disease           : top 5%, bill=0.4109
+    Asthma                        : top 0%, bill=0.2678
+    Systemic Fibrosis / Scleroderma: top 5%, bill=0.3101
+
+  NFKB1:
+    Huntington's Disease          : top 4%, bill=0.2424
+    Multiple Sclerosis            : top 9%, bill=0.2420
+    Rheumatoid Arthritis          : top 4%, bill=0.2478
+    Systemic Lupus Erythematosus  : top 22%, bill=0.1825
+    Type 1 Diabetes               : top 22%, bill=0.1736
+    Non-Alcoholic Fatty Liver Disease / NASH: top 2%, bill=0.3809
+    Atherosclerosis               : top 0%, bill=0.3979
+    Heart Failure                 : top 4%, bill=0.3634
+    Crohn's Disease               : top 14%, bill=0.2057
+    Major Depressive Disorder     : top 0%, bill=0.4798
+    Schizophrenia                 : top 11%, bill=0.3373
+    HIV/AIDS                      : top 5%, bill=0.2993
+    Tuberculosis (Host Response)  : top 0%, bill=0.2857
+    Chronic Kidney Disease        : top 4%, bill=0.3073
+    Asthma                        : top 29%, bill=0.1433
+    Systemic Fibrosis / Scleroderma: top 16%, bill=0.2292
+
+  IL1B:
+    Multiple Sclerosis            : top 11%, bill=0.2312
+    Rheumatoid Arthritis          : top 12%, bill=0.1791
+    Type 1 Diabetes               : top 20%, bill=0.1739
+    Non-Alcoholic Fatty Liver Disease / NASH: top 12%, bill=0.3509
+    Atherosclerosis               : top 6%, bill=0.3483
+    Heart Failure                 : top 11%, bill=0.2754
+    Crohn's Disease               : top 12%, bill=0.2197
+    Idiopathic Pulmonary Fibrosis : top 22%, bill=0.1418
+    Major Depressive Disorder     : top 23%, bill=0.3324
+    Schizophrenia                 : top 18%, bill=0.2646
+    HIV/AIDS                      : top 9%, bill=0.2324
+    Tuberculosis (Host Response)  : top 9%, bill=0.2554
+    Chronic Kidney Disease        : top 13%, bill=0.2296
+    Sickle Cell Disease           : top 8%, bill=0.3798
+    Asthma                        : top 12%, bill=0.2342
+    Systemic Fibrosis / Scleroderma: top 9%, bill=0.2664
+
+  STAT3:
+    Breast Cancer                 : top 13%, bill=0.1669
+    Lung Cancer (NSCLC)           : top 17%, bill=0.1616
+    Colorectal Cancer             : top 15%, bill=0.1654
+    Melanoma                      : top 9%, bill=0.2058
+    Prostate Cancer               : top 17%, bill=0.1732
+    Hepatocellular Carcinoma      : top 6%, bill=0.2189
+    Glioblastoma                  : top 16%, bill=0.1710
+    Ovarian Cancer                : top 17%, bill=0.1620
+    Multiple Sclerosis            : top 7%, bill=0.3295
+    Rheumatoid Arthritis          : top 0%, bill=0.3412
+    Type 1 Diabetes               : top 8%, bill=0.2608
+    Crohn's Disease               : top 0%, bill=0.3713
+    Tuberculosis (Host Response)  : top 6%, bill=0.2654
+    Asthma                        : top 10%, bill=0.2419
+    Systemic Fibrosis / Scleroderma: top 2%, bill=0.3221
+
+  AKT1:
+    Breast Cancer                 : top 4%, bill=0.2349
+    Lung Cancer (NSCLC)           : top 13%, bill=0.1917
+    Colorectal Cancer             : top 6%, bill=0.2676
+    Melanoma                      : top 12%, bill=0.1950
+    Prostate Cancer               : top 2%, bill=0.2702
+    Hepatocellular Carcinoma      : top 12%, bill=0.1984
+    Glioblastoma                  : top 12%, bill=0.1999
+    Ovarian Cancer                : top 9%, bill=0.2204
+    Rheumatoid Arthritis          : top 15%, bill=0.1596
+    Type 2 Diabetes               : top 2%, bill=0.3081
+    Heart Failure                 : top 0%, bill=0.4168
+    Idiopathic Pulmonary Fibrosis : top 2%, bill=0.3322
+    Major Depressive Disorder     : top 3%, bill=0.4761
+    Chronic Kidney Disease        : top 2%, bill=0.3600
+
+  TP53:
+    Breast Cancer                 : top 0%, bill=0.3553
+    Lung Cancer (NSCLC)           : top 7%, bill=0.2260
+    Colorectal Cancer             : top 0%, bill=0.3374
+    Melanoma                      : top 2%, bill=0.2863
+    Prostate Cancer               : top 0%, bill=0.3646
+    Hepatocellular Carcinoma      : top 8%, bill=0.2100
+    Glioblastoma                  : top 8%, bill=0.2197
+    Ovarian Cancer                : top 2%, bill=0.2435
+    Parkinson's Disease           : top 15%, bill=0.1932
+    Huntington's Disease          : top 0%, bill=0.4964
+    Rheumatoid Arthritis          : top 25%, bill=0.1306
+    Idiopathic Pulmonary Fibrosis : top 7%, bill=0.2546
+
+  PIK3CA:
+    Breast Cancer                 : top 11%, bill=0.1722
+    Lung Cancer (NSCLC)           : top 0%, bill=0.2733
+    Colorectal Cancer             : top 9%, bill=0.2657
+    Melanoma                      : top 0%, bill=0.3217
+    Prostate Cancer               : top 7%, bill=0.2243
+    Hepatocellular Carcinoma      : top 2%, bill=0.2967
+    Glioblastoma                  : top 0%, bill=0.2975
+    Ovarian Cancer                : top 0%, bill=0.2609
+    Rheumatoid Arthritis          : top 23%, bill=0.1338
+    Type 2 Diabetes               : top 8%, bill=0.2098
+    Idiopathic Pulmonary Fibrosis : top 9%, bill=0.2511
+    Chronic Kidney Disease        : top 28%, bill=0.1121
+
+  TGFB1:
+    Rheumatoid Arthritis          : top 21%, bill=0.1389
+    Type 1 Diabetes               : top 18%, bill=0.1833
+    Non-Alcoholic Fatty Liver Disease / NASH: top 5%, bill=0.3616
+    Heart Failure                 : top 7%, bill=0.3206
+    Crohn's Disease               : top 24%, bill=0.1549
+    Idiopathic Pulmonary Fibrosis : top 0%, bill=0.4082
+    Tuberculosis (Host Response)  : top 19%, bill=0.1439
+    Osteoporosis                  : top 25%, bill=0.1423
+    Chronic Kidney Disease        : top 0%, bill=0.3930
+    Asthma                        : top 24%, bill=0.1498
+    Systemic Fibrosis / Scleroderma: top 0%, bill=0.3452
+
+  EGFR:
+    Breast Cancer                 : top 15%, bill=0.1624
+    Lung Cancer (NSCLC)           : top 4%, bill=0.2513
+    Colorectal Cancer             : top 4%, bill=0.2735
+    Melanoma                      : top 5%, bill=0.2700
+    Prostate Cancer               : top 4%, bill=0.2365
+    Hepatocellular Carcinoma      : top 0%, bill=0.3029
+    Glioblastoma                  : top 2%, bill=0.2734
+    Ovarian Cancer                : top 4%, bill=0.2431
+    Idiopathic Pulmonary Fibrosis : top 20%, bill=0.1839
+
+  MYC:
+    Breast Cancer                 : top 17%, bill=0.1603
+    Lung Cancer (NSCLC)           : top 26%, bill=0.1191
+    Colorectal Cancer             : top 11%, bill=0.2125
+    Melanoma                      : top 23%, bill=0.1480
+    Prostate Cancer               : top 13%, bill=0.1787
+    Hepatocellular Carcinoma      : top 27%, bill=0.1313
+    Ovarian Cancer                : top 30%, bill=0.1172
+    Chronic Kidney Disease        : top 17%, bill=0.2122
+
+  CTNNB1:
+    Lung Cancer (NSCLC)           : top 20%, bill=0.1579
+    Colorectal Cancer             : top 2%, bill=0.2854
+    Melanoma                      : top 19%, bill=0.1768
+    Prostate Cancer               : top 9%, bill=0.1919
+    Hepatocellular Carcinoma      : top 15%, bill=0.1769
+    Ovarian Cancer                : top 13%, bill=0.1852
+    Idiopathic Pulmonary Fibrosis : top 4%, bill=0.2936
+    Osteoporosis                  : top 0%, bill=0.4828
+
+  ERBB2:
+    Lung Cancer (NSCLC)           : top 22%, bill=0.1576
+    Colorectal Cancer             : top 21%, bill=0.1388
+    Melanoma                      : top 16%, bill=0.1898
+    Prostate Cancer               : top 28%, bill=0.1414
+    Hepatocellular Carcinoma      : top 10%, bill=0.2059
+    Glioblastoma                  : top 18%, bill=0.1590
+    Ovarian Cancer                : top 19%, bill=0.1570
+
+  PTEN:
+    Lung Cancer (NSCLC)           : top 28%, bill=0.1019
+    Colorectal Cancer             : top 17%, bill=0.1645
+    Melanoma                      : top 21%, bill=0.1554
+    Prostate Cancer               : top 20%, bill=0.1625
+    Hepatocellular Carcinoma      : top 25%, bill=0.1358
+    Glioblastoma                  : top 24%, bill=0.1184
+    Ovarian Cancer                : top 28%, bill=0.1242
+
+  IFNG:
+    Multiple Sclerosis            : top 2%, bill=0.3352
+    Rheumatoid Arthritis          : top 8%, bill=0.2180
+    Systemic Lupus Erythematosus  : top 0%, bill=0.3808
+    Type 1 Diabetes               : top 0%, bill=0.3430
+    Crohn's Disease               : top 5%, bill=0.2746
+    Tuberculosis (Host Response)  : top 11%, bill=0.2284
+    Asthma                        : top 2%, bill=0.2632
+
+  MMP9:
+    Multiple Sclerosis            : top 27%, bill=0.1286
+    Non-Alcoholic Fatty Liver Disease / NASH: top 10%, bill=0.3516
+    Atherosclerosis               : top 19%, bill=0.1438
+    Heart Failure                 : top 9%, bill=0.2906
+    Tuberculosis (Host Response)  : top 28%, bill=0.1120
+    Chronic Kidney Disease        : top 9%, bill=0.2340
+    Systemic Fibrosis / Scleroderma: top 12%, bill=0.2394
+
+  MTOR:
+    Breast Cancer                 : top 28%, bill=0.1350
+    Colorectal Cancer             : top 19%, bill=0.1609
+    Hepatocellular Carcinoma      : top 17%, bill=0.1588
+    Glioblastoma                  : top 20%, bill=0.1329
+    Ovarian Cancer                : top 21%, bill=0.1322
+    Type 2 Diabetes               : top 6%, bill=0.2145
+
+  KRAS:
+    Lung Cancer (NSCLC)           : top 2%, bill=0.2578
+    Colorectal Cancer             : top 13%, bill=0.2084
+    Prostate Cancer               : top 26%, bill=0.1587
+    Hepatocellular Carcinoma      : top 4%, bill=0.2395
+    Glioblastoma                  : top 4%, bill=0.2647
+    Ovarian Cancer                : top 11%, bill=0.2103
+
+  JAK2:
+    Hepatocellular Carcinoma      : top 29%, bill=0.1306
+    Multiple Sclerosis            : top 25%, bill=0.1348
+    Rheumatoid Arthritis          : top 29%, bill=0.1163
+    Systemic Lupus Erythematosus  : top 11%, bill=0.2428
+    Crohn's Disease               : top 17%, bill=0.1772
+    Systemic Fibrosis / Scleroderma: top 26%, bill=0.1403
+
+  JAK1:
+    Multiple Sclerosis            : top 16%, bill=0.1762
+    Systemic Lupus Erythematosus  : top 4%, bill=0.2665
+    Type 1 Diabetes               : top 28%, bill=0.1527
+    Crohn's Disease               : top 21%, bill=0.1561
+    HIV/AIDS                      : top 26%, bill=0.1703
+    Systemic Fibrosis / Scleroderma: top 19%, bill=0.2065
+
+  NRAS:
+    Lung Cancer (NSCLC)           : top 15%, bill=0.1800
+    Melanoma                      : top 14%, bill=0.1949
+    Hepatocellular Carcinoma      : top 21%, bill=0.1499
+    Glioblastoma                  : top 14%, bill=0.1821
+    Ovarian Cancer                : top 23%, bill=0.1294
+
+  SIRT1:
+    Huntington's Disease          : top 13%, bill=0.2180
+    Type 2 Diabetes               : top 22%, bill=0.1459
+    Non-Alcoholic Fatty Liver Disease / NASH: top 17%, bill=0.1719
+    Obesity                       : top 29%, bill=0.0645
+    Heart Failure                 : top 28%, bill=0.1302
+
+  RELA:
+    Multiple Sclerosis            : top 14%, bill=0.1769
+    Rheumatoid Arthritis          : top 10%, bill=0.1871
+    Crohn's Disease               : top 29%, bill=0.1320
+    HIV/AIDS                      : top 12%, bill=0.2247
+    Tuberculosis (Host Response)  : top 13%, bill=0.2137
+
+  CCL2:
+    Rheumatoid Arthritis          : top 27%, bill=0.1293
+    Atherosclerosis               : top 13%, bill=0.2111
+    HIV/AIDS                      : top 23%, bill=0.1752
+    Chronic Kidney Disease        : top 26%, bill=0.1286
+    Systemic Fibrosis / Scleroderma: top 21%, bill=0.1896
+
+  IL10:
+    Systemic Lupus Erythematosus  : top 24%, bill=0.1429
+    Type 1 Diabetes               : top 12%, bill=0.2501
+    Crohn's Disease               : top 10%, bill=0.2276
+    Tuberculosis (Host Response)  : top 15%, bill=0.2054
+    Asthma                        : top 17%, bill=0.2195
+
+  PIK3R1:
+    Breast Cancer                 : top 19%, bill=0.1459
+    Prostate Cancer               : top 15%, bill=0.1784
+    Glioblastoma                  : top 6%, bill=0.2588
+    Ovarian Cancer                : top 6%, bill=0.2280
+
+  SMAD3:
+    Colorectal Cancer             : top 28%, bill=0.0956
+    Idiopathic Pulmonary Fibrosis : top 11%, bill=0.2369
+    Osteoporosis                  : top 14%, bill=0.2697
+    Chronic Kidney Disease        : top 11%, bill=0.2330
+
+  IL17A:
+    Multiple Sclerosis            : top 23%, bill=0.1458
+    Type 1 Diabetes               : top 25%, bill=0.1670
+    Crohn's Disease               : top 19%, bill=0.1690
+    Asthma                        : top 22%, bill=0.1816
+
+  CXCL8:
+    Rheumatoid Arthritis          : top 17%, bill=0.1457
+    Atherosclerosis               : top 9%, bill=0.2996
+    Sickle Cell Disease           : top 11%, bill=0.3339
+    Asthma                        : top 20%, bill=0.1877
+
+  STAT1:
+    Rheumatoid Arthritis          : top 19%, bill=0.1415
+    Systemic Lupus Erythematosus  : top 2%, bill=0.3157
+    HIV/AIDS                      : top 14%, bill=0.2075
+    Tuberculosis (Host Response)  : top 30%, bill=0.1116
+
+  CCND1:
+    Breast Cancer                 : top 9%, bill=0.1837
+    Melanoma                      : top 28%, bill=0.1207
+    Prostate Cancer               : top 22%, bill=0.1611
+
+  SRC:
+    Lung Cancer (NSCLC)           : top 11%, bill=0.1961
+    Glioblastoma                  : top 10%, bill=0.2007
+    Ovarian Cancer                : top 15%, bill=0.1762
+
+  MET:
+    Lung Cancer (NSCLC)           : top 24%, bill=0.1212
+    Colorectal Cancer             : top 23%, bill=0.1306
+    Glioblastoma                  : top 22%, bill=0.1287
+
+  SMAD4:
+    Colorectal Cancer             : top 26%, bill=0.0963
+    Idiopathic Pulmonary Fibrosis : top 17%, bill=0.1844
+    Chronic Kidney Disease        : top 24%, bill=0.1500
+
+  CASP3:
+    Parkinson's Disease           : top 17%, bill=0.1297
+    Non-Alcoholic Fatty Liver Disease / NASH: top 29%, bill=0.1031
+    Heart Failure                 : top 13%, bill=0.2612
+
+  CXCL10:
+    Multiple Sclerosis            : top 20%, bill=0.1490
+    Non-Alcoholic Fatty Liver Disease / NASH: top 24%, bill=0.1493
+    HIV/AIDS                      : top 19%, bill=0.1822
+
+  MYD88:
+    Systemic Lupus Erythematosus  : top 28%, bill=0.1184
+    HIV/AIDS                      : top 16%, bill=0.1845
+    Tuberculosis (Host Response)  : top 21%, bill=0.1372
+
+  PPARGC1A:
+    Type 2 Diabetes               : top 12%, bill=0.1759
+    Non-Alcoholic Fatty Liver Disease / NASH: top 22%, bill=0.1503
+    Obesity                       : top 22%, bill=0.1131
+
+  PPARG:
+    Type 2 Diabetes               : top 16%, bill=0.1586
+    Non-Alcoholic Fatty Liver Disease / NASH: top 15%, bill=0.2476
+    Obesity                       : top 20%, bill=0.1219
+
+  LEP:
+    Type 2 Diabetes               : top 18%, bill=0.1515
+    Non-Alcoholic Fatty Liver Disease / NASH: top 20%, bill=0.1697
+    Obesity                       : top 0%, bill=0.4785
+
+  IL18:
+    Atherosclerosis               : top 15%, bill=0.2061
+    Crohn's Disease               : top 26%, bill=0.1352
+    Tuberculosis (Host Response)  : top 23%, bill=0.1370
+
+  SMAD2:
+    Idiopathic Pulmonary Fibrosis : top 13%, bill=0.2205
+    Osteoporosis                  : top 23%, bill=0.1504
+    Chronic Kidney Disease        : top 20%, bill=0.1803
+
+  IL4:
+    Idiopathic Pulmonary Fibrosis : top 26%, bill=0.1300
+    Asthma                        : top 5%, bill=0.2621
+    Systemic Fibrosis / Scleroderma: top 14%, bill=0.2315
+
+  IL13:
+    Idiopathic Pulmonary Fibrosis : top 28%, bill=0.1207
+    Asthma                        : top 15%, bill=0.2213
+    Systemic Fibrosis / Scleroderma: top 23%, bill=0.1815

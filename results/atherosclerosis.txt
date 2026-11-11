@@ -1,0 +1,67 @@
+
+========================================================================
+  ATHEROSCLEROSIS
+========================================================================
+  Proteins: 47   Edges: 107
+  TC = 2.92 nats   (e^TC = 19)
+  D = 2.60 — BELOW the capacity line (3.03)
+  -> Hierarchically containable. Modular targeting viable.
+
+  KNOWN TARGETS (validation):
+  Rank  Protein          Bill Module Drug/status
+     4  IL1B           0.3483     15  canakinumab (CANTOS trial)
+     9  PTGS2          0.1778      4  aspirin (COX inhibitor)
+    15  CETP           0.0876      9  obicetrapib (in Phase III)
+    22  LPA            0.0474      0  olpasiran, lepodisiran (in trials)
+    25  F2             0.0316     12  dabigatran
+    26  AGTR1          0.0262      2  ARBs (losartan, valsartan, etc.)
+    27  PCSK9          0.0248     13  evolocumab, alirocumab
+    30  HMGCR          0.0190     13  statins (atorvastatin, rosuvastatin, etc.)
+    37  ACE            0.0144      2  ACE inhibitors (enalapril, lisinopril, etc.)
+    38  ANGPTL3        0.0138      5  evinacumab
+    41  NPC1L1         0.0109      1  ezetimibe
+    45  F10            0.0067     12  rivaroxaban, apixaban
+
+  NOVEL TARGETS (high bill, no approved drug):
+  Rank  Protein          Bill Module Degree Why interesting
+     1  NFKB1          0.3979     15     13  same module as IL1B
+     2  TNF            0.3780     15     13  same module as IL1B
+     3  IL6            0.3553      8     11  exceptionally high bill (>2 sigma)
+     5  CXCL8          0.2996      8      9  high connectivity hub
+     6  ICAM1          0.2446     14      8  high connectivity hub
+     7  CCL2           0.2111      8      6  above-median bill, no drug exists
+     8  IL18           0.2061      7      7  high connectivity hub
+    10  MMP9           0.1438     16      7  high connectivity hub
+    11  VCAM1          0.1248     14      5  above-median bill, no drug exists
+    12  APOB           0.1005      6      8  high connectivity hub
+    13  APOE           0.0995      6      8  high connectivity hub
+    14  APOA1          0.0936      0      8  same module as LPA
+    16  NLRP3          0.0821      7      4  above-median bill, no drug exists
+    17  CRP            0.0724     11      4  above-median bill, no drug exists
+    18  LDLR           0.0653      6      6  above-median bill, no drug exists
+
+  COMBINATION PROPOSALS (one target per module, by bill):
+    1. NFKB1        (module 15, bill=0.3979) <- NOVEL
+       NO DRUG — novel target
+    2. IL6          (module 8, bill=0.3553) <- NOVEL
+       NO DRUG — novel target
+    3. ICAM1        (module 14, bill=0.2446) <- NOVEL
+       NO DRUG — novel target
+    4. IL18         (module 7, bill=0.2061) <- NOVEL
+       NO DRUG — novel target
+    5. PTGS2        (module 4, bill=0.1778)
+       aspirin (COX inhibitor)
+
+  INTERACTION TARGETS (cross-module, high sensitivity):
+    CRP          <-> IL6           |sens|=0.013982  modules 11<->8  [both novel]
+    CRP          <-> CXCL8         |sens|=0.013533  modules 11<->8  [both novel]
+    CRP          <-> TNF           |sens|=0.013417  modules 11<->15  [both novel]
+    APOA1        <-> F2            |sens|=0.013141  modules 0<->12  [one novel]
+    NFKB1        <-> PTGS2         |sens|=0.010343  modules 15<->4  [one novel]
+    IL6          <-> PTGS2         |sens|=0.010322  modules 8<->4  [one novel]
+    CXCL8        <-> PTGS2         |sens|=0.010203  modules 8<->4  [one novel]
+    PTGS2        <-> TNF           |sens|=0.009891  modules 4<->15  [one novel]
+
+  ENRICHMENT:
+    Top 10: 2/12 known targets (expected 2.6, enrichment 0.8x)
+    Top 20: 3/12 known targets (expected 5.1, enrichment 0.6x)

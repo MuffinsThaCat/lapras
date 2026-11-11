@@ -1,0 +1,60 @@
+
+========================================================================
+  EPILEPSY
+========================================================================
+  Proteins: 36   Edges: 50
+  TC = 4.16 nats   (e^TC = 64)
+  D = 1.69 — BELOW the capacity line (3.03)
+  -> Hierarchically containable. Modular targeting viable.
+
+  KNOWN TARGETS (validation):
+  Rank  Protein          Bill Module Drug/status
+     6  SCN1A          0.4101     13  carbamazepine, phenytoin, lamotrigine, lacosamide
+     9  SCN2A          0.3069     13  phenytoin, carbamazepine (gain-of-function mutations)
+    14  GABRA1         0.1920      7  benzodiazepines (diazepam, clonazepam), phenobarbital
+    18  CACNA1H        0.1518      1  ethosuximide (T-type calcium channel)
+    24  MTOR           0.0728     11  everolimus (for TSC-associated epilepsy)
+    29  SLC6A1         0.0326      8  tiagabine (GAT1 inhibitor)
+
+  NOVEL TARGETS (high bill, no approved drug):
+  Rank  Protein          Bill Module Degree Why interesting
+     1  GRIN2B         0.4982      9      5  exceptionally high bill (>2 sigma)
+     2  GRIA1          0.4856      2      5  high connectivity hub
+     3  GRIN1          0.4681      9      4  high connectivity hub
+     4  GRIN2A         0.4581      9      4  high connectivity hub
+     5  SYNGAP1        0.4528      2      4  high connectivity hub
+     7  GABRG2         0.3331      7      5  same module as GABRA1
+     8  SCN1B          0.3247     13      4  same module as SCN1A, SCN2A
+    10  SCN8A          0.2510     14      3  above-median bill, no drug exists
+    11  CACNG3         0.2230      2      4  high connectivity hub
+    12  GABRD          0.2121      8      4  same module as SLC6A1
+    13  GABRB3         0.1963      7      3  same module as GABRA1
+    15  KCNQ2          0.1587     10      3  above-median bill, no drug exists
+    16  CACNB4         0.1581      1      3  same module as CACNA1H
+    17  CACNA1A        0.1577      1      3  same module as CACNA1H
+
+  COMBINATION PROPOSALS (one target per module, by bill):
+    1. GRIN2B       (module 9, bill=0.4982) <- NOVEL
+       NO DRUG — novel target
+    2. GRIA1        (module 2, bill=0.4856) <- NOVEL
+       NO DRUG — novel target
+    3. SCN1A        (module 13, bill=0.4101)
+       carbamazepine, phenytoin, lamotrigine, lacosamide
+    4. GABRG2       (module 7, bill=0.3331) <- NOVEL
+       NO DRUG — novel target
+    5. SCN8A        (module 14, bill=0.2510) <- NOVEL
+       NO DRUG — novel target
+
+  INTERACTION TARGETS (cross-module, high sensitivity):
+    PCDH19       <-> SCN1A         |sens|=0.022599  modules 12<->13  [one novel]
+    KCNQ2        <-> SCN2A         |sens|=0.022527  modules 10<->13  [one novel]
+    KCNQ2        <-> SCN1A         |sens|=0.022478  modules 10<->13  [one novel]
+    GAD2         <-> LGI1          |sens|=0.022067  modules 0<->4  [both novel]
+    GRIN2B       <-> MECP2         |sens|=0.022067  modules 9<->3  [both novel]
+    CACNA1A      <-> CACNG3        |sens|=0.014841  modules 1<->2  [both novel]
+    CACNB4       <-> CACNG3        |sens|=0.014795  modules 1<->2  [both novel]
+    GABRG2       <-> SCN1A         |sens|=0.014687  modules 7<->13  [one novel]
+
+  ENRICHMENT:
+    Top 10: 2/6 known targets (expected 1.7, enrichment 1.2x)
+    Top 20: 4/6 known targets (expected 3.3, enrichment 1.2x)

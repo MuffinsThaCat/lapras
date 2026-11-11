@@ -1,0 +1,57 @@
+
+========================================================================
+  LUNG CANCER (NSCLC)
+========================================================================
+  Proteins: 46   Edges: 220
+  TC = 2.98 nats   (e^TC = 20)
+  D = 4.23 — ABOVE the capacity line (3.03)
+  -> Globally entangled. Single-target therapy insufficient.
+
+  KNOWN TARGETS (validation):
+  Rank  Protein          Bill Module Drug/status
+     2  KRAS           0.2578      4  sotorasib, adagrasib (G12C)
+     3  EGFR           0.2513      7  osimertinib, erlotinib, gefitinib
+     8  NRAS           0.1800     15  binimetinib (MEK inhibitor, off-label)
+    11  ERBB2          0.1576      7  T-DXd (in trials)
+    12  MET            0.1212     10  capmatinib, tepotinib
+    15  BRAF           0.1002      4  dabrafenib + trametinib
+    18  MTOR           0.0910     14  everolimus (off-label)
+    25  ALK            0.0586      1  alectinib, crizotinib, lorlatinib
+    29  RET            0.0390     15  selpercatinib, pralsetinib
+    33  KDR            0.0323     10  ramucirumab
+
+  NOVEL TARGETS (high bill, no approved drug):
+  Rank  Protein          Bill Module Degree Why interesting
+     1  PIK3CA         0.2733     14     22  same module as MTOR
+     4  TP53           0.2260      6     24  high connectivity hub
+     5  HRAS           0.2115      4     20  same module as BRAF, KRAS
+     6  SRC            0.1961     10     17  same module as KDR, MET
+     7  AKT1           0.1917      0     19  high connectivity hub
+     9  STAT3          0.1616      9     17  high connectivity hub
+    10  CTNNB1         0.1579      2     18  high connectivity hub
+    13  MYC            0.1191      5     16  above-median bill, no drug exists
+    14  PTEN           0.1019     14     11  same module as MTOR
+    16  RAF1           0.0991     13     10  above-median bill, no drug exists
+    17  PDGFRA         0.0955     16      9  above-median bill, no drug exists
+    19  JAK2           0.0869      9     12  above-median bill, no drug exists
+    20  FGFR3          0.0774      8      9  above-median bill, no drug exists
+    21  ERBB3          0.0748      7      8  same module as EGFR, ERBB2
+    22  CREBBP         0.0714      6     10  above-median bill, no drug exists
+
+  COMBINATION PROPOSALS (one target per module, by bill):
+    1. PIK3CA       (module 14, bill=0.2733) <- NOVEL
+       NO DRUG — novel target
+    2. KRAS         (module 4, bill=0.2578)
+       sotorasib, adagrasib (G12C)
+    3. EGFR         (module 7, bill=0.2513)
+       osimertinib, erlotinib, gefitinib
+    4. TP53         (module 6, bill=0.2260) <- NOVEL
+       NO DRUG — novel target
+    5. SRC          (module 10, bill=0.1961) <- NOVEL
+       NO DRUG — novel target
+
+  INTERACTION TARGETS (cross-module, high sensitivity):
+
+  ENRICHMENT:
+    Top 10: 3/10 known targets (expected 2.2, enrichment 1.4x)
+    Top 20: 7/10 known targets (expected 4.3, enrichment 1.6x)

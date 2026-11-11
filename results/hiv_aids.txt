@@ -1,0 +1,64 @@
+
+========================================================================
+  HIV/AIDS
+========================================================================
+  Proteins: 43   Edges: 112
+  TC = 2.86 nats   (e^TC = 17)
+  D = 3.62 — ABOVE the capacity line (3.03)
+  -> Globally entangled. Single-target therapy insufficient.
+
+  KNOWN TARGETS (validation):
+  Rank  Protein          Bill Module Drug/status
+    15  CD4            0.1401      2  ibalizumab (anti-CD4 monoclonal)
+    18  IL15           0.0565      9  N-803 (IL-15 superagonist, in trials)
+    19  CCR5           0.0514      2  maraviroc (CCR5 antagonist)
+    20  HDAC1          0.0468      5  HDAC inhibitors (latency reversal, in trials)
+    22  TLR7           0.0406     13  vesatolimod (TLR7 agonist, latency reversal)
+    24  BRD4           0.0360      0  BET inhibitors (in trials for HIV latency)
+    28  CDK9           0.0199      0  targeted by protease inhibitors indirectly
+    30  STING1         0.0144      3  STING agonists (in trials for latency)
+    32  PDCD1          0.0128     12  PD-1 blockade (in trials for HIV cure)
+
+  NOVEL TARGETS (high bill, no approved drug):
+  Rank  Protein          Bill Module Degree Why interesting
+     1  IL6            0.3778     10     14  exceptionally high bill (>2 sigma)
+     2  TNF            0.3199     10     12  exceptionally high bill (>2 sigma)
+     3  NFKB1          0.2993      5     12  same module as HDAC1
+     4  IFNB1          0.2451      8     10  high connectivity hub
+     5  IL1B           0.2324     10      9  high connectivity hub
+     6  RELA           0.2247      5     10  same module as HDAC1
+     7  STAT1          0.2075      7      9  high connectivity hub
+     8  MYD88          0.1845     13      9  same module as TLR7
+     9  CXCL10         0.1822      1      9  high connectivity hub
+    10  IL2            0.1784      9      9  same module as IL15
+    11  CCL2           0.1752      1      8  above-median bill, no drug exists
+    12  JAK1           0.1703      7      9  high connectivity hub
+    13  IFNA1          0.1614      7      8  above-median bill, no drug exists
+    14  IRF3           0.1536      3      9  same module as STING1
+    16  IRF7           0.1068      8      7  above-median bill, no drug exists
+
+  COMBINATION PROPOSALS (one target per module, by bill):
+    1. IL6          (module 10, bill=0.3778) <- NOVEL
+       NO DRUG — novel target
+    2. NFKB1        (module 5, bill=0.2993) <- NOVEL
+       NO DRUG — novel target
+    3. IFNB1        (module 8, bill=0.2451) <- NOVEL
+       NO DRUG — novel target
+    4. STAT1        (module 7, bill=0.2075) <- NOVEL
+       NO DRUG — novel target
+    5. MYD88        (module 13, bill=0.1845) <- NOVEL
+       NO DRUG — novel target
+
+  INTERACTION TARGETS (cross-module, high sensitivity):
+    BRD4         <-> RELA          |sens|=0.012160  modules 0<->5  [one novel]
+    RELA         <-> SP1           |sens|=0.008531  modules 5<->17  [both novel]
+    HDAC1        <-> SP1           |sens|=0.008531  modules 5<->17  [one novel]
+    IFNB1        <-> IRF3          |sens|=0.008488  modules 8<->3  [both novel]
+    IRF7         <-> MYD88         |sens|=0.008488  modules 8<->13  [both novel]
+    IRF3         <-> IRF7          |sens|=0.008471  modules 3<->8  [both novel]
+    NFKB1        <-> SP1           |sens|=0.008420  modules 5<->17  [both novel]
+    IFNA1        <-> IRF3          |sens|=0.008335  modules 7<->3  [both novel]
+
+  ENRICHMENT:
+    Top 10: 0/9 known targets (expected 2.1, enrichment 0.0x)
+    Top 20: 4/9 known targets (expected 4.2, enrichment 1.0x)

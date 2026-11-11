@@ -1,0 +1,60 @@
+
+========================================================================
+  OSTEOPOROSIS
+========================================================================
+  Proteins: 44   Edges: 84
+  TC = 3.04 nats   (e^TC = 21)
+  D = 3.59 — ABOVE the capacity line (3.03)
+  -> Globally entangled. Single-target therapy insufficient.
+
+  KNOWN TARGETS (validation):
+  Rank  Protein          Bill Module Drug/status
+     6  DKK1           0.2755      9  DKK1 antibodies (in early trials)
+    10  SOST           0.1596     13  romosozumab (anti-sclerostin)
+    29  ESR1           0.0258     11  raloxifene (SERM)
+    39  PTH1R          0.0109     16  teriparatide, abaloparatide (PTH analogs)
+    42  CSF1R          0.0102      7  in early trials
+
+  NOVEL TARGETS (high bill, no approved drug):
+  Rank  Protein          Bill Module Degree Why interesting
+     1  CTNNB1         0.4828      2     13  exceptionally high bill (>2 sigma)
+     2  LRP6           0.3585     13      8  same module as SOST
+     3  LRP5           0.3578      9      8  same module as DKK1
+     4  GSK3B          0.2830      2      7  high connectivity hub
+     5  WNT3A          0.2826      9      6  same module as DKK1
+     7  SMAD3          0.2697     18      9  high connectivity hub
+     8  RUNX2          0.2175      3     12  high connectivity hub
+     9  WNT1           0.1948     17      5  above-median bill, no drug exists
+    11  SMAD2          0.1504     18      5  above-median bill, no drug exists
+    12  TGFB1          0.1423     18      6  high connectivity hub
+    13  SMAD1          0.1192      4      5  above-median bill, no drug exists
+    14  BGLAP          0.1070      3      7  high connectivity hub
+    15  SMAD5          0.0881      4      4  above-median bill, no drug exists
+    16  PPARG          0.0877     15      3  above-median bill, no drug exists
+    17  BMP2           0.0841      4      5  above-median bill, no drug exists
+
+  COMBINATION PROPOSALS (one target per module, by bill):
+    1. CTNNB1       (module 2, bill=0.4828) <- NOVEL
+       NO DRUG — novel target
+    2. LRP6         (module 13, bill=0.3585) <- NOVEL
+       NO DRUG — novel target
+    3. LRP5         (module 9, bill=0.3578) <- NOVEL
+       NO DRUG — novel target
+    4. SMAD3        (module 18, bill=0.2697) <- NOVEL
+       NO DRUG — novel target
+    5. RUNX2        (module 3, bill=0.2175) <- NOVEL
+       NO DRUG — novel target
+
+  INTERACTION TARGETS (cross-module, high sensitivity):
+    COL1A1       <-> RUNX2         |sens|=0.016199  modules 6<->3  [both novel]
+    ALPL         <-> RUNX2         |sens|=0.015882  modules 1<->3  [both novel]
+    BMP2         <-> BMP4          |sens|=0.015782  modules 4<->5  [both novel]
+    RUNX2        <-> TNFSF11       |sens|=0.015448  modules 3<->20  [both novel]
+    ALPL         <-> BGLAP         |sens|=0.015431  modules 1<->3  [both novel]
+    BGLAP        <-> TNFSF11       |sens|=0.015297  modules 3<->20  [both novel]
+    COL1A1       <-> TGFB1         |sens|=0.015114  modules 6<->18  [both novel]
+    LRP6         <-> WNT1          |sens|=0.012351  modules 13<->17  [both novel]
+
+  ENRICHMENT:
+    Top 10: 2/5 known targets (expected 1.1, enrichment 1.8x)
+    Top 20: 2/5 known targets (expected 2.3, enrichment 0.9x)

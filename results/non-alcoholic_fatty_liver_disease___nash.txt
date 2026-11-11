@@ -1,0 +1,60 @@
+
+========================================================================
+  NON-ALCOHOLIC FATTY LIVER DISEASE / NASH
+========================================================================
+  Proteins: 41   Edges: 76
+  TC = 2.99 nats   (e^TC = 20)
+  D = 2.75 — BELOW the capacity line (3.03)
+  -> Hierarchically containable. Modular targeting viable.
+
+  KNOWN TARGETS (validation):
+  Rank  Protein          Bill Module Drug/status
+     7  PPARG          0.2476     16  pioglitazone (off-label for NASH)
+    23  FGF21          0.0544      9  pegozafermin (in Phase III)
+    27  PPARA          0.0366     15  pemafibrate (failed Phase III for NASH)
+    30  FASN           0.0276      7  denifanstat (in Phase II)
+    37  CCR2           0.0126      2  cenicriviroc (failed Phase III)
+
+  NOVEL TARGETS (high bill, no approved drug):
+  Rank  Protein          Bill Module Degree Why interesting
+     1  TNF            0.3850     10      8  exceptionally high bill (>2 sigma)
+     2  NFKB1          0.3809     10      8  exceptionally high bill (>2 sigma)
+     3  TGFB1          0.3616      4      8  exceptionally high bill (>2 sigma)
+     4  IL6            0.3603      3      7  exceptionally high bill (>2 sigma)
+     5  MMP9           0.3516     12      8  exceptionally high bill (>2 sigma)
+     6  IL1B           0.3509     10      7  exceptionally high bill (>2 sigma)
+     8  SIRT1          0.1719     16      7  same module as PPARG
+     9  LEP            0.1697      0      6  above-median bill, no drug exists
+    10  PPARGC1A       0.1503     15      7  same module as PPARA
+    11  CXCL10         0.1493      3      5  above-median bill, no drug exists
+    12  MMP2           0.1111      4      4  above-median bill, no drug exists
+    13  CASP3          0.1031      1      4  above-median bill, no drug exists
+    14  KLB            0.0783      9      4  same module as FGF21
+    15  FGFR1          0.0778      9      4  same module as FGF21
+    16  FGFR4          0.0773      8      4  above-median bill, no drug exists
+
+  COMBINATION PROPOSALS (one target per module, by bill):
+    1. TNF          (module 10, bill=0.3850) <- NOVEL
+       NO DRUG — novel target
+    2. TGFB1        (module 4, bill=0.3616) <- NOVEL
+       NO DRUG — novel target
+    3. IL6          (module 3, bill=0.3603) <- NOVEL
+       NO DRUG — novel target
+    4. MMP9         (module 12, bill=0.3516) <- NOVEL
+       NO DRUG — novel target
+    5. PPARG        (module 16, bill=0.2476)
+       pioglitazone (off-label for NASH)
+
+  INTERACTION TARGETS (cross-module, high sensitivity):
+    NR1H4        <-> PPARGC1A      |sens|=0.019481  modules 6<->15  [both novel]
+    COL1A1       <-> TGFB1         |sens|=0.018404  modules 5<->4  [both novel]
+    PPARG        <-> SREBF1        |sens|=0.014839  modules 16<->7  [one novel]
+    MTOR         <-> PPARG         |sens|=0.014734  modules 13<->16  [one novel]
+    PPARGC1A     <-> PRKAA1        |sens|=0.014689  modules 15<->13  [both novel]
+    MTOR         <-> SIRT1         |sens|=0.014570  modules 13<->16  [both novel]
+    BAX          <-> SIRT1         |sens|=0.014525  modules 1<->16  [both novel]
+    SIRT1        <-> SREBF1        |sens|=0.014195  modules 16<->7  [both novel]
+
+  ENRICHMENT:
+    Top 10: 1/5 known targets (expected 1.2, enrichment 0.8x)
+    Top 20: 1/5 known targets (expected 2.4, enrichment 0.4x)

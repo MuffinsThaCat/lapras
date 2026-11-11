@@ -1,0 +1,60 @@
+
+========================================================================
+  SYSTEMIC FIBROSIS / SCLERODERMA
+========================================================================
+  Proteins: 43   Edges: 130
+  TC = 3.05 nats   (e^TC = 21)
+  D = 3.67 — ABOVE the capacity line (3.03)
+  -> Globally entangled. Single-target therapy insufficient.
+
+  KNOWN TARGETS (validation):
+  Rank  Protein          Bill Module Drug/status
+     1  TGFB1          0.3452     17  fresolimumab (failed trials)
+     3  IL6            0.3101      8  tocilizumab (approved for SSc-ILD)
+     9  JAK1           0.2065     11  tofacitinib (in trials)
+    16  PDGFRA         0.0832     14  nintedanib (approved for SSc-ILD)
+    17  PDGFRB         0.0830     15  nintedanib
+
+  NOVEL TARGETS (high bill, no approved drug):
+  Rank  Protein          Bill Module Degree Why interesting
+     2  STAT3          0.3221     11     13  same module as JAK1
+     4  TNF            0.2806      9     10  high connectivity hub
+     5  IL1B           0.2664      9     10  high connectivity hub
+     6  MMP9           0.2394     13     13  high connectivity hub
+     7  IL4            0.2315      8     10  same module as IL6
+     8  NFKB1          0.2292      9     10  high connectivity hub
+    10  CCL2           0.1896      0      9  above-median bill, no drug exists
+    11  IL13           0.1815      8      8  same module as IL6
+    12  JAK2           0.1403     11     11  same module as JAK1
+    13  MMP2           0.1202      1     10  high connectivity hub
+    14  CTNNB1         0.0952      3      9  above-median bill, no drug exists
+    15  SMAD3          0.0884      3      7  above-median bill, no drug exists
+    18  SMAD2          0.0797     16      6  above-median bill, no drug exists
+    19  SMAD4          0.0793     16      6  above-median bill, no drug exists
+    20  TGFBR1         0.0645     17      5  same module as TGFB1
+
+  COMBINATION PROPOSALS (one target per module, by bill):
+    1. TGFB1        (module 17, bill=0.3452)
+       fresolimumab (failed trials)
+    2. STAT3        (module 11, bill=0.3221) <- NOVEL
+       NO DRUG — novel target
+    3. IL6          (module 8, bill=0.3101)
+       tocilizumab (approved for SSc-ILD)
+    4. TNF          (module 9, bill=0.2806) <- NOVEL
+       NO DRUG — novel target
+    5. MMP9         (module 13, bill=0.2394) <- NOVEL
+       NO DRUG — novel target
+
+  INTERACTION TARGETS (cross-module, high sensitivity):
+    IL4          <-> TSLP          |sens|=0.009983  modules 8<->10  [both novel]
+    EDN1         <-> MMP9          |sens|=0.009780  modules 5<->13  [both novel]
+    EDN1         <-> MMP2          |sens|=0.009709  modules 5<->1  [both novel]
+    IL13         <-> IL33          |sens|=0.009546  modules 8<->10  [both novel]
+    CTNNB1       <-> KDR           |sens|=0.009465  modules 3<->12  [both novel]
+    JAK2         <-> KDR           |sens|=0.009383  modules 11<->12  [both novel]
+    JAK1         <-> KDR           |sens|=0.009322  modules 11<->12  [one novel]
+    IL33         <-> IL4           |sens|=0.009272  modules 10<->8  [both novel]
+
+  ENRICHMENT:
+    Top 10: 3/5 known targets (expected 1.2, enrichment 2.6x)
+    Top 20: 5/5 known targets (expected 2.3, enrichment 2.1x)

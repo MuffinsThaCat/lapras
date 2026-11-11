@@ -1,0 +1,70 @@
+
+========================================================================
+  CANCER
+========================================================================
+  Proteins: 65   Edges: 88
+  TC = 5.41 nats   (e^TC = 223)
+  D = 2.34 — BELOW the capacity line (3.03)
+  -> Hierarchically containable. Modular targeting viable.
+
+  KNOWN TARGETS (validation):
+  Rank  Protein          Bill Module Drug/status
+     1  TP53           0.6225     12  p53 reactivators (APR-246/eprenetapopt); MDM2 inhibitors
+     2  MDM2           0.3985     12  MDM2 inhibitors (nutlin-3a, idasanutsan, navtemadlin)
+     3  AKT1           0.3806      7  AKT inhibitors (capivasertib, ipatasertib)
+     7  MAP2K1         0.2518      4  MEK inhibitors (trametinib, cobimetinib)
+     8  MTOR           0.2400      9  mTOR inhibitors (everolimus, temsirolimus)
+    12  CTNNB1         0.2107     15  beta-catenin inhibitors (PRI-724, in development)
+    13  BCL2           0.2069     22  BCL2 inhibitors (venetoclax)
+    14  MAPK1          0.2049      5  ERK inhibitors (ulixertinib)
+    15  NOTCH1         0.1965     17  gamma-secretase inhibitors (nirogacestat); anti-Notch antibodies
+    19  KRAS           0.1756      2  KRAS G12C inhibitors (sotorasib, adagrasib)
+    20  RB1            0.1663     14  loss-of-function; CDK4/6 inhibitors bypass
+    23  BRAF           0.1483      3  BRAF inhibitors (vemurafenib, dabrafenib)
+    24  CDK4           0.1471     13  CDK4/6 inhibitors (palbociclib, ribociclib, abemaciclib)
+    25  PIK3CA         0.1412      7  PI3K inhibitors (alpelisib, idelalisib, copanlisib)
+    26  BRCA1          0.1411     19  synthetic lethality with PARP inhibitors
+
+  NOVEL TARGETS (high bill, no approved drug):
+  Rank  Protein          Bill Module Degree Why interesting
+     4  CDKN2A         0.3310     13      4  same module as CDK4
+     5  MYC            0.3142      6      7  high connectivity hub
+     6  BAX            0.2694     22      4  same module as BCL2
+     9  ATM            0.2301     20      3  above-median bill, no drug exists
+    10  MDM4           0.2221     12      2  same module as TP53, MDM2
+    11  GSK3B          0.2213     15      4  same module as CTNNB1
+    16  MAPK3          0.1909      6      3  above-median bill, no drug exists
+    17  CHEK2          0.1868     20      2  above-median bill, no drug exists
+    18  SOS1           0.1779      2      4  same module as KRAS
+    21  MAP2K2         0.1524      5      3  same module as MAPK1
+    22  GRB2           0.1517      0      4  same module as EGFR, ERBB2
+    28  RAF1           0.1305      4      3  same module as MAP2K1
+    29  RBPJ           0.1213     18      3  above-median bill, no drug exists
+    30  APC            0.1157     15      2  same module as CTNNB1
+    32  PIK3CB         0.1108      8      2  same module as PTEN
+
+  COMBINATION PROPOSALS (one target per module, by bill):
+    1. TP53         (module 12, bill=0.6225)
+       p53 reactivators (APR-246/eprenetapopt); MDM2 inhibitors
+    2. AKT1         (module 7, bill=0.3806)
+       AKT inhibitors (capivasertib, ipatasertib)
+    3. CDKN2A       (module 13, bill=0.3310) <- NOVEL
+       NO DRUG — novel target
+    4. MYC          (module 6, bill=0.3142) <- NOVEL
+       NO DRUG — novel target
+    5. BAX          (module 22, bill=0.2694) <- NOVEL
+       NO DRUG — novel target
+
+  INTERACTION TARGETS (cross-module, high sensitivity):
+    CTNNB1       <-> MYC           |sens|=0.021007  modules 15<->6  [one novel]
+    MTOR         <-> RICTOR        |sens|=0.021007  modules 9<->10  [one novel]
+    GRB2         <-> SOS1          |sens|=0.021007  modules 0<->2  [both novel]
+    TP53         <-> CDKN2A        |sens|=0.016383  modules 12<->13  [one novel]
+    MDM2         <-> CDKN2A        |sens|=0.016383  modules 12<->13  [one novel]
+    NOTCH1       <-> MYC           |sens|=0.016383  modules 17<->6  [one novel]
+    MYC          <-> STAT3         |sens|=0.016339  modules 6<->27  [one novel]
+    AKT1         <-> GSK3B         |sens|=0.012210  modules 7<->15  [one novel]
+
+  ENRICHMENT:
+    Top 10: 5/25 known targets (expected 3.8, enrichment 1.3x)
+    Top 20: 11/25 known targets (expected 7.7, enrichment 1.4x)
