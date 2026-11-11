@@ -1,6 +1,16 @@
 # Drug Target Discovery Pipeline
 
-Ranks proteins as drug targets by measuring coupling instead of counting connections. Gives every disease a single number — D — that predicts whether it responds to a single drug or needs combinations. Identifies novel targets, proposes orthogonal drug combinations, and builds a periodic table across 31 diseases using real STRING protein interaction data.
+## Why this exists
+
+Right now, drug discovery starts with thousands of candidate proteins and no principled way to rank them. Scientists rely on literature intuition, guilt-by-association, and expensive high-throughput screens. Worse, there's no way to know in advance whether a disease can be treated with a single drug or needs a combination — the field finds out after years of failed trials.
+
+This pipeline solves both problems from network data alone:
+
+1. **It ranks every protein in a disease network by how much coupling it owns** — not by how many connections it has (degree), but by how much of the system's total statistical coupling runs through it. On the aging network, this ranking recovers known drug targets at 4.8x enrichment in the top 10 — without being told which proteins have drugs.
+
+2. **It gives every disease a single number (D) that predicts whether single-target therapy can work.** Below D = 3.03, the disease is modular and one well-chosen drug can contain it. Above 3.03, the coupling is global and you need combinations. Across 31 diseases, every modular disease has a successful single-drug therapy. Every global disease is one where monotherapy isn't enough.
+
+This tells you which doors to knock on first — and whether to knock on one door or several.
 
 ## How it works
 
