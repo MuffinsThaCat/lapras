@@ -1,4 +1,4 @@
-# Drug Target Discovery Pipeline
+# Lapras: A Periodic Table of Disease Tractability
 
 ## Why this exists
 
@@ -30,7 +30,7 @@ python3 pipeline.py                # 5 built-in diseases
 python3 batch.py --score 0.9       # all 31 diseases from STRING data
 ```
 
-## The periodic table
+## The Lapras table
 
 31 diseases analyzed with real STRING data (score >= 0.9). 9 modular, 22 global:
 
@@ -128,6 +128,6 @@ Write a function that returns `(C, names, known_targets)`:
 
 Data sources: [STRING](https://string-db.org), [BioGRID](https://thebiogrid.org), [IntAct](https://www.ebi.ac.uk/intact/)
 
-## The capacity line (D = 3.03)
+## The Lapras score and the capacity line (D = 3.03)
 
-The halving depth D is the number of hierarchy levels needed to reduce residual coupling to 1/4. At D = 3.03, hierarchical containment fails — modular intervention cannot control the system's coupling. Below the line, a single well-chosen target can contain the disease. Above the line, you need combinations that hit multiple modules.
+The Lapras score (halving depth D) is the number of hierarchy levels needed to reduce residual coupling to 1/4. At D = 3.03, hierarchical containment fails — modular intervention cannot control the system's coupling. Below the line, a single well-chosen target can contain the disease. Above the line, you need combinations that hit multiple modules.
