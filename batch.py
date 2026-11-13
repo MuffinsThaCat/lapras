@@ -62,6 +62,8 @@ def run_all():
         si = args.index("--score")
         score_threshold = float(args[si + 1])
         args = args[:si] + args[si + 2:]
+    run_unc = "--uncertainty" in args          # add D error bars (lapras_tools/uncertainty.py)
+    args = [a for a in args if a != "--uncertainty"]
     diseases = args if args else list(DISEASES.keys())
     diseases = [d for d in diseases if d in DISEASES]
 
@@ -155,6 +157,21 @@ def run_all():
                    f"{row['tc']:7.2f} {enrich_str:>7s}")
     out.append(f"\nBelow the line (modular):  {len(below)}")
     out.append(f"Above the line (global):  {len(above)}")
+
+    if run_unc:
+        # How many verdicts survive plausible data error?  (10% of edges dropped, 10% weight noise)
+        from lapras_tools.uncertainty import d_uncertainty
+        out.append("\nROBUSTNESS OF VERDICTS (100 perturbations each)")
+        out.append(f"{'Disease':40s} {'D':>6s}  {'5-95% of D':>14s} {'P(global)':>9s}  Verdict")
+        counts = {"MODULAR": 0, "GLOBAL": 0, "UNCERTAIN": 0}
+        for row in table:
+            C_, names_, _, _, _ = results[row["label"]]
+            u = d_uncertainty(C_, names_, n=100)
+            counts[u["verdict"]] += 1
+            out.append(f"{row['label']:40s} {row['D']:6.2f}  [{u['lo']:5.2f},{u['hi']:5.2f}] {u['p_global']:9.2f}  {u['verdict']}")
+        out.append(f"\nrobust MODULAR {counts['MODULAR']}, robust GLOBAL {counts['GLOBAL']}, "
+                   f"UNCERTAIN {counts['UNCERTAIN']} (straddle {3.03})")
+        print("\n" + "\n".join(out[-(len(table) + 3):]))
 
     # Cross-disease analysis
     from pipeline import cross_disease

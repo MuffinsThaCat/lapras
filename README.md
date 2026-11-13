@@ -64,6 +64,11 @@ python3 batch.py --score 0.9       # all 31 diseases from STRING data
 
 Every modular disease has a successful single-drug therapy. That's the validation.
 
+### Robustness and validation caveats (added 2026-11-11; details in `lapras_tools/README.md`)
+
+- **Error bars.** `python3 batch.py --score 0.9 --uncertainty` perturbs each network (10% of edges dropped, 10% weight noise, 100 draws) and re-derives the verdict. Only **5 of the 9 modular diseases stay modular** (epilepsy, depression, schizophrenia, heart failure, sickle cell). **Atherosclerosis, obesity, NAFLD/NASH and chronic kidney disease straddle the 3.03 line** (P(global) 0.50, 0.46, 0.19, 0.71 at 100 draws), as do Parkinson's and osteoporosis. 19 to 20 of 22 global verdicts are robust (Huntington's is marginal: P(global) 0.92-0.99 depending on settings). The "NAFLD is modular, resmetirom would have been predicted" and "obesity is modular, semaglutide" findings above rest on verdicts that flip under plausible data error.
+- **Retrospective test of the line** against first-line guideline regimens (`python3 -m lapras_tools.validate_line`; labels are Claude's, not a clinician's, editable): D predicts "combination needed" with AUC 0.82 across 24 diseases, but the signal is oncology (every cancer is global and combination-treated). Among the 17 non-cancer diseases AUC is 0.60 (p = 0.28), and "is it a cancer?" or raw edge count (cancers have the most STRING edges) predict as well or better. Global but single-agent first-line: IPF, Huntington's, osteoporosis, type 1 and 2 diabetes, MS. Modular but combination first-line: heart failure and CKD. So "every modular disease has a successful single-drug therapy" is not what guideline regimens show for heart failure and CKD, and "above the line you need combinations" is not supported outside cancer.
+
 ## Key findings
 
 **NF-kB (NFKB1)** is the most undrugged bottleneck in medicine. It ranks top-15 in 17 of 31 diseases. #1 in atherosclerosis, depression, and tuberculosis. No approved NF-kB inhibitor exists for any of them.

@@ -5,3 +5,14 @@ __pycache__/
 *.log
 *.out
 *.synctex.gz
+# lapras_tools: large regenerable caches (re-create with the commands in lapras_tools/README.md)
+lapras_tools/data/chembl_cache.json
+lapras_tools/data/chembl_bulk_checkpoint.json
+lapras_tools/data/tcga_brca_tpm.npz
+lapras_tools/data/tcga_luad_tpm.npz
+coupling_other_fields/data/db1b_2023_q1.zip
+lapras_tools/data/ddinter/
+lapras_tools/data/tcga_lusc_tpm.npz
+lapras_tools/data/fda_combination_indications.json
+lapras_tools/data/fda_label_interactions.json
+lapras_tools/data/pair_set_cache.json

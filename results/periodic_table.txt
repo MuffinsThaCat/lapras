@@ -38,3 +38,39 @@ Rheumatoid Arthritis                       4.50  GLOBAL             48     213  
 
 Below the line (modular):  9
 Above the line (global):  22
+
+ROBUSTNESS OF VERDICTS (100 perturbations each)
+Disease                                       D      5-95% of D P(global)  Verdict
+Epilepsy                                   1.69  [ 1.39, 1.82]      0.00  MODULAR
+Major Depressive Disorder                  1.98  [ 1.63, 2.39]      0.00  MODULAR
+Schizophrenia                              2.03  [ 1.37, 1.98]      0.00  MODULAR
+Heart Failure                              2.10  [ 2.08, 2.61]      0.00  MODULAR
+Sickle Cell Disease                        2.14  [ 1.93, 2.51]      0.00  MODULAR
+Atherosclerosis                            2.60  [ 2.68, 3.28]      0.50  UNCERTAIN
+Obesity                                    2.74  [ 2.57, 3.37]      0.46  UNCERTAIN
+Non-Alcoholic Fatty Liver Disease / NASH   2.75  [ 2.33, 3.19]      0.19  UNCERTAIN
+Chronic Kidney Disease                     2.84  [ 2.79, 3.37]      0.71  UNCERTAIN
+Parkinson's Disease                        3.07  [ 2.69, 3.58]      0.58  UNCERTAIN
+Idiopathic Pulmonary Fibrosis              3.22  [ 3.10, 3.77]      0.99  GLOBAL
+Systemic Lupus Erythematosus               3.35  [ 3.19, 3.93]      1.00  GLOBAL
+Huntington's Disease                       3.56  [ 3.01, 3.67]      0.94  GLOBAL
+Osteoporosis                               3.59  [ 2.80, 3.54]      0.74  UNCERTAIN
+HIV/AIDS                                   3.62  [ 3.29, 4.02]      1.00  GLOBAL
+Systemic Fibrosis / Scleroderma            3.67  [ 3.27, 4.06]      0.99  GLOBAL
+Crohn's Disease                            3.71  [ 3.36, 4.03]      1.00  GLOBAL
+Type 2 Diabetes                            3.89  [ 3.60, 4.21]      1.00  GLOBAL
+Type 1 Diabetes                            4.02  [ 3.37, 4.04]      1.00  GLOBAL
+Breast Cancer                              4.03  [ 3.87, 4.36]      1.00  GLOBAL
+Tuberculosis (Host Response)               4.03  [ 3.92, 4.35]      1.00  GLOBAL
+Asthma                                     4.04  [ 3.55, 4.18]      1.00  GLOBAL
+Ovarian Cancer                             4.05  [ 3.80, 4.44]      1.00  GLOBAL
+Glioblastoma                               4.08  [ 3.71, 4.34]      1.00  GLOBAL
+Multiple Sclerosis                         4.08  [ 3.42, 4.07]      1.00  GLOBAL
+Colorectal Cancer                          4.12  [ 3.87, 4.28]      1.00  GLOBAL
+Melanoma                                   4.15  [ 3.94, 4.34]      1.00  GLOBAL
+Prostate Cancer                            4.20  [ 3.90, 4.44]      1.00  GLOBAL
+Lung Cancer (NSCLC)                        4.23  [ 4.02, 4.47]      1.00  GLOBAL
+Hepatocellular Carcinoma                   4.26  [ 4.06, 4.38]      1.00  GLOBAL
+Rheumatoid Arthritis                       4.50  [ 4.04, 4.56]      1.00  GLOBAL
+
+robust MODULAR 5, robust GLOBAL 20, UNCERTAIN 6 (straddle 3.03)
