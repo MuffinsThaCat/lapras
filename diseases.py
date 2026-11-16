@@ -769,6 +769,41 @@ DISEASES = {
         },
     },
 
+    "sleep_apnea": {
+        "label": "Obstructive Sleep Apnea",
+        "proteins": [
+            # Intermittent hypoxia / HIF pathway
+            "HIF1A", "EPAS1", "VHL", "EGLN1", "EGLN2", "EP300", "ARNT",
+            "VEGFA", "NOS2", "NOS3", "EDN1", "EDNRA", "EDNRB",
+            # Inflammation (central to OSA pathophysiology)
+            "TNF", "IL6", "IL1B", "NFKB1", "RELA", "IKBKB", "NLRP3",
+            "CASP1", "CRP", "CXCL8", "CCL2", "ICAM1", "VCAM1", "SELE",
+            # Oxidative stress
+            "SOD1", "SOD2", "CAT", "GPX1", "NFE2L2", "KEAP1", "HMOX1",
+            "NQO1", "NOX2", "NOX4",
+            # Sympathetic / cardiovascular
+            "ADRB1", "ADRB2", "AGTR1", "ACE", "AGT", "NPPA", "NPPB",
+            # Metabolic / insulin resistance
+            "LEP", "LEPR", "ADIPOQ", "INSR", "IRS1", "AKT1", "MTOR",
+            "PPARG", "AMPK", "SIRT1",
+            # Coagulation / endothelial
+            "SERPINE1", "F2", "F3", "THBD", "SELP", "VWF",
+            # Neuromuscular / airway
+            "HTR2A", "GABRA1", "ACHE", "CHRM3",
+        ],
+        "known_targets": {
+            "ACHE": "acetylcholinesterase inhibitors (donepezil — in trials for OSA)",
+            "ADRB1": "beta blockers (for OSA-associated hypertension)",
+            "ACE": "ACE inhibitors (for OSA-associated hypertension)",
+            "AGTR1": "ARBs (for OSA-associated hypertension)",
+            "PPARG": "pioglitazone (in trials for OSA)",
+            "LEP": "leptin analogs (metreleptin — investigational)",
+            "EDN1": "endothelin receptor antagonists (investigational)",
+            "VEGFA": "anti-VEGF (not used in OSA directly)",
+            "SIRT1": "NAD+ boosters (investigational)",
+        },
+    },
+
     "epilepsy": {
         "label": "Epilepsy",
         "proteins": [

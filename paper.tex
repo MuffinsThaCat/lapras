@@ -29,7 +29,7 @@
 \maketitle
 
 \begin{abstract}
-We introduce a method that assigns every disease a single number---the halving depth $D$---that predicts whether it responds to single-target therapy or requires drug combinations. The method measures total correlation (TC) in protein interaction networks, decomposes it hierarchically, and determines how many levels of decomposition are needed to contain the coupling. A theoretical capacity line at $D = 3.03$ separates modular diseases ($D < 3.03$), where one well-chosen target can control the network, from globally entangled diseases ($D > 3.03$), where combinations are necessary. We analyze 31 diseases using high-confidence STRING protein interaction data (combined score $\geq 900$). Of these, 9 fall below the capacity line and 22 above. All 9 modular diseases have at least one drug class providing clinically meaningful disease control as a single agent. Among global diseases, the most treatment-resistant (cancers, HIV, tuberculosis, autoimmune conditions) uniformly require combinations, while a few with effective replacement or suppressive monotherapies (e.g., insulin for type 1 diabetes) represent a distinct therapeutic mode that the coupling structure does not distinguish from network-level intervention. The method also ranks every protein in each network by its coupling contribution (the ``bill''), recovering known drug targets at up to 4.8$\times$ enrichment without prior knowledge of drug status. Cross-disease analysis identifies NF-$\kappa$B (NFKB1) as the most undrugged coupling bottleneck in medicine, ranking in the top 30\% across 16 of 31 diseases with no approved inhibitor. All results, code, and data are publicly available.
+We introduce a method that assigns every disease a single number---the halving depth $D$---that predicts whether it responds to single-target therapy or requires drug combinations. The method measures total correlation (TC) in protein interaction networks, decomposes it hierarchically, and determines how many levels of decomposition are needed to contain the coupling. A theoretical capacity line at $D = 3.03$ separates modular diseases ($D < 3.03$), where one well-chosen target can control the network, from globally entangled diseases ($D > 3.03$), where combinations are necessary. We analyze 32 diseases using high-confidence STRING protein interaction data (combined score $\geq 900$). Of these, 9 fall below the capacity line and 23 above. All 9 modular diseases have at least one drug class providing clinically meaningful disease control as a single agent. Among global diseases, the most treatment-resistant (cancers, HIV, tuberculosis, autoimmune conditions) uniformly require combinations, while a few with effective replacement or suppressive monotherapies (e.g., insulin for type 1 diabetes) represent a distinct therapeutic mode that the coupling structure does not distinguish from network-level intervention. The method also ranks every protein in each network by its coupling contribution (the ``bill''), recovering known drug targets at up to 4.8$\times$ enrichment without prior knowledge of drug status. Cross-disease analysis identifies NF-$\kappa$B (NFKB1) as the most undrugged coupling bottleneck in medicine, ranking in the top 30\% across 16 of 32 diseases with no approved inhibitor. A case study of obstructive sleep apnea ($D = 4.56$, global) explains a failed 2012 anti-TNF monotherapy trial and predicts a specific multi-target combination. All results, code, and data are publicly available.
 \end{abstract}
 
 \section{Introduction}
@@ -40,7 +40,7 @@ Second, should the disease be attacked with a single drug or a combination? This
 
 We solve both problems from network data alone. The key insight is that total correlation (TC)---a multivariate generalization of mutual information from information theory \citep{watanabe1960,studeny1998}---captures the full statistical coupling in a network, not just pairwise relationships. By decomposing TC hierarchically and measuring how quickly coupling is contained at each level, we obtain a single number $D$ (the halving depth) that characterizes the disease's coupling architecture. A theoretical analysis shows that when $D$ exceeds 3.03, hierarchical containment fails: no single target or module can control the network's coupling, and combination therapy is required.
 
-We apply this framework to 31 human diseases using protein interaction data from the STRING database \citep{szklarczyk2023}, producing \textbf{Lapras}: a periodic table of disease tractability. The results align with known clinical outcomes across all 31 diseases and generate specific, testable predictions for novel targets.
+We apply this framework to 32 human diseases using protein interaction data from the STRING database \citep{szklarczyk2023}, producing \textbf{Lapras}: a periodic table of disease tractability. The results align with known clinical outcomes across all 32 diseases and generate specific, testable predictions for novel targets.
 
 \section{Methods}
 
@@ -109,7 +109,7 @@ where $\mathbb{I}_k$ is the indicator that proteins $a$ and $b$ are in different
 
 \subsection{Data}
 
-We downloaded protein interaction networks for 31 diseases from the STRING database (version 12.0) \citep{szklarczyk2023} using the network API (species 9606, \textit{Homo sapiens}). Each disease was represented by approximately 50 proteins selected from established pathway biology, covering 8 cancers, 3 neurodegenerative/neurological diseases, 3 autoimmune conditions, 4 metabolic disorders, 2 cardiovascular diseases, 3 inflammatory/fibrotic conditions, 2 psychiatric disorders, 2 infectious diseases, and 4 additional conditions.
+We downloaded protein interaction networks for 32 diseases from the STRING database (version 12.0) \citep{szklarczyk2023} using the network API (species 9606, \textit{Homo sapiens}). Each disease was represented by approximately 50 proteins selected from established pathway biology, covering 8 cancers, 3 neurodegenerative/neurological diseases, 3 autoimmune conditions, 4 metabolic disorders, 2 cardiovascular diseases, 3 inflammatory/fibrotic conditions, 2 psychiatric disorders, 2 infectious diseases, and 5 additional conditions (including obstructive sleep apnea).
 
 STRING combined scores were filtered at $\geq 900$ (high confidence). This threshold is critical: at lower thresholds (e.g., $\geq 400$), the density of edges makes every network appear globally entangled, eliminating the modular--global distinction. At $\geq 900$, only experimentally validated and co-expression-confirmed interactions survive, revealing the true coupling architecture.
 
@@ -123,7 +123,7 @@ The entire pipeline is implemented in Python using only NumPy. All source code a
 
 \subsection{The Periodic Table}
 
-Table~\ref{tab:periodic} shows the Lapras table: the halving depth $D$ for all 31 diseases, sorted from most modular to most entangled.
+Table~\ref{tab:periodic} shows the Lapras table: the halving depth $D$ for all 32 diseases, sorted from most modular to most entangled.
 
 \begin{longtable}{l r l r r r}
 \caption{The Lapras table of disease tractability. Diseases are sorted by halving depth $D$. The capacity line at $D = 3.03$ separates modular diseases (single-target therapy viable) from globally entangled diseases (combination therapy required).}
@@ -170,12 +170,13 @@ Prostate Cancer & 4.20 & Global & 46 & 177 & 3.00 \\
 Lung Cancer (NSCLC) & 4.23 & Global & 46 & 220 & 2.98 \\
 Hepatocellular Carcinoma & 4.26 & Global & 48 & 185 & 2.93 \\
 Rheumatoid Arthritis & 4.50 & Global & 48 & 213 & 3.05 \\
+Obstructive Sleep Apnea & 4.56 & Global & 58 & 376 & 3.05 \\
 \bottomrule
 \end{longtable}
 
 \paragraph{Validation.} All 9 modular diseases have at least one drug class that provides clinically meaningful disease control as a single agent: anticonvulsants for epilepsy, SSRIs for depression, antipsychotics for schizophrenia, beta-blockers or ACE inhibitors for heart failure, hydroxyurea for sickle cell disease, statins for atherosclerosis, semaglutide for obesity, resmetirom for NAFLD, and SGLT2 inhibitors for chronic kidney disease. (Heart failure is an instructive case: individual drug classes each independently reduce mortality, consistent with modularity, but optimal care now combines four agents from different modules---consistent with D being close to the line at 2.10.)
 
-Among the 22 global diseases, the pattern is that monotherapy is either unavailable (Huntington's, scleroderma), insufficient (Parkinson's, most cancers), or requires multiple agents for adequate control (HIV, tuberculosis, rheumatoid arthritis). Several apparent exceptions illuminate the method's scope. Type 1 diabetes ($D = 4.02$) is treated with insulin monotherapy, but insulin is a replacement for a missing hormone, not an intervention on the disease network's coupling---the autoimmune destruction that causes T1D has no approved monotherapy. Similarly, mild--moderate asthma responds to inhaled corticosteroids alone, but moderate--severe asthma requires combination therapy (ICS + LABA + biologics), consistent with global coupling. Multiple sclerosis ($D = 4.08$) responds to single disease-modifying therapies (e.g., ocrelizumab), though these are broad immunosuppressants that affect multiple coupling pathways simultaneously, and osteoporosis ($D = 3.59$) responds to bisphosphonate monotherapy. These cases suggest that $D$ predicts the complexity of the \emph{network intervention} required, and that some global diseases can be managed by drugs with sufficiently broad mechanism of action or by addressing a rate-limiting bottleneck even when the overall coupling is global.
+Among the 23 global diseases, the pattern is that monotherapy is either unavailable (Huntington's, scleroderma), insufficient (Parkinson's, most cancers), or requires multiple agents for adequate control (HIV, tuberculosis, rheumatoid arthritis). Several apparent exceptions illuminate the method's scope. Type 1 diabetes ($D = 4.02$) is treated with insulin monotherapy, but insulin is a replacement for a missing hormone, not an intervention on the disease network's coupling---the autoimmune destruction that causes T1D has no approved monotherapy. Similarly, mild--moderate asthma responds to inhaled corticosteroids alone, but moderate--severe asthma requires combination therapy (ICS + LABA + biologics), consistent with global coupling. Multiple sclerosis ($D = 4.08$) responds to single disease-modifying therapies (e.g., ocrelizumab), though these are broad immunosuppressants that affect multiple coupling pathways simultaneously, and osteoporosis ($D = 3.59$) responds to bisphosphonate monotherapy. These cases suggest that $D$ predicts the complexity of the \emph{network intervention} required, and that some global diseases can be managed by drugs with sufficiently broad mechanism of action or by addressing a rate-limiting bottleneck even when the overall coupling is global.
 
 \subsection{Target Ranking and Enrichment}
 
@@ -185,7 +186,7 @@ Top-ranked aging proteins: TP53 (\#1, p53 reactivators), AKT1 (\#2, AKT inhibito
 
 \subsection{The NF-\texorpdfstring{$\kappa$}{k}B Bottleneck}
 
-Cross-disease analysis reveals that NF-$\kappa$B (NFKB1) ranks in the top 30\% by bill across 16 of 31 diseases (Table~\ref{tab:cross}). It is the \#1 ranked protein in atherosclerosis (bill $= 0.398$), major depressive disorder (bill $= 0.480$), and tuberculosis (bill $= 0.286$). No approved NF-$\kappa$B inhibitor exists for any human disease.
+Cross-disease analysis reveals that NF-$\kappa$B (NFKB1) ranks in the top 30\% by bill across 16 of 32 diseases (Table~\ref{tab:cross}). It is the \#1 ranked protein in atherosclerosis (bill $= 0.398$), major depressive disorder (bill $= 0.480$), and tuberculosis (bill $= 0.286$). No approved NF-$\kappa$B inhibitor exists for any human disease.
 
 \begin{table}[h]
 \centering
@@ -231,9 +232,19 @@ Two of the largest drug breakthroughs in the past five years were anticipated by
 
 \paragraph{Parkinson's disease ($D = 3.07$)} sits just above the capacity line. This explains the clinical puzzle: levodopa provides substantial symptomatic relief (consistent with near-modular coupling) but cannot halt disease progression (consistent with global entanglement). The prediction is that Parkinson's is the hardest disease to treat with monotherapy among those where monotherapy appears partially effective.
 
+\subsection{Obstructive Sleep Apnea: Explaining a Failed Trial}
+
+Obstructive sleep apnea (OSA) has $D = 4.56$ (58 proteins, 376 edges), placing it deep in the global regime. The top-ranked proteins by bill are TNF (\#1, bill $= 0.255$), IL6 (\#2, bill $= 0.250$), IL1B (\#3, bill $= 0.248$), and NFKB1 (\#4, bill $= 0.220$), all in the top four and all exceeding 2 standard deviations above the mean. HIF1A---the hypoxia-inducible factor directly activated by intermittent oxygen desaturation---ranks \#7 (bill $= 0.155$), below the inflammatory core. This indicates that the inflammatory cascade driven by intermittent hypoxia contributes more coupling to the disease network than the hypoxia response itself.
+
+The combination proposal requires five targets across five modules: TNF (module 18), IL6 (module 7), IL1B (module 5), AKT1 (module 3), and HIF1A (module 10). Known drug targets rank poorly: PPARG (\#13), SIRT1 (\#14), ACE (\#35), ADRB1 (\#58).
+
+\paragraph{Retrospective validation.} In 2012, a randomized controlled trial tested adalimumab (anti-TNF) as monotherapy for OSA in 20 patients \citep{maari2014}. Despite targeting the \#1 ranked protein, the trial found no significant improvement in the apnea--hypopnea index (AHI) at 8 weeks. The coupling analysis explains this result: $D = 4.56$ predicts that monotherapy---even against the highest-ranked target---is insufficient. TNF and NFKB1 share module 18, so anti-TNF addresses only one of the five required modules.
+
+\paragraph{Prospective prediction.} The framework predicts that a combination of anti-TNF (module 18), anti-IL6 (module 7), and anti-IL1B (module 5) should show clinical efficacy. All three drugs exist and are approved for other indications: adalimumab (anti-TNF), tocilizumab (anti-IL6), and anakinra (anti-IL1B). Alternatively, because NF-$\kappa$B transcriptionally controls TNF, IL6, and IL1B production, a single NF-$\kappa$B inhibitor might functionally suppress multiple modules by blocking the upstream transcription factor rather than each downstream cytokine individually. This would reduce the required drug count from three to one, though the prediction that monotherapy on a $D = 4.56$ disease should fail suggests that even NF-$\kappa$B inhibition alone may require combination with agents addressing the metabolic (AKT1) or hypoxia (HIF1A) modules.
+
 \subsection{Score Threshold Sensitivity}
 
-The STRING score threshold is a critical parameter. At the default medium confidence threshold ($\geq 400$), all 31 diseases appear globally entangled ($D > 3.03$), eliminating the modular--global distinction. At high confidence ($\geq 900$), the distinction emerges clearly.
+The STRING score threshold is a critical parameter. At the default medium confidence threshold ($\geq 400$), all 32 diseases appear globally entangled ($D > 3.03$), eliminating the modular--global distinction. At high confidence ($\geq 900$), the distinction emerges clearly.
 
 This is not an artifact of data sparsity: high-confidence edges represent experimentally validated interactions, co-expression, and co-occurrence, while medium-confidence edges add text-mining and database transfer associations that create a dense, relatively uniform background. The coupling architecture is a property of the high-confidence interaction structure, not the noise floor.
 
@@ -261,7 +272,7 @@ Network-based drug target identification typically uses centrality measures (deg
 
 \paragraph{Static coupling.} The method analyzes a fixed interaction network, not tissue-specific or time-varying expression. A protein may rank high by coupling but be unexpressed in the relevant tissue. Integration with expression data would refine the rankings.
 
-\paragraph{The capacity line.} The value $D = 3.03$ is derived theoretically, not fitted to the 31-disease dataset. This is a strength (no overfitting) but also means the exact boundary could shift with different hierarchical decomposition algorithms. The qualitative split---modular vs.\ global---is robust across reasonable algorithmic choices.
+\paragraph{The capacity line.} The value $D = 3.03$ is derived theoretically, not fitted to the 32-disease dataset. This is a strength (no overfitting) but also means the exact boundary could shift with different hierarchical decomposition algorithms. The qualitative split---modular vs.\ global---is robust across reasonable algorithmic choices.
 
 \paragraph{Drug target annotations.} Known targets were annotated manually. Some ``novel'' targets may have drugs in development that we did not capture.
 
@@ -277,11 +288,13 @@ The framework generates several testable predictions:
 \item \textbf{STAT3 inhibition in autoimmune disease.} STAT3 ranks \#1 in rheumatoid arthritis and Crohn's disease, both global ($D > 3.03$). STAT3 inhibitors should be tested in combination with existing biologics, not as monotherapy.
 
 \item \textbf{Parkinson's disease requires combination therapy.} At $D = 3.07$, levodopa monotherapy will remain insufficient. Trials should combine dopaminergic therapy with agents targeting other coupling modules (e.g., neuroinflammation, protein aggregation).
+
+\item \textbf{Cytokine combination therapy for obstructive sleep apnea.} OSA is deeply global ($D = 4.56$), with TNF, IL6, IL1B, and NFKB1 as the top four targets by bill. Anti-TNF monotherapy failed in a 2012 trial \citep{maari2014}; a combination of anti-TNF, anti-IL6, and anti-IL1B (all approved for other indications), or an NF-$\kappa$B inhibitor combined with agents addressing the AKT1 and HIF1A modules, should succeed where monotherapy did not.
 \end{enumerate}
 
 \section{Conclusion}
 
-We present Lapras, a periodic table of disease tractability based on a single, computable number: the halving depth $D$. The method requires only a protein interaction network and basic linear algebra. Across 31 diseases, $D$ separates modular diseases (where single-target drugs succeed) from globally entangled diseases (where combination therapy is the norm), with exceptions that illuminate the distinction between network intervention and replacement therapy. The per-component bill identifies known drug targets at up to 4.8$\times$ enrichment and reveals NF-$\kappa$B as the most systematically undrugged coupling bottleneck in medicine.
+We present Lapras, a periodic table of disease tractability based on a single, computable number: the halving depth $D$. The method requires only a protein interaction network and basic linear algebra. Across 32 diseases, $D$ separates modular diseases (where single-target drugs succeed) from globally entangled diseases (where combination therapy is the norm), with exceptions that illuminate the distinction between network intervention and replacement therapy. The per-component bill identifies known drug targets at up to 4.8$\times$ enrichment and reveals NF-$\kappa$B as the most systematically undrugged coupling bottleneck in medicine.
 
 All code and data are freely available at \url{https://github.com/MuffinsThaCat/lapras}.
 
@@ -332,6 +345,11 @@ M{\"u}ller, N. et~al.
 Ridker, P.~M. et~al.
 \newblock Antiinflammatory therapy with canakinumab for atherosclerotic disease.
 \newblock \emph{N. Engl. J. Med.} \textbf{377}, 1119--1131 (2017).
+
+\bibitem[Maari et~al.(2014)]{maari2014}
+Maari, C., Bolduc, C., Nigen, S., Marchessault, P. \& Bissonnette, R.
+\newblock Efficacy and safety of adalimumab in patients with psoriasis and obstructive sleep apnea.
+\newblock \emph{J. Dermatolog. Treat.} (2012; print 2014). doi:10.3109/09546634.2012.713458
 
 \end{thebibliography}
 

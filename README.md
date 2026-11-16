@@ -8,7 +8,7 @@ This pipeline solves both problems from network data alone:
 
 1. **It ranks every protein in a disease network by how much coupling it owns** — not by how many connections it has (degree), but by how much of the system's total statistical coupling runs through it. On the aging network, this ranking recovers known drug targets at 4.8x enrichment in the top 10 — without being told which proteins have drugs.
 
-2. **It gives every disease a single number (D) that predicts whether single-target therapy can work.** Below D = 3.03, the disease is modular and one well-chosen drug can contain it. Above 3.03, the coupling is global and you need combinations. Across 31 diseases, every modular disease has a successful single-drug therapy. Every global disease is one where monotherapy isn't enough.
+2. **It gives every disease a single number (D) that predicts whether single-target therapy can work.** Below D = 3.03, the disease is modular and one well-chosen drug can contain it. Above 3.03, the coupling is global and you need combinations. Across 32 diseases, every modular disease has a successful single-drug therapy. Every global disease is one where monotherapy isn't enough.
 
 This tells you which doors to knock on first — and whether to knock on one door or several.
 
@@ -27,12 +27,12 @@ This tells you which doors to knock on first — and whether to knock on one doo
 ```
 pip install numpy
 python3 pipeline.py                # 5 built-in diseases
-python3 batch.py --score 0.9       # all 31 diseases from STRING data
+python3 batch.py --score 0.9       # all 32 diseases from STRING data
 ```
 
 ## The Lapras table
 
-31 diseases analyzed with real STRING data (score >= 0.9). 9 modular, 22 global:
+32 diseases analyzed with real STRING data (score >= 0.9). 9 modular, 23 global:
 
 | Disease | D | Verdict |
 |---------|---|---------|
@@ -104,7 +104,7 @@ Proteins ranking in the top 30% across many diseases:
 coupling.py           Core math (TC, bill, compiler, sensitivity)
 networks.py           5 built-in disease networks
 pipeline.py           Pipeline runner and CLI
-diseases.py           31 disease protein lists with known targets
+diseases.py           32 disease protein lists with known targets
 download_string.py    STRING API downloader
 batch.py              Batch runner — builds the periodic table
 data/                 STRING interaction data (TSV per disease)
@@ -114,7 +114,7 @@ results/              Output (periodic table, per-disease reports)
 ## Running the full analysis
 
 ```bash
-# Download STRING data for all 31 diseases (~35 seconds)
+# Download STRING data for all 32 diseases (~35 seconds)
 python3 download_string.py
 
 # Run the periodic table (high-confidence edges)

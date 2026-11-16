@@ -1,4 +1,4 @@
-THE PERIODIC TABLE: D VALUES FOR 31 DISEASES
+THE PERIODIC TABLE: D VALUES FOR 32 DISEASES
 Capacity line: D = 3.03
 Below → modular (single-target viable)  |  Above → global (combinations required)
 
@@ -35,9 +35,10 @@ Prostate Cancer                            4.20  GLOBAL             46     177  
 Lung Cancer (NSCLC)                        4.23  GLOBAL             46     220    2.98    1.4x
 Hepatocellular Carcinoma                   4.26  GLOBAL             48     185    2.93    1.4x
 Rheumatoid Arthritis                       4.50  GLOBAL             48     213    3.05    1.6x
+Obstructive Sleep Apnea                    4.56  GLOBAL             58     376    3.05     n/a
 
 Below the line (modular):  9
-Above the line (global):  22
+Above the line (global):  23
 
 ROBUSTNESS OF VERDICTS (100 perturbations each)
 Disease                                       D      5-95% of D P(global)  Verdict

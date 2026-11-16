@@ -1,0 +1,54 @@
+
+========================================================================
+  OBSTRUCTIVE SLEEP APNEA
+========================================================================
+  Proteins: 58   Edges: 376
+  TC = 3.05 nats   (e^TC = 21)
+  D = 4.56 — ABOVE the capacity line (3.03)
+  -> Globally entangled. Single-target therapy insufficient.
+
+  KNOWN TARGETS (validation):
+  Rank  Protein          Bill Module Drug/status
+    13  PPARG          0.1082     21  pioglitazone (in trials for OSA)
+    14  SIRT1          0.1068     21  NAD+ boosters (investigational)
+    18  LEP            0.0861     16  leptin analogs (metreleptin — investigational)
+    30  EDN1           0.0491      9  endothelin receptor antagonists (investigational)
+    35  ACE            0.0318      0  ACE inhibitors (for OSA-associated hypertension)
+    44  AGTR1          0.0149      0  ARBs (for OSA-associated hypertension)
+    58  ADRB1          0.0026      2  beta blockers (for OSA-associated hypertension)
+
+  NOVEL TARGETS (high bill, no approved drug):
+  Rank  Protein          Bill Module Degree Why interesting
+     1  TNF            0.2550     18     35  exceptionally high bill (>2 sigma)
+     2  IL6            0.2502      7     34  exceptionally high bill (>2 sigma)
+     3  IL1B           0.2483      5     34  exceptionally high bill (>2 sigma)
+     4  NFKB1          0.2195     18     27  exceptionally high bill (>2 sigma)
+     5  AKT1           0.1801      3     29  high connectivity hub
+     6  RELA           0.1746     18     22  high connectivity hub
+     7  HIF1A          0.1546     10     26  high connectivity hub
+     8  CCL2           0.1503      7     20  high connectivity hub
+     9  ICAM1          0.1337     13     19  high connectivity hub
+    10  CXCL8          0.1291      7     18  above-median bill, no drug exists
+    11  CRP            0.1199      1     21  high connectivity hub
+    12  VCAM1          0.1159     13     18  above-median bill, no drug exists
+    15  AGT            0.1021      0     23  same module as ACE, AGTR1
+    16  NFE2L2         0.0949     12     18  above-median bill, no drug exists
+    17  SERPINE1       0.0908      1     19  high connectivity hub
+
+  COMBINATION PROPOSALS (one target per module, by bill):
+    1. TNF          (module 18, bill=0.2550) <- NOVEL
+       NO DRUG — novel target
+    2. IL6          (module 7, bill=0.2502) <- NOVEL
+       NO DRUG — novel target
+    3. IL1B         (module 5, bill=0.2483) <- NOVEL
+       NO DRUG — novel target
+    4. AKT1         (module 3, bill=0.1801) <- NOVEL
+       NO DRUG — novel target
+    5. HIF1A        (module 10, bill=0.1546) <- NOVEL
+       NO DRUG — novel target
+
+  INTERACTION TARGETS (cross-module, high sensitivity):
+
+  ENRICHMENT:
+    Top 10: 0/7 known targets (expected 1.2, enrichment 0.0x)
+    Top 20: 3/7 known targets (expected 2.4, enrichment 1.2x)
