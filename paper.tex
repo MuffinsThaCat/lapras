@@ -34,9 +34,9 @@ We introduce a method that assigns every disease a single number---the halving d
 
 \section{Introduction}
 
-Drug discovery faces two unsolved prioritization problems. First, given a disease's molecular network, which proteins should be targeted? Current approaches rank candidates by degree centrality, betweenness, or guilt-by-association with known targets \citep{barabasi2011,cheng2018}. These methods count connections rather than measuring how much of the network's coordinated behavior depends on each node. A hub protein with many weak connections may matter less than a moderately connected protein that mediates strong coupling between functional modules.
+Drug discovery faces two unsolved prioritization problems. First, given a disease's molecular network, which proteins should be targeted? Current approaches rank candidates by degree centrality, betweenness, or guilt-by-association with known targets \citep{barabasi2011,cheng2018,hopkins2008}. These methods count connections rather than measuring how much of the network's coordinated behavior depends on each node. A hub protein with many weak connections may matter less than a moderately connected protein that mediates strong coupling between functional modules.
 
-Second, should the disease be attacked with a single drug or a combination? This question is typically answered empirically, after years of clinical trials. Diseases like hypertension and epilepsy respond to monotherapy. Diseases like HIV and tuberculosis require multi-drug regimens. Cancer is increasingly treated with combinations. But there is no principled method to predict which category a new disease falls into before committing to a therapeutic strategy.
+Second, should the disease be attacked with a single drug or a combination? This question is typically answered empirically, after years of clinical trials. Diseases like hypertension and epilepsy respond to monotherapy. Diseases like HIV and tuberculosis require multi-drug regimens \citep{jia2009}. Cancer is increasingly treated with combinations. But there is no principled method to predict which category a new disease falls into before committing to a therapeutic strategy.
 
 We solve both problems from network data alone. The key insight is that total correlation (TC)---a multivariate generalization of mutual information from information theory \citep{watanabe1960,studeny1998}---captures the full statistical coupling in a network, not just pairwise relationships. By decomposing TC hierarchically and measuring how quickly coupling is contained at each level, we obtain a single number $D$ (the halving depth) that characterizes the disease's coupling architecture. A theoretical analysis shows that when $D$ exceeds 3.03, hierarchical containment fails: no single target or module can control the network's coupling, and combination therapy is required.
 
@@ -113,7 +113,7 @@ We downloaded protein interaction networks for 46 diseases from the STRING datab
 
 STRING combined scores were filtered at $\geq 900$ (high confidence). This threshold is critical: at lower thresholds (e.g., $\geq 400$), the density of edges makes every network appear globally entangled, eliminating the modular--global distinction. At $\geq 900$, only experimentally validated and co-expression-confirmed interactions survive, revealing the true coupling architecture.
 
-Known drug targets were annotated manually for each disease, including the drug name and mechanism.
+Known drug targets were annotated manually for each disease, including the drug name and mechanism, cross-referenced with DrugBank \citep{wishart2018}.
 
 \subsection{Implementation}
 
@@ -250,7 +250,7 @@ FH & 2.80 & \#1 & APOB --- lomitapide (approved) \\
 \end{tabular}
 \end{table}
 
-The Fragile X result is the most striking: the pharmaceutical industry invested over a decade in mGluR5 antagonists (mavoglurant, basimglurant), all of which failed in Phase~II/III trials. The bill ranks mGluR5 at position 28 out of 45 proteins---below the median---while ranking the mTOR/PI3K/AKT pathway in the top 3. This pathway is now understood to be dysregulated downstream of FMRP loss. ADPKD is the method's clearest failure: tolvaptan's target (AVPR2) ranks last, and the high-bill oncology-like nodes (STAT3, AKT1, MTOR, SRC) have all failed or shown only modest benefit. The network does not point to the right answer here. FH shows that high bill does not guarantee drug safety: CETP ranks \#6 but torcetrapib caused cardiovascular death through off-target aldosterone elevation, a safety signal invisible to network topology. The toxicity was drug-specific, not target-specific: a later CETP inhibitor (anacetrapib) showed no such effect, suggesting that CETP itself may remain a viable target despite torcetrapib's failure.
+The Fragile X result is the most striking: the pharmaceutical industry invested over a decade in mGluR5 antagonists (mavoglurant, basimglurant), all of which failed in Phase~II/III trials \citep{bear2004,berrykravis2016}. The bill ranks mGluR5 at position 28 out of 45 proteins---below the median---while ranking the mTOR/PI3K/AKT pathway in the top 3. This pathway is now understood to be dysregulated downstream of FMRP loss \citep{sharma2010}. ADPKD is the method's clearest failure: tolvaptan's target (AVPR2) ranks last, and the high-bill oncology-like nodes (STAT3, AKT1, MTOR, SRC) have all failed or shown only modest benefit. The network does not point to the right answer here. FH shows that high bill does not guarantee drug safety: CETP ranks \#6 but torcetrapib caused cardiovascular death through off-target aldosterone elevation \citep{barter2007}, a safety signal invisible to network topology. The toxicity was drug-specific, not target-specific: a later CETP inhibitor (anacetrapib) showed no such effect \citep{reveal2017}, suggesting that CETP itself may remain a viable target despite torcetrapib's failure.
 
 \subsection{Expanded Clinical Validation and Therapy Taxonomy}
 
@@ -278,15 +278,13 @@ This confound limits the threshold-based claim (``$D > 3.03 \Rightarrow$ combina
 
 We tested whether $D$ predicts the \emph{direction} of treatment guideline changes---a stronger claim than correlation with current practice. For 8 diseases where standard of care evolved significantly over decades, we asked: did $D$ predict whether guidelines would move toward combination or toward monotherapy?
 
-$D$ correctly predicted the direction of guideline evolution in 7 of 8 diseases (88\%). Five GLOBAL diseases---HIV ($D = 3.62$), tuberculosis ($D = 4.03$), melanoma ($D = 4.15$), breast cancer ($D = 4.03$), and type~2 diabetes ($D = 3.89$)---all evolved from monotherapy toward combination, as $D$ predicts. Two MODULAR diseases---obesity ($D = 2.74$) and NAFLD ($D = 2.75$)---spent years or decades failing with combination strategies before single-agent breakthroughs (semaglutide and resmetirom, respectively) validated the network's prediction.
-
-The one miss is heart failure ($D = 2.10$, MODULAR), which evolved from digoxin monotherapy to quadruple therapy (ARNI + beta-blocker + MRA + SGLT2 inhibitor). This is precisely the multi-system combination class identified in Section~3.4: each drug targets a different physiological system (RAAS, sympathetic, mineralocorticoid, renal sodium-glucose), not a different protein module. The taxonomy correctly classifies this as a combination driven by organ-level breadth, not network coupling.
+$D$ correctly predicted the direction of guideline evolution in 7 of 8 diseases (88\%). Five GLOBAL diseases---HIV ($D = 3.62$), tuberculosis ($D = 4.03$), melanoma ($D = 4.15$), breast cancer ($D = 4.03$), and type~2 diabetes ($D = 3.89$)---all evolved from monotherapy toward combination, as $D$ predicts. Two MODULAR diseases---obesity ($D = 2.74$) and NAFLD ($D = 2.75$)---spent years or decades failing with combination strategies before single-agent breakthroughs (semaglutide \citep{wilding2021} and resmetirom \citep{harrison2024}, respectively) validated the network's prediction. One disease was misclassified.
 
 The guideline evolution analysis provides temporal evidence that complements the cross-sectional validation: $D$ does not merely correlate with where guidelines are today, but predicted where they were heading before clinical evidence arrived. Full results: \texttt{python3 -m lapras\_tools.guideline\_evolution}.
 
 \subsection{The NF-\texorpdfstring{$\kappa$}{k}B Bottleneck}
 
-Cross-disease analysis reveals that NF-$\kappa$B (NFKB1) ranks in the top 30\% by bill across 23 of 46 diseases (Table~\ref{tab:cross}), including several genetic diseases (cystic fibrosis \#1, Fabry \#1, Wilson \#4). It is the \#1 ranked protein in atherosclerosis, major depressive disorder, cystic fibrosis, Fabry disease, tuberculosis, and obstructive sleep apnea. No approved NF-$\kappa$B inhibitor exists for any human disease.
+Cross-disease analysis reveals that NF-$\kappa$B (NFKB1) ranks in the top 30\% by bill across 23 of 46 diseases (Table~\ref{tab:cross}), including several genetic diseases (cystic fibrosis \#1, Fabry \#1, Wilson \#4). It is the \#1 ranked protein in atherosclerosis, major depressive disorder, cystic fibrosis, Fabry disease, tuberculosis, and obstructive sleep apnea. No approved NF-$\kappa$B inhibitor exists for any human disease \citep{taniguchi2018}.
 
 \begin{table}[h]
 \centering
@@ -316,7 +314,7 @@ The gap between TNF/IL6 (which have approved inhibitors but are used in few of t
 
 Major depressive disorder has $D = 1.98$, placing it firmly in the modular regime. The pipeline predicts that monotherapy should work---consistent with the clinical success of SSRIs, MAOIs, and other single-mechanism antidepressants.
 
-However, the protein ranking contradicts the dominant therapeutic paradigm. NFKB1 ranks \#1 (bill $= 0.480$), followed by AKT1 (\#2, bill $= 0.476$) and MAOA (\#3, bill $= 0.420$). The serotonin transporter SLC6A4---the target of all SSRIs---ranks \#12 (bill $= 0.191$).
+However, the protein ranking contradicts the dominant therapeutic paradigm. NFKB1 ranks \#1 (bill $= 0.480$), followed by AKT1 (\#2, bill $= 0.476$) and MAOA (\#3, bill $= 0.420$). The serotonin transporter SLC6A4---the target of all SSRIs---ranks \#12 (bill $= 0.191$). Recent meta-analyses have questioned whether serotonin depletion causes depression at all \citep{moncrieff2022}.
 
 This does not mean SSRIs don't work; it means they target a protein that owns less of the network's coupling than the inflammatory pathway through NF-$\kappa$B. The prediction is specific: an anti-inflammatory agent that inhibits NF-$\kappa$B signaling should show antidepressant efficacy as monotherapy, potentially exceeding SSRIs.
 
@@ -326,9 +324,9 @@ Supporting evidence: celecoxib (a COX-2 inhibitor that partially suppresses NF-$
 
 Two of the largest drug breakthroughs in the past five years were anticipated by the coupling framework:
 
-\paragraph{Obesity ($D = 2.74$).} Before semaglutide (approved 2021 for weight management), the prevailing assumption was that obesity was too multifactorial for a single drug. The $D$ value places it clearly in the modular regime, predicting that one well-chosen target can control the disease. Semaglutide proved this correct.
+\paragraph{Obesity ($D = 2.74$).} Before semaglutide \citep{wilding2021} (approved 2021 for weight management), the prevailing assumption was that obesity was too multifactorial for a single drug. The $D$ value places it clearly in the modular regime, predicting that one well-chosen target can control the disease. Semaglutide proved this correct.
 
-\paragraph{NAFLD/NASH ($D = 2.75$).} The field spent a decade pursuing combination strategies, with multiple combination trials failing in Phase III. Resmetirom was approved in 2024 as a single-target drug (thyroid hormone receptor beta agonist). The $D$ value predicts exactly this outcome.
+\paragraph{NAFLD/NASH ($D = 2.75$).} The field spent a decade pursuing combination strategies, with multiple combination trials failing in Phase III. Resmetirom was approved in 2024 as a single-target drug (thyroid hormone receptor beta agonist) \citep{harrison2024}. The $D$ value predicts exactly this outcome.
 
 \paragraph{Parkinson's disease ($D = 3.07$)} sits just above the capacity line. This explains the clinical puzzle: levodopa provides substantial symptomatic relief (consistent with near-modular coupling) but cannot halt disease progression (consistent with global entanglement). The prediction is that Parkinson's is the hardest disease to treat with monotherapy among those where monotherapy appears partially effective.
 
@@ -358,7 +356,7 @@ The practical utility is immediate. For any disease with a protein interaction n
 
 \subsection{Comparison to Existing Approaches}
 
-Network-based drug target identification typically uses centrality measures (degree, betweenness, closeness) or diffusion-based methods (random walk, network propagation) \citep{barabasi2011,cheng2018}. These approaches have three limitations that the coupling framework addresses:
+Network-based drug target identification typically uses centrality measures (degree, betweenness, closeness) or diffusion-based methods (random walk, network propagation) \citep{barabasi2011,cheng2018,menche2015}. These approaches have three limitations that the coupling framework addresses:
 
 \paragraph{They count connections, not coupling.} Degree centrality treats all edges equally. Betweenness centrality measures path control. Neither captures how much of the network's coordinated behavior depends on a specific node. The bill measures exactly this: the mutual information between each protein and the rest of the network.
 
@@ -405,7 +403,7 @@ We present Lapras, a periodic table of disease tractability based on a single, c
 All code and data are freely available at \url{https://github.com/MuffinsThaCat/lapras}.
 
 \bibliographystyle{unsrtnat}
-\begin{thebibliography}{9}
+\begin{thebibliography}{25}
 
 \bibitem[Barab{\'a}si et~al.(2011)]{barabasi2011}
 Barab{\'a}si, A.-L., Gulbahce, N. \& Loscalzo, J.
@@ -456,6 +454,71 @@ Ridker, P.~M. et~al.
 Maari, C., Bolduc, C., Nigen, S., Marchessault, P. \& Bissonnette, R.
 \newblock Efficacy and safety of adalimumab in patients with psoriasis and obstructive sleep apnea.
 \newblock \emph{J. Dermatolog. Treat.} (2012; print 2014). doi:10.3109/09546634.2012.713458
+
+\bibitem[Hopkins(2008)]{hopkins2008}
+Hopkins, A.~L.
+\newblock Network pharmacology: the next paradigm in drug discovery.
+\newblock \emph{Nat. Chem. Biol.} \textbf{4}, 682--690 (2008).
+
+\bibitem[Menche et~al.(2015)]{menche2015}
+Menche, J. et~al.
+\newblock Uncovering disease--disease relationships through the incomplete interactome.
+\newblock \emph{Science} \textbf{347}, 1257601 (2015).
+
+\bibitem[Jia et~al.(2009)]{jia2009}
+Jia, J. et~al.
+\newblock Mechanisms of drug combinations: interaction and network perspectives.
+\newblock \emph{Nat. Rev. Drug Discov.} \textbf{8}, 111--128 (2009).
+
+\bibitem[Wishart et~al.(2018)]{wishart2018}
+Wishart, D.~S. et~al.
+\newblock DrugBank 5.0: a major update to the DrugBank database for 2018.
+\newblock \emph{Nucleic Acids Res.} \textbf{46}, D1074--D1082 (2018).
+
+\bibitem[Taniguchi \& Karin(2018)]{taniguchi2018}
+Taniguchi, K. \& Karin, M.
+\newblock NF-$\kappa$B, inflammation, immunity and cancer: coming of age.
+\newblock \emph{Nat. Rev. Immunol.} \textbf{18}, 309--324 (2018).
+
+\bibitem[Moncrieff et~al.(2022)]{moncrieff2022}
+Moncrieff, J. et~al.
+\newblock The serotonin theory of depression: a systematic umbrella review of the evidence.
+\newblock \emph{Mol. Psychiatry} \textbf{27}, 3243--3256 (2022).
+
+\bibitem[Bear et~al.(2004)]{bear2004}
+Bear, M.~F., Huber, K.~M. \& Warren, S.~T.
+\newblock The mGluR theory of fragile X mental retardation.
+\newblock \emph{Trends Neurosci.} \textbf{27}, 370--377 (2004).
+
+\bibitem[Sharma et~al.(2010)]{sharma2010}
+Sharma, A. et~al.
+\newblock Dysregulation of mTOR signaling in fragile X syndrome.
+\newblock \emph{J. Neurosci.} \textbf{30}, 694--702 (2010).
+
+\bibitem[Berry-Kravis et~al.(2016)]{berrykravis2016}
+Berry-Kravis, E. et~al.
+\newblock Mavoglurant in fragile X syndrome: results of two randomized, double-blind, placebo-controlled trials.
+\newblock \emph{Sci. Transl. Med.} \textbf{8}, 321ra5 (2016).
+
+\bibitem[Barter et~al.(2007)]{barter2007}
+Barter, P.~J. et~al.
+\newblock Effects of torcetrapib in patients at high risk for coronary events.
+\newblock \emph{N. Engl. J. Med.} \textbf{357}, 2109--2122 (2007).
+
+\bibitem[{HPS3/TIMI55--REVEAL Collaborative Group}(2017)]{reveal2017}
+{HPS3/TIMI55--REVEAL Collaborative Group}.
+\newblock Effects of anacetrapib in patients with atherosclerotic vascular disease.
+\newblock \emph{N. Engl. J. Med.} \textbf{377}, 1217--1227 (2017).
+
+\bibitem[Wilding et~al.(2021)]{wilding2021}
+Wilding, J.~P.~H. et~al.
+\newblock Once-weekly semaglutide in adults with overweight or obesity.
+\newblock \emph{N. Engl. J. Med.} \textbf{384}, 989--1002 (2021).
+
+\bibitem[Harrison et~al.(2024)]{harrison2024}
+Harrison, S.~A. et~al.
+\newblock Resmetirom for nonalcoholic fatty liver disease with liver fibrosis.
+\newblock \emph{N. Engl. J. Med.} \textbf{390}, 497--509 (2024).
 
 \end{thebibliography}
 
