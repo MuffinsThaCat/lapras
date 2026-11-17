@@ -32,7 +32,7 @@ python3 batch.py --score 0.9       # all 32 diseases from STRING data
 
 ## The Lapras table
 
-32 diseases analyzed with real STRING data (score >= 0.9). 9 modular, 23 global:
+46 diseases analyzed with real STRING data (score >= 0.9), including 14 genetic/Mendelian diseases. 9 modular, 23 global among the original 32:
 
 | Disease | D | Verdict |
 |---------|---|---------|
@@ -85,7 +85,7 @@ This taxonomy — not the threshold accuracy — is the clinically actionable ou
 
 ## Key findings
 
-**NF-kB (NFKB1)** is the most undrugged bottleneck in medicine. It ranks top-15 in 17 of 31 diseases. #1 in atherosclerosis, depression, and tuberculosis. No approved NF-kB inhibitor exists for any of them.
+**NF-kB (NFKB1)** is the most undrugged bottleneck in medicine. It ranks in the top 30% by bill across 23 of 46 diseases. #1 in atherosclerosis, depression, cystic fibrosis, Fabry disease, tuberculosis, and obstructive sleep apnea. No approved NF-kB inhibitor exists for any human disease.
 
 **STAT3** ranks top-15 in 15 diseases. #1 in rheumatoid arthritis and Crohn's. No approved inhibitor.
 
@@ -97,20 +97,28 @@ This taxonomy — not the threshold accuracy — is the clinically actionable ou
 
 **Parkinson's is right at the line (D=3.07).** This explains why levodopa partially works but can't contain the disease.
 
+**Size-matched analysis partially rehabilitates D.** In the aggregate, D adds nothing beyond edge count. But within the high-edges tertile (≥140 edges), D achieves AUC = 0.958 (p = 0.045) while edge count drops to 0.729. Coupling structure separates from network size in dense networks. In small networks (low/mid tertiles), D is random (AUC 0.375, 0.444). Run: `python3 -m lapras_tools.validate_size_matched`.
+
+**Guideline evolution: D predicted 7/8 direction changes.** Five GLOBAL diseases evolved from monotherapy to combination (HIV, TB, breast cancer, melanoma, T2D). Two MODULAR diseases (obesity, NAFLD) found single-agent solutions after decades of failed combinations. Heart failure (D=2.10, MODULAR) is the one miss — its quad therapy targets different organ systems, not different protein modules (the multi-system class). Run: `python3 -m lapras_tools.guideline_evolution`.
+
+**Rare disease triage.** D-based predictions for 16 rare diseases: 10 modular (single-target candidates), 6 global (combination needed). CMT stands out at D=1.00 — the most modular rare disease. Run: `python3 -m lapras_tools.rare_disease_triage`.
+
 ## Cross-disease repurposing
 
-Proteins ranking in the top 30% across many diseases:
+Proteins ranking in the top 30% by bill across the most diseases (46 diseases total):
 
-| Protein | # Diseases | Notable |
+| Protein | # Diseases | Approved Inhibitor |
 |---------|-----------|---------|
-| TNF | 18 | Has inhibitors, but not used in most of these diseases |
-| IL6 | 17 | tocilizumab exists, used in few |
-| NFKB1 | 17 | No approved inhibitor anywhere |
-| IL1B | 16 | anakinra exists, rarely used |
-| STAT3 | 15 | No approved inhibitor |
-| AKT1 | 14 | capivasertib (cancer only) |
-| MTOR | 15 | everolimus (cancer/transplant only) |
-| TP53 | 12 | "Undruggable" — highest bill in most cancers |
+| TNF | 26 | Yes (infliximab) — used in <5 of 26 |
+| IL6 | 23 | Yes (tocilizumab) — used in <3 of 23 |
+| NFKB1 | 23 | **None** |
+| IL1B | 22 | Yes (canakinumab, anakinra) — rarely used |
+| AKT1 | 21 | Yes (capivasertib) — cancer only |
+| STAT3 | 16 | **None** |
+| TGFB1 | 16 | **None** (for fibrosis/inflammation) |
+| TP53 | 15 | "Undruggable" |
+| PIK3CA | 13 | Yes (alpelisib) — cancer only |
+| EGFR | 10 | Yes (erlotinib) — cancer only |
 
 ## Files
 
@@ -118,17 +126,34 @@ Proteins ranking in the top 30% across many diseases:
 coupling.py           Core math (TC, bill, compiler, sensitivity)
 networks.py           5 built-in disease networks
 pipeline.py           Pipeline runner and CLI
-diseases.py           32 disease protein lists with known targets
+diseases.py           46 disease protein lists with known targets
 download_string.py    STRING API downloader
 batch.py              Batch runner — builds the periodic table
 data/                 STRING interaction data (TSV per disease)
 results/              Output (periodic table, per-disease reports)
+paper.tex             Full paper (LaTeX)
+paper.pdf             Compiled paper
 ```
+
+### Analysis tools (`lapras_tools/`)
+
+```
+core.py                 Shared: load_disease, analyze_network, LINE
+validate_clinical.py    Clinical validation (43 diseases, AUC, taxonomy)
+validate_baselines.py   D vs 16 graph-theory baselines (betweenness, PageRank, etc.)
+validate_size_matched.py  Size-matched analysis — D within edge-count tertiles
+guideline_evolution.py  Retrospective: did D predict guideline direction? (7/8)
+nfkb_deep.py            NF-κB pathway deep dive + target nomination
+rare_disease_triage.py  Rare disease triage — D-based therapy predictions for 16 diseases
+taxonomy_predict.py     Therapy taxonomy classifier (bypass / modulation / multi-system)
+```
+
+Run any tool with `python3 -m lapras_tools.<name>` (e.g. `python3 -m lapras_tools.guideline_evolution`).
 
 ## Running the full analysis
 
 ```bash
-# Download STRING data for all 32 diseases (~35 seconds)
+# Download STRING data for all 46 diseases
 python3 download_string.py
 
 # Run the periodic table (high-confidence edges)

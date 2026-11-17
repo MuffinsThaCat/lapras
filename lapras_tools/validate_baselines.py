@@ -8,9 +8,8 @@ metrics at predicting monotherapy vs combination standard of care.
 """
 import numpy as np
 import networkx as nx
-from math import erfc
 from .core import load_disease, analyze_network, LINE, disease_keys
-from .validate_clinical import LABELS, auc_mann_whitney
+from .validate_clinical import LABELS, CANCERS, auc_mann_whitney
 
 
 def graph_metrics(C, names):
@@ -44,7 +43,7 @@ def graph_metrics(C, names):
     try:
         components = list(nx.connected_components(G))
         if len(components) == 1:
-            close = nx.closeness_centrality(G, distance="weight")
+            close = nx.closeness_centrality(G)
             close_mean = np.mean(list(close.values()))
         else:
             close_mean = 0.0
@@ -126,11 +125,7 @@ def main():
         ("modularity",              [r["modularity"] for r in rows]),
     ]
 
-    cancers = {r["key"] for r in rows if r["key"] in {
-        "breast_cancer", "ovarian_cancer", "glioblastoma",
-        "colorectal_cancer", "melanoma", "prostate_cancer",
-        "lung_cancer", "liver_cancer"}}
-    nc_mask = np.array([r["key"] not in cancers for r in rows])
+    nc_mask = np.array([r["key"] not in CANCERS for r in rows])
 
     print("=" * 90)
     print("BASELINE COMPARISON: D vs graph-theory metrics for predicting mono/combo")

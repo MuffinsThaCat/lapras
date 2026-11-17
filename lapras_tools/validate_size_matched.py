@@ -48,7 +48,6 @@ def main():
             edge_diff = abs(rows[i]["edges"] - rows[j]["edges"])
             if edge_diff > 15:
                 continue
-            d_diff = rows[j]["D"] - rows[i]["D"]
             mono = rows[i] if rows[i]["y"] == 0 else rows[j]
             combo = rows[j] if rows[j]["y"] == 1 else rows[i]
             concordant = combo["D"] > mono["D"]

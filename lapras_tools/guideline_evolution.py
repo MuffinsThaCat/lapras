@@ -24,7 +24,6 @@ EVOLUTIONS = [
             ("2022", "combo", "Quadruple therapy standard (AHA/ACC/HFSA guidelines)"),
         ],
         "direction": "mono → combo",
-        "predicted": True,
         "note": "D = 2.10 is MODULAR, yet guidelines evolved to 4-drug therapy. "
                 "This is the multi-system class: each drug addresses a different "
                 "physiological system (RAAS, sympathetic, fluid, glucose), not a "
@@ -42,7 +41,6 @@ EVOLUTIONS = [
             ("2024", "combo", "ADA/EASD: combination at diagnosis for many patients"),
         ],
         "direction": "mono → combo",
-        "predicted": True,
         "note": "D = 3.89, well above the capacity line. The network correctly "
                 "predicted that combination would eventually become standard. The "
                 "shift took 25+ years of clinical evidence to establish.",
@@ -59,7 +57,6 @@ EVOLUTIONS = [
             ("2021", "combo", "Long-acting injectable dual therapy (cabotegravir + rilpivirine)"),
         ],
         "direction": "mono → combo",
-        "predicted": True,
         "note": "D = 3.62, GLOBAL. The network predicted that monotherapy would "
                 "fail — which it did spectacularly (resistance within months). "
                 "Modern regimens use 2-3 drugs even in a single pill.",
@@ -74,7 +71,6 @@ EVOLUTIONS = [
             ("2024", "combo", "BPaL regimen for MDR-TB (bedaquiline + pretomanid + linezolid)"),
         ],
         "direction": "mono → combo",
-        "predicted": True,
         "note": "D = 4.03, GLOBAL. The original streptomycin trial saw resistance "
                 "within months. Every subsequent advance added drugs, never reduced. "
                 "The network says this is structurally necessary, not just "
@@ -88,10 +84,9 @@ EVOLUTIONS = [
             ("1990s", "mono", "Aromatase inhibitors replace tamoxifen (still mono)"),
             ("2012", "combo", "CDK4/6 inhibitor + endocrine (PALOMA — palbociclib)"),
             ("2019", "combo", "CDK4/6i + AI standard first-line for HR+/HER2−"),
-            ("2022", "combo", "Triple positive: dual blockade + chemo"),
+            ("2022", "combo", "HR+/HER2+: dual blockade + chemo"),
         ],
         "direction": "mono → combo",
-        "predicted": True,
         "note": "D = 4.03, GLOBAL. For 30 years, ER+ breast cancer was treated "
                 "with tamoxifen or AI alone. CDK4/6 inhibitors changed this to "
                 "mandatory combination. The network says this was always coming.",
@@ -107,7 +102,6 @@ EVOLUTIONS = [
             ("2024", "mono", "Tirzepatide (Zepbound) — single agent, 20%+ weight loss"),
         ],
         "direction": "combo → mono",
-        "predicted": True,
         "note": "D = 2.74, MODULAR. The field TRIED combinations for decades and "
                 "they failed or were unsafe. The breakthrough was a single powerful "
                 "agent (GLP-1). The network predicted that one well-chosen target "
@@ -121,7 +115,6 @@ EVOLUTIONS = [
             ("2024", "mono", "Resmetirom (Rezdiffra) — first approved drug, single agent"),
         ],
         "direction": "none → mono",
-        "predicted": True,
         "note": "D = 2.75, MODULAR. The field spent a decade trying combinations "
                 "that failed in Phase III. The first approval was a single-target "
                 "drug. The network predicted this.",
@@ -136,7 +129,6 @@ EVOLUTIONS = [
             ("2015", "combo", "Nivo + ipi (CheckMate 067 — dual checkpoint)"),
         ],
         "direction": "mono → combo",
-        "predicted": True,
         "note": "D = 4.15, GLOBAL. Even after the targeted-therapy revolution, "
                 "every standard regimen evolved to combination. Single-agent BRAF "
                 "inhibitors had rapid resistance; combinations persist.",

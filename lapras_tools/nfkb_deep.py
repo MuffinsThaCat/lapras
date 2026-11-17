@@ -1,7 +1,7 @@
 """Deep NF-κB analysis: pathway components, druggability, and target nomination.
 
 NF-κB (NFKB1) is the most undrugged coupling bottleneck in medicine, ranking
-in the top 30% across 22 of 46 diseases. This script goes deeper: which
+in the top 30% of bill across many of the 46 diseases. This script goes deeper: which
 NF-κB pathway components are most structurally important, which are most
 druggable, and what does the coupling structure suggest about where to intervene?
 
@@ -20,7 +20,6 @@ NFKB_PATHWAY = {
     "IKBKB":  {"role": "IKKβ kinase (canonical pathway)", "druggability": "HIGH (kinase)", "pocket": "ATP-binding site, allosteric site"},
     "CHUK":   {"role": "IKKα kinase", "druggability": "HIGH (kinase)", "pocket": "ATP-binding site"},
     "IKBKG":  {"role": "NEMO/IKKγ scaffold", "druggability": "medium (PPI)", "pocket": "ubiquitin-binding domain, CC2-LZ interface"},
-    "IKBKA":  {"role": "IκBα inhibitor", "druggability": "medium (stabilizer)", "pocket": "phospho-degron site"},
     "NFKBIA": {"role": "IκBα inhibitor", "druggability": "medium (stabilizer)", "pocket": "phospho-degron site"},
     "NFKBIB": {"role": "IκBβ inhibitor", "druggability": "low", "pocket": "none established"},
     "TNF":    {"role": "upstream activator", "druggability": "APPROVED (infliximab, adalimumab, etc.)", "pocket": "receptor interface (antibody)"},

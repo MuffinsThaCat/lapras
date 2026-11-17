@@ -28,8 +28,8 @@ RARE_DISEASES = {
         "label": "Pompe Disease (Glycogen Storage Disease II)",
         "proteins": [
             "GAA", "LAMP1", "LAMP2", "TFEB", "MTOR", "AKT1", "PIK3CA",
-            "AMPK", "PRKAA1", "PRKAA2", "ULK1", "ATG5", "ATG7", "BECN1",
-            "LC3B", "SQSTM1", "CTSD", "CTSB", "CTSL", "GYS1", "PYGM",
+            "PRKAA1", "PRKAA2", "ULK1", "ATG5", "ATG7", "BECN1",
+            "MAP1LC3B", "SQSTM1", "CTSD", "CTSB", "CTSL", "GYS1", "PYGM",
             "GBE1", "AGL", "PHKA2", "PHKB", "GSK3B", "IGF1R", "IGF1",
             "GH1", "FOXO3", "TSC1", "TSC2",
         ],
@@ -91,7 +91,7 @@ RARE_DISEASES = {
             "FXN", "ISCU", "NFS1", "LYRM4", "HSPA9", "HSCB", "FDXR",
             "FDX2", "BOLA3", "NFU1", "GLRX5", "ABCB7", "ALAS2",
             "ACO2", "SDHB", "SDHC", "SDHD", "SDHA", "SOD2", "GPX4",
-            "NRF2", "KEAP1", "HMOX1", "NQO1", "GCLC", "GCLM", "GSR",
+            "NFE2L2", "KEAP1", "HMOX1", "NQO1", "GCLC", "GCLM", "GSR",
             "TXN2", "TXNRD2", "PRDX3", "CAT", "PPARGC1A",
         ],
         "known_targets": {
@@ -105,7 +105,7 @@ RARE_DISEASES = {
         "label": "Tuberous Sclerosis Complex",
         "proteins": [
             "TSC1", "TSC2", "MTOR", "RPTOR", "RICTOR", "RPS6KB1",
-            "EIF4EBP1", "RHEB", "AKT1", "PIK3CA", "PTEN", "AMPK",
+            "EIF4EBP1", "RHEB", "AKT1", "PIK3CA", "PTEN",
             "PRKAA1", "ULK1", "TFEB", "HIF1A", "VEGFA", "CCND1",
             "RB1", "TP53", "CDK4", "CDK6", "CDKN1A", "CDKN2A",
             "MYC", "STAT3", "JAK2", "EGFR", "ERBB2", "RAF1",
@@ -143,7 +143,7 @@ RARE_DISEASES = {
             "PIK3CA", "PTEN", "RB1", "TP53",
         ],
         "known_targets": {
-            "HIF2A": "belzutifan (Welireg, HIF-2α inhibitor — approved 2021)",
+            "EPAS1": "belzutifan (Welireg, HIF-2α inhibitor — approved 2021)",
         },
         "mechanism": "HIF-2α inhibition",
         "current_therapy": "mono (belzutifan for RCC)",
@@ -172,7 +172,7 @@ RARE_DISEASES = {
         "proteins": [
             "SERPINA1", "ELANE", "CTSG", "PRTN3", "MMP12", "MMP9",
             "MMP2", "TIMP1", "TIMP2", "TGFB1", "SMAD2", "SMAD3",
-            "SMAD4", "TNF", "IL1B", "IL6", "IL8", "NFKB1", "RELA",
+            "SMAD4", "TNF", "IL1B", "IL6", "CXCL8", "NFKB1", "RELA",
             "IKBKB", "IKBKG", "CHUK", "CASP3", "CASP8", "BCL2",
             "BAX", "TP53", "NFE2L2", "KEAP1", "SOD1",
         ],
@@ -193,7 +193,7 @@ RARE_DISEASES = {
             "S100A8", "S100A9", "SAA1", "CRP", "STAT3", "JAK2",
         ],
         "known_targets": {
-            "tubulin": "colchicine (standard of care)",
+            "TUBB": "colchicine (standard of care; binds beta-tubulin)",
             "IL1B": "canakinumab (Ilaris, for colchicine-resistant)",
             "IL1R1": "anakinra (Kineret, for colchicine-resistant)",
         },
@@ -208,7 +208,7 @@ RARE_DISEASES = {
             "LRP4", "RAPSN", "DOK7", "AGRN", "ACHE", "CHAT",
             "SLC18A3", "SLC5A7", "VAMP1", "SNAP25", "SYT1",
             "C5", "C3", "C1QA", "C1QB", "C2", "C4A", "FCGR1A",
-            "FCGR2A", "FCGR3A", "CD80", "CD86", "CTLA4", "ICOS",
+            "FCGR2A", "FCGR3A", "FCGRT", "CD80", "CD86", "CTLA4", "ICOS",
         ],
         "known_targets": {
             "ACHE": "pyridostigmine (Mestinon)",
@@ -229,7 +229,7 @@ RARE_DISEASES = {
             "PDGFRA", "PDGFRB", "TH", "DBH", "PNMT",
         ],
         "known_targets": {
-            "ADRA": "phenoxybenzamine (alpha-blocker, preoperative)",
+            "ADRA1A": "phenoxybenzamine (alpha-blocker, preoperative)",
         },
         "mechanism": "surgical; alpha-blockade preoperative",
         "current_therapy": "surgery (pharmacotherapy is supportive)",
@@ -245,7 +245,7 @@ RARE_DISEASES = {
             "TNFRSF13B", "TNFRSF13C", "AICDA", "RAG1", "RAG2",
         ],
         "known_targets": {
-            "BTK": "immunoglobulin replacement (IgG infusions)",
+            "BTK": "gene therapy approaches (investigational; current standard is IgG replacement, which bypasses BTK)",
         },
         "mechanism": "immunoglobulin replacement",
         "current_therapy": "mono (IgG replacement)",
@@ -286,8 +286,7 @@ RARE_DISEASES = {
 
 def download_rare_disease_data(diseases=None):
     """Download STRING data for rare diseases not yet in data/."""
-    sys.path.insert(0, ROOT)
-    from download_string import resolve_identifiers, download_network
+    from download_string import download_network
 
     targets = diseases or list(RARE_DISEASES.keys())
     for key in targets:
@@ -322,7 +321,6 @@ def analyze_rare_diseases(include_existing=False):
                 all_diseases[k].setdefault("mechanism", "")
                 all_diseases[k].setdefault("current_therapy", "")
 
-    sys.path.insert(0, ROOT)
     from batch import load_string_network
 
     for key, info in sorted(all_diseases.items()):
