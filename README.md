@@ -8,7 +8,7 @@ This pipeline solves both problems from network data alone:
 
 1. **It ranks every protein in a disease network by how much coupling it owns** — not by how many connections it has (degree), but by how much of the system's total statistical coupling runs through it. On the aging network, this ranking recovers known drug targets at 4.8x enrichment in the top 10 — without being told which proteins have drugs.
 
-2. **It gives every disease a single number (D) that predicts whether single-target therapy can work.** Below D = 3.03, the disease is modular and one well-chosen drug can contain it. Above 3.03, the coupling is global and you need combinations. Across 32 diseases, every modular disease has a successful single-drug therapy. Every global disease is one where monotherapy isn't enough.
+2. **It gives every disease a single number (D) that predicts whether single-target therapy can work.** Below D = 3.03, the disease is modular and one well-chosen drug can contain it. Above 3.03, the coupling is global and you need combinations. Across 43 diseases with standard-of-care labels, D separates monotherapy from combination (AUC 0.80, p = 0.0008), though edge count is a confound (see caveats). The misclassifications reveal a therapy taxonomy — bypass, modulation, multi-system — that is the framework's novel clinical output.
 
 This tells you which doors to knock on first — and whether to knock on one door or several.
 
@@ -62,12 +62,26 @@ python3 batch.py --score 0.9       # all 32 diseases from STRING data
 | All other cancers | 4.05–4.50 | GLOBAL |
 | Rheumatoid Arthritis | 4.50 | GLOBAL — most entangled non-cancer disease |
 
-Every modular disease has a successful single-drug therapy. That's the validation.
+Most modular diseases have a successful single-drug therapy. The exceptions (heart failure, atherosclerosis, CKD) are multi-system combinations — see "Therapy taxonomy" below.
 
-### Robustness and validation caveats (added 2026-11-11; details in `lapras_tools/README.md`)
+### Robustness and validation caveats (details in `lapras_tools/README.md`)
 
 - **Error bars.** `python3 batch.py --score 0.9 --uncertainty` perturbs each network (10% of edges dropped, 10% weight noise, 100 draws) and re-derives the verdict. Only **5 of the 9 modular diseases stay modular** (epilepsy, depression, schizophrenia, heart failure, sickle cell). **Atherosclerosis, obesity, NAFLD/NASH and chronic kidney disease straddle the 3.03 line** (P(global) 0.50, 0.46, 0.19, 0.71 at 100 draws), as do Parkinson's and osteoporosis. 19 to 20 of 22 global verdicts are robust (Huntington's is marginal: P(global) 0.92-0.99 depending on settings). The "NAFLD is modular, resmetirom would have been predicted" and "obesity is modular, semaglutide" findings above rest on verdicts that flip under plausible data error.
-- **Retrospective test of the line** against first-line guideline regimens (`python3 -m lapras_tools.validate_line`; labels are Claude's, not a clinician's, editable): D predicts "combination needed" with AUC 0.82 across 24 diseases, but the signal is oncology (every cancer is global and combination-treated). Among the 17 non-cancer diseases AUC is 0.60 (p = 0.28), and "is it a cancer?" or raw edge count (cancers have the most STRING edges) predict as well or better. Global but single-agent first-line: IPF, Huntington's, osteoporosis, type 1 and 2 diabetes, MS. Modular but combination first-line: heart failure and CKD. So "every modular disease has a successful single-drug therapy" is not what guideline regimens show for heart failure and CKD, and "above the line you need combinations" is not supported outside cancer.
+- **Clinical validation** (`python3 -m lapras_tools.validate_clinical`; 43 diseases, labels are Claude's, not a clinician's, editable): D separates mono from combo with AUC 0.80 (p = 0.0008). **But raw edge count achieves AUC 0.84, and residual D after regressing out edge count has AUC 0.48 (p = 0.81) — D adds no information beyond network size.** Non-cancer AUC = 0.68 for D, 0.75 for edges. Bill rank weakly predicts which genes have drugs (sign test 30/43 diseases, p = 0.007). D correlates with #drugs in first-line regimen (Spearman 0.40, p = 0.008).
+
+### Therapy taxonomy (the novel finding)
+
+The misclassifications reveal a three-class structure. Bypass and modulation partition the 43 diseases (16 + 27 = 43); multi-system is a subclass of modulation:
+
+| Class | Description | Count | Monotherapy |
+|-------|-------------|-------|-------------|
+| **Network bypass** | Monogenic or replacement therapy (factor/enzyme/insulin replacement, gene correction) | 16 | 15/16 (94%) regardless of D |
+| **Network modulation** | Polygenic; drug targets proteins in the network | 27 | 8 mono, 19 combo (AUC 0.84) |
+| ↳ **Multi-system combo** | Subset of modulation: MODULAR (D < 3.03) but combination targets different organ systems | 3 of the 27 | 0/3 — combo is cross-system, not cross-module |
+
+**Bypass diseases** include hemophilia A (D=3.71), ADPKD (D=4.00), and type 1 diabetes (D=4.02) — all GLOBAL but monotherapy, because therapy acts upstream of the coupled network. **Multi-system combos** include heart failure (D=2.10), atherosclerosis (D=2.60), and CKD (D=2.84) — MODULAR but combination, because the combination addresses different physiological systems (RAAS + sympathetic + volume), not different protein modules.
+
+This taxonomy — not the threshold accuracy — is the clinically actionable output.
 
 ## Key findings
 

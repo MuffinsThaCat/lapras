@@ -99,7 +99,7 @@ def spearman(a, b):
 # ---------------------------------------------------------------- disease I/O
 
 def load_disease(key, score=0.9):
-    """Real STRING network for one of the 31 Lapras diseases."""
+    """Real STRING network for one of the 46 Lapras diseases."""
     from diseases import DISEASES
     from batch import load_string_network
     if key not in DISEASES:

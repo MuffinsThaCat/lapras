@@ -28,7 +28,7 @@ LABELS = {
     "ipf":                 (0, "nintedanib OR pirfenidone, one agent"),
     "huntingtons":         (0, "symptomatic single agent; no disease-modifying combination"),
     "osteoporosis":        (0, "bisphosphonate single agent first-line"),
-    "type2_diabetes":      (0, "metformin first-line (combinations added later)"),
+    "type2_diabetes":      (None, "ADA/EASD 2024+: early combo for high-risk; no longer clearly mono-first for all"),
     "type1_diabetes":      (0, "insulin (one drug class)"),
     "multiple_sclerosis":  (0, "single disease-modifying therapy first-line"),
     "heart_failure":       (1, "guideline-directed quadruple therapy (RASi/ARNI, beta-blocker, MRA, SGLT2i)"),

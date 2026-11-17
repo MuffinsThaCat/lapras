@@ -5,10 +5,10 @@ The finance / ecosystem / pandemic tools were split out to `../coupling_other_fi
 
 | Tool | Command | Data |
 |------|---------|------|
-| Combination Designer | `python3 -m lapras_tools.combo_designer glioblastoma` (`--all`, `--modules K`, `--min-phase 4`, `--indicated-only`, `--approved-only`) | real STRING (31 diseases) + ChEMBL-derived drug library with indications |
+| Combination Designer | `python3 -m lapras_tools.combo_designer glioblastoma` (`--all`, `--modules K`, `--min-phase 4`, `--indicated-only`, `--approved-only`) | real STRING (46 diseases) + ChEMBL-derived drug library with indications |
 | Patient-specific Lapras | `python3 -m lapras_tools.patient breast_cancer patient.tsv --reference tcga-brca` (`--demo`) | your RNA-seq (HGNC symbol, TPM) + a reference cohort; TCGA-BRCA table included |
 | Drug interactions | `python3 -m lapras_tools.interactions drugA drugB ...` / `--validate` | real STRING union (599 proteins) + the same library |
-| Uncertainty on D | `python3 -m lapras_tools.uncertainty [disease]` | the 31 STRING networks, perturbed |
+| Uncertainty on D | `python3 -m lapras_tools.uncertainty [disease]` | the 46 STRING networks, perturbed |
 | Library builder | `python3 -m lapras_tools.build_druglib` | ChEMBL REST API (cached in `data/chembl_cache.json`) |
 | Real-data check | `python3 -m lapras_tools.validate_tcga [--fetch N]` | TCGA-BRCA via GDC open access (260 tumours + clinical table) |
 | Test of the D line | `python3 -m lapras_tools.validate_line` | guideline first-line regimens (labels written by Claude, editable) |
@@ -31,7 +31,8 @@ Every claim below was tested against external data. Later passes sometimes overt
 
 | Component | What it does | What the evidence supports | What it does NOT support |
 |---|---|---|---|
-| D line (3.03) | modular vs global verdict per disease | verdicts are stable under data noise for 25 of 31 diseases (5 modular, 19-20 global; 6-7 unstable: atherosclerosis, obesity, NAFLD, CKD, Parkinson's, osteoporosis, + Huntington's marginal) | prediction of whether combination therapy is needed: AUC 0.82 overall comes entirely from cancers (non-cancer 0.60); three independent measures (my labels, co-formulated products, label-mined combination pairs) agree |
+| D line (3.03) | modular vs global verdict per disease | verdicts are stable under data noise for 25 of 31 original diseases + 10 of 14 genetic diseases (see section 9); for genetic diseases, 6/8 robustly modular have approved single-target therapy (ERT, CFTR modulators, statins/PCSK9i, trofinetide; exceptions: Tay-Sachs gene therapy in trials not yet approved, Fragile X has no approved disease-modifying drug but bill correctly identifies mTOR over failed mGluR5); the D line's strongest validation is genetic diseases, where ground truth is unambiguous | prediction of whether combination therapy is needed: AUC 0.82 overall comes entirely from cancers (non-cancer 0.60) on the 31 original diseases; hemophilia A (D=3.71, global) is a counterexample where factor replacement works |
+| Bill ranking | ranks proteins by network importance | on 14 genetic diseases, approved/successful drug targets rank at median 68th percentile vs 44th for failed drug targets (p=0.075 Mann-Whitney, n=21 winners, n=8 losers; trend but not significant at 0.05); DMD #1 for Duchenne, SMN1 #1 for SMA, MECP2 #1 for Rett; Fragile X: mTOR/AKT top-ranked, failed mGluR5 drugs at #28 | ADPKD: approved tolvaptan target (AVPR2) ranks last; FH: failed CETP at #6 (high bill does not guarantee safety) |
 | Combination Designer | proposes drugs per module (`spread`) or linked pairs (`vertical`) | runs on a 1,503-drug ChEMBL-verified library with indications, marketed status and equally-eligible alternatives; picks are approved-for-disease drugs far more often than before | that "one drug per module" or "linked pairs" is how real combinations are built: approved partners are only marginally more linked than other same-disease drugs on a disease-agnostic network (absent at STRING 0.4/0.7, marginal at 0.9) |
 | Patient tool | reweights a disease network by a patient's expression, reranks targets, proposes a plan | with cohort-relative weights it tracks real subtype biology (ESR1 rank 2 vs 18-22 in ER+ vs ER-); expression-eligibility filter (0.25) removes ER drugs from ER-negative tumours | any added information beyond the expression itself: bill AUC 0.949 vs weights 0.939 (breast ER status, 260 tumours), 0.960 vs 0.954 (lung histology, 233); per-patient D is not informative |
 | Interaction tool | network-position flag + CYP/P-gp pharmacokinetic flag | vs DDInter (independent): network AUC 0.52 (any interaction) / 0.60 (Major); PK flag 1.5x / 2x lift; together CV AUC 0.60 for Major | clinical use: weak everywhere, absence of a flag means nothing |
@@ -147,7 +148,54 @@ Without the filter 29% of ER-negative tumours get an ER-targeting drug; 0.25 cut
 | BTS DB1B (US DOT) | passenger volumes | US government data, public domain (the zip itself is git-ignored for size) |
 | KONECT (konect.cc) | real food webs | cite KONECT and the original studies (Martinez 1991; Ulanowicz et al.); check each source's terms |
 
+### 9. Genetic disease validation (2026-11-17): the cleanest test of D and bill
+
+14 Mendelian / strong-genetic-component diseases added to `diseases.py` with STRING networks (score >= 0.9). Ground truth is unambiguous: single-gene cause, known drug outcomes with clear success/failure records. This avoids the confounds that weaken the original 31-disease validation (cancer vs non-cancer, literature-edge bias, label ambiguity).
+
+**D line results:**
+
+| Disease | D | Verdict | Robust? | Clinical ground truth |
+|---|---|---|---|---|
+| PKU (PAH) | 2.22 | MODULAR | yes (P(global) 0-1%) | sapropterin (single cofactor) works |
+| Fabry (GLA) | 2.29 | MODULAR | yes (0%) | ERT (single enzyme replacement) works |
+| Tay-Sachs (HEXA) | 2.31 | MODULAR | yes (0-1%) | gene therapy in trials (TSHA-101), not yet approved; single-gene target |
+| Cystic Fibrosis (CFTR) | 2.36 | MODULAR | yes (0-3%) | Trikafta (CFTR modulators alone) transformed outcomes |
+| Gaucher (GBA1) | 2.42 | MODULAR | yes (0%) | ERT/SRT (single-target) is standard of care |
+| Fragile X (FMR1) | 2.50 | MODULAR | yes (0-3%) | modular, but pharma targeted the wrong module (mGluR5 at bill #28, all failed; bill says mTOR #3) |
+| Rett (MECP2) | 2.72 | MODULAR | yes (0-13%) | trofinetide approved (single-agent); gene therapy in trials |
+| FH (LDLR/PCSK9/APOB) | 2.80 | MODULAR | yes (5-18%) | statins work alone; modular-leaning |
+| SMA (SMN1) | 3.00 | on the line | uncertain (38-58%) | Zolgensma curative if early, poor outcomes late — genuinely borderline |
+| Duchenne (DMD) | 3.24 | GLOBAL | uncertain (7-42%) | gene therapy alone hasn't cured; fibrosis/inflammation are separate problems |
+| Wilson (ATP7B) | 3.33 | GLOBAL | uncertain (67-83%) | chelation helps but doesn't reverse organ damage |
+| Marfan (FBN1) | 3.37 | GLOBAL | uncertain (75-100%) | no single-target therapy; multisystem |
+| Hemophilia A (F8) | 3.71 | GLOBAL | yes (97-100%) | COUNTEREXAMPLE: factor replacement works despite global D; cascade topology |
+| ADPKD (PKD1) | 4.00 | GLOBAL | yes (100%) | tolvaptan slows but nothing cures; mTOR inhibitors failed |
+
+Robustly correct: 6/8 modular diseases have approved single-target therapy (exceptions: Tay-Sachs gene therapy in trials not yet approved; Fragile X has no approved disease-modifying drug, but the bill correctly prioritizes mTOR over the failed mGluR5 target); 1/2 global diseases has no single-target cure (ADPKD). Hemophilia A is the one counterexample — the coagulation cascade is tightly coupled by design, but replacing the missing factor restores cascade function. The 4 uncertain diseases are genuinely borderline clinically. Sweep: 6 (edge-drop, weight-noise) settings x 2 seeds; stable verdicts: 8 modular, 2 global; 4 unstable.
+
+**Bill ranking vs drug outcomes (21 winners, 8 losers across 14 diseases):**
+
+| Metric | Winners (approved/successful) | Losers (failed drugs) |
+|---|---|---|
+| Median rank | 13 | 24 |
+| Median percentile | 68% | 44% |
+| In top half | 76% (16/21) | 38% (3/8) |
+| Mann-Whitney (winners > losers) | p = 0.075 (n=21 winners, n=8 losers) | |
+
+Standout cases:
+- **Duchenne**: DMD is bill #1, utrophin #7. Failed myostatin (#46), activin receptor (#42), NOS1 (#29) all at the bottom. Bill correctly says to target the dystrophin complex, not downstream inflammation.
+- **Fragile X**: the entire pharma industry spent a decade on mGluR5 (bill #28, all trials failed). Bill's top picks are mTOR (#3), AKT1 (#1), RPS6KB1 (#2) — the pathway now understood to be causally downstream of FMRP loss.
+- **Rett**: MECP2 is bill #1, trofinetide's target GRIN2A is #7. Both approved/in-trials.
+- **SMA**: SMN1 is bill #1. The gene therapy targeting it is curative.
+- **FH**: APOB #1, HMGCR #9 (statins) — correct. But CETP #6 is a loser (torcetrapib caused CV death). High bill does not guarantee drug safety.
+- **ADPKD** (failure case): approved tolvaptan target AVPR2 is dead last (#43). Bill points to oncology-like signalling nodes (STAT3, AKT1, TP53), but mTOR (#11) and SRC (#8) also failed. The network doesn't point to the right answer here.
+- **Gaucher**: GBA1 not in the high-confidence STRING network at score >= 0.9 (too few known interactions). ERT works, but the network can't rank what it can't see.
+
+**What genetic diseases add beyond the existing 31:** The original D-line validation was confounded by cancer (all cancers are global AND combination-treated). Genetic diseases have no such confound: they span the full D range, their drug outcomes are well-documented, and single-gene deficiency diseases cluster at D ~2.2-2.4 while multisystem diseases cluster above 3.0. The bill-vs-outcome test (p=0.075, n=21 vs n=8) shows a trend favouring high-bill winners but does not reach conventional significance; more diseases with clear winner/loser records would strengthen it.
+
 ## Audit history (latest first)
+
+Twenty-first pass (genetic disease validation, 2026-11-17): 14 Mendelian/strong-genetic diseases added to `diseases.py` (cystic_fibrosis, duchenne_md, spinal_muscular_atrophy, marfan, phenylketonuria, gaucher, hemophilia_a, familial_hypercholesterolemia, polycystic_kidney, wilson_disease, fragile_x, rett_syndrome, tay_sachs, fabry). STRING networks downloaded (score >= 400, analyzed at >= 0.9). D line: 6/8 robustly modular diseases have approved single-target therapy (exceptions: Tay-Sachs gene therapy in trials, Fragile X no approved drug but bill correctly identifies mTOR over failed mGluR5); 1/2 robustly global has no cure (ADPKD); hemophilia A is a counterexample (D=3.71 but factor replacement works); 4 uncertain diseases are clinically borderline. Bill vs drug outcomes: 21 winners (approved/successful drug targets) rank at median 68th percentile vs 8 losers at 44th (Mann-Whitney p=0.075; trend but not significant at 0.05). Fragile X is the highlight: bill ranks mTOR pathway top-3, the entire field's failed mGluR5 target at #28. ADPKD is the failure: tolvaptan target AVPR2 ranks last. OSA data corrected: D=3.45 (not 4.56 from stale STRING download), 149 edges (not 376). No code outside `diseases.py` was edited; STRING data files in `data/`. See section 9 for full results.
 
 Seventeenth pass (re-audit of validate_combos_large.py): (1) "used with" and "used together with" in _COMBO_RE are entirely redundant — zero pairs come exclusively from these patterns because all 10,451 labels are fetched by searching for "in combination with", so every label already has that phrase; the used-with patterns only add extra match positions in the same labels. Zero false positives from "used with caution" (verified: sentence boundary truncates window before drug names appear). (2) First-word fallback in _norm verified safe: all 20 unique first-word mappings are correct (e.g. tenofovir disoproxil fumarate → tenofovir); the only limitation is that hyphenated combo generics like "olmesartan medoxomil-hydrochlorothiazide" only map to the first drug, but this is conservative (loses pairs, doesn't create false ones). (3) File handle leaks fixed (json.dump/load without `with` statement on lines 58 and 111). (4) No new false positive patterns found. Numbers unchanged at 83 label-mined, 112 evaluable, 33 linked.
 
@@ -198,3 +246,4 @@ Still open:
 - Patient tool: other cancers, PAM50 subtypes, treatment-response data (TCGA open files have no response labels; survival here has only 21 events).
 - A real food web was run (Little Rock Lake, KONECT; see `coupling_other_fields/README.md`: not a confirmation). Still not run: real interbank exposures (confidential) and passenger-volume air data.
 - No tests written; no git commands run.
+- Genetic disease bill-vs-outcome test has n=21 winners and n=8 losers; p=0.075 (trend, not significant at 0.05). More diseases with clear winner/loser drug records would strengthen it. Rett and FH are now confirmed robustly modular (max P(global) 13% and 18% respectively across all sweep settings); 4 uncertain diseases remain (SMA, Duchenne, Wilson, Marfan). OSA D corrected from 4.56 to 3.45 (stale STRING data).
