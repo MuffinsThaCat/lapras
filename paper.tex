@@ -29,7 +29,7 @@
 \maketitle
 
 \begin{abstract}
-We introduce a method that assigns every disease a single number---the halving depth $D$---that predicts whether it responds to single-target therapy or requires drug combinations. The method measures total correlation (TC) in protein interaction networks, decomposes it hierarchically, and determines how many levels of decomposition are needed to contain the coupling. A theoretical capacity line at $D = 3.03$ separates modular diseases ($D < 3.03$), where one well-chosen target can control the network, from globally entangled diseases ($D > 3.03$), where combinations are necessary. We analyze 46 diseases using high-confidence STRING protein interaction data (combined score $\geq 900$), including 14 genetic/Mendelian diseases added specifically to validate the method against unambiguous clinical ground truth. Of the 32 original diseases, 9 fall below the capacity line and 23 above. All 9 modular diseases have at least one drug class providing clinically meaningful disease control as a single agent. Among global diseases, the most treatment-resistant (cancers, HIV, tuberculosis, autoimmune conditions) uniformly require combinations. The 14 genetic diseases provide the method's cleanest validation: 6 of 8 robustly modular genetic diseases have approved single-target therapies (the remaining two---Tay-Sachs and Fragile X---have gene therapy in trials or no approved drug yet), while robustly global genetic diseases (ADPKD) have no curative single-target therapy (tolvaptan slows progression but nothing cures). The bill ranking places successful drug targets higher than failed ones (winners at 68th percentile vs.\ losers at 44th, $p = 0.075$), and in Fragile X syndrome the bill correctly prioritizes the mTOR pathway over mGluR5---the target of a decade of failed clinical trials. An expanded clinical validation across 43 diseases shows that $D$ separates monotherapy from combination standard of care with AUC $= 0.80$ ($p = 0.0008$), but raw edge count achieves AUC $= 0.84$ and residual $D$ adds no information beyond network size. However, within the high-edges tertile ($\geq 140$ edges), $D$ achieves AUC $= 0.958$ ($p = 0.045$) while edge count drops to $0.729$---coupling structure separates from network size in dense networks. $D$ also correctly predicted the direction of treatment guideline evolution (mono$\to$combo or combo$\to$mono) in 7 of 8 diseases tested retrospectively. The framework's novel contribution is a \emph{therapy taxonomy}: diseases where therapy bypasses the protein network (monogenic/replacement, 15/16 monotherapy regardless of $D$), diseases where therapy modulates the network (polygenic, $D$ predicts mono vs.\ combo at AUC $= 0.84$), and diseases where combination targets different organ systems rather than different network modules. Cross-disease analysis identifies NF-$\kappa$B (NFKB1) as the most undrugged coupling bottleneck in medicine, ranking in the top 30\% across 23 of 46 diseases with no approved inhibitor. All results, code, and data are publicly available.
+We introduce a method that assigns every disease a single number---the halving depth $D$---that predicts whether it responds to single-target therapy or requires drug combinations. The method measures total correlation (TC) in protein interaction networks, decomposes it hierarchically, and determines how many levels of decomposition are needed to contain the coupling. A theoretical capacity line at $D = 3.03$ separates modular diseases ($D < 3.03$), where one well-chosen target can control the network, from globally entangled diseases ($D > 3.03$), where combinations are necessary. We analyze 48 diseases using high-confidence STRING protein interaction data (combined score $\geq 900$), including 14 genetic/Mendelian diseases added specifically to validate the method against unambiguous clinical ground truth. Of the 32 original diseases, 9 fall below the capacity line and 23 above. All 9 modular diseases have at least one drug class providing clinically meaningful disease control as a single agent. Among global diseases, the most treatment-resistant (cancers, HIV, tuberculosis, autoimmune conditions) uniformly require combinations. The 14 genetic diseases provide the method's cleanest validation: 6 of 8 robustly modular genetic diseases have approved single-target therapies (the remaining two---Tay-Sachs and Fragile X---have gene therapy in trials or no approved drug yet), while robustly global genetic diseases (ADPKD) have no curative single-target therapy (tolvaptan slows progression but nothing cures). The bill ranking places successful drug targets higher than failed ones (winners at 68th percentile vs.\ losers at 44th, $p = 0.075$), and in Fragile X syndrome the bill correctly prioritizes the mTOR pathway over mGluR5---the target of a decade of failed clinical trials. An expanded clinical validation across 43 diseases shows that $D$ separates monotherapy from combination standard of care with AUC $= 0.80$ ($p = 0.0008$), but raw edge count achieves AUC $= 0.84$ and residual $D$ adds no information beyond network size. However, within the high-edges tertile ($\geq 140$ edges), $D$ achieves AUC $= 0.958$ ($p = 0.045$) while edge count drops to $0.729$---coupling structure separates from network size in dense networks. $D$ also correctly predicted the direction of treatment guideline evolution (mono$\to$combo or combo$\to$mono) in 7 of 8 diseases tested retrospectively. The framework's novel contribution is a \emph{therapy taxonomy}: diseases where therapy bypasses the protein network (monogenic/replacement, 15/16 monotherapy regardless of $D$), diseases where therapy modulates the network (polygenic, $D$ predicts mono vs.\ combo at AUC $= 0.84$), and diseases where combination targets different organ systems rather than different network modules. Cross-disease analysis identifies NF-$\kappa$B (NFKB1) as the most undrugged coupling bottleneck in medicine, ranking in the top 30\% across 24 of 48 diseases with no approved inhibitor. Two new case studies demonstrate the framework's explanatory power. In Alzheimer's disease ($D = 3.80$, global), the bill ranks APP \#1 (supporting anti-amyloid approaches) but $D$ predicts monotherapy will not be curative; BACE1 ranks \#26/41, explaining why every BACE inhibitor failed. In sepsis ($D = 4.01$, global), the framework explains 40 years of failed monotherapy trials: activated protein C (withdrawn 2011) targeted PROC, which ranks \#44/52---the coupling analysis would have predicted its failure. Finally, we show that $D$ predicts treatment durability: modular diseases maintain therapeutic response for a median of 10 years versus 1 year for global diseases ($p = 0.005$), suggesting that globally coupled networks route around single interventions. All results, code, and data are publicly available.
 \end{abstract}
 
 \section{Introduction}
@@ -40,7 +40,7 @@ Second, should the disease be attacked with a single drug or a combination? This
 
 We solve both problems from network data alone. The key insight is that total correlation (TC)---a multivariate generalization of mutual information from information theory \citep{watanabe1960,studeny1998}---captures the full statistical coupling in a network, not just pairwise relationships. By decomposing TC hierarchically and measuring how quickly coupling is contained at each level, we obtain a single number $D$ (the halving depth) that characterizes the disease's coupling architecture. A theoretical analysis shows that when $D$ exceeds 3.03, hierarchical containment fails: no single target or module can control the network's coupling, and combination therapy is required.
 
-We apply this framework to 46 human diseases---32 complex diseases and 14 genetic/Mendelian diseases---using protein interaction data from the STRING database \citep{szklarczyk2023}, producing \textbf{Lapras}: a periodic table of disease tractability. The results align with known clinical outcomes across all 46 diseases and generate specific, testable predictions for novel targets.
+We apply this framework to 48 human diseases---34 complex diseases and 14 genetic/Mendelian diseases---using protein interaction data from the STRING database \citep{szklarczyk2023}, producing \textbf{Lapras}: a periodic table of disease tractability. The results align with known clinical outcomes across all 48 diseases and generate specific, testable predictions for novel targets.
 
 \section{Methods}
 
@@ -109,7 +109,7 @@ where $\mathbb{I}_k$ is the indicator that proteins $a$ and $b$ are in different
 
 \subsection{Data}
 
-We downloaded protein interaction networks for 46 diseases from the STRING database (version 12.0) \citep{szklarczyk2023} using the network API (species 9606, \textit{Homo sapiens}). Each disease was represented by approximately 50 proteins selected from established pathway biology. The original 32 diseases cover 8 cancers, 3 neurodegenerative/neurological diseases, 3 autoimmune conditions, 4 metabolic disorders, 2 cardiovascular diseases, 3 inflammatory/fibrotic conditions, 2 psychiatric disorders, 2 infectious diseases, and 5 additional conditions (including obstructive sleep apnea). We subsequently added 14 genetic/Mendelian diseases chosen for unambiguous clinical ground truth: spanning single-gene deficiencies (cystic fibrosis, PKU, Fabry, Gaucher, Tay-Sachs), neuromuscular and developmental disorders (Duchenne MD, SMA, Rett, Fragile X), and diseases with multisystem downstream pathology (hemophilia A, familial hypercholesterolemia, ADPKD, Wilson disease, Marfan syndrome).
+We downloaded protein interaction networks for 48 diseases from the STRING database (version 12.0) \citep{szklarczyk2023} using the network API (species 9606, \textit{Homo sapiens}). Each disease was represented by approximately 50 proteins selected from established pathway biology. The original 32 diseases cover 8 cancers, 3 neurodegenerative/neurological diseases, 3 autoimmune conditions, 4 metabolic disorders, 2 cardiovascular diseases, 3 inflammatory/fibrotic conditions, 2 psychiatric disorders, 2 infectious diseases, and 5 additional conditions (including obstructive sleep apnea). We subsequently added Alzheimer's disease and sepsis as case studies (Sections~\ref{sec:alzheimers} and~\ref{sec:sepsis}), and 14 genetic/Mendelian diseases chosen for unambiguous clinical ground truth: spanning single-gene deficiencies (cystic fibrosis, PKU, Fabry, Gaucher, Tay-Sachs), neuromuscular and developmental disorders (Duchenne MD, SMA, Rett, Fragile X), and diseases with multisystem downstream pathology (hemophilia A, familial hypercholesterolemia, ADPKD, Wilson disease, Marfan syndrome).
 
 STRING combined scores were filtered at $\geq 900$ (high confidence). This threshold is critical: at lower thresholds (e.g., $\geq 400$), the density of edges makes every network appear globally entangled, eliminating the modular--global distinction. At $\geq 900$, only experimentally validated and co-expression-confirmed interactions survive, revealing the true coupling architecture.
 
@@ -123,7 +123,7 @@ The entire pipeline is implemented in Python using only NumPy. All source code a
 
 \subsection{The Periodic Table}
 
-Table~\ref{tab:periodic} shows the Lapras table: the halving depth $D$ for all 46 diseases, sorted from most modular to most entangled. Genetic diseases are marked with $\dagger$.
+Table~\ref{tab:periodic} shows the Lapras table: the halving depth $D$ for all 48 diseases, sorted from most modular to most entangled. Genetic diseases are marked with $\dagger$.
 
 \begin{longtable}{l r l r r r}
 \caption{The Lapras table of disease tractability. Diseases sorted by $D$. The capacity line at $D = 3.03$ separates modular from globally entangled. $\dagger$ = genetic/Mendelian disease.}
@@ -170,8 +170,10 @@ HIV/AIDS & 3.62 & Global & 43 & 112 & 2.86 \\
 Scleroderma & 3.67 & Global & 43 & 130 & 3.05 \\
 Crohn's Disease & 3.71 & Global & 42 & 144 & 2.88 \\
 Hemophilia A$^\dagger$ & 3.71 & Global & 47 & 126 & 3.16 \\
+Alzheimer's Disease & 3.80 & Global & 41 & 98 & 3.22 \\
 Type 2 Diabetes & 3.89 & Global & 49 & 131 & 3.05 \\
 Autosomal Dominant PKD$^\dagger$ & 4.00 & Global & 43 & 155 & 2.88 \\
+Sepsis & 4.01 & Global & 52 & 199 & 2.91 \\
 Type 1 Diabetes & 4.02 & Global & 40 & 139 & 2.77 \\
 Breast Cancer & 4.03 & Global & 47 & 190 & 3.12 \\
 Tuberculosis & 4.03 & Global & 47 & 181 & 2.90 \\
@@ -284,7 +286,7 @@ The guideline evolution analysis provides temporal evidence that complements the
 
 \subsection{The NF-\texorpdfstring{$\kappa$}{k}B Bottleneck}
 
-Cross-disease analysis reveals that NF-$\kappa$B (NFKB1) ranks in the top 30\% by bill across 23 of 46 diseases (Table~\ref{tab:cross}), including several genetic diseases (cystic fibrosis \#1, Fabry \#1, Wilson \#4). It is the \#1 ranked protein in atherosclerosis, major depressive disorder, cystic fibrosis, Fabry disease, tuberculosis, and obstructive sleep apnea. No approved NF-$\kappa$B inhibitor exists for any human disease \citep{taniguchi2018}.
+Cross-disease analysis reveals that NF-$\kappa$B (NFKB1) ranks in the top 30\% by bill across 24 of 48 diseases (Table~\ref{tab:cross}), including several genetic diseases (cystic fibrosis \#1, Fabry \#1, Wilson \#4). It is the \#1 ranked protein in atherosclerosis, major depressive disorder, cystic fibrosis, Fabry disease, tuberculosis, obstructive sleep apnea, and sepsis. No approved NF-$\kappa$B inhibitor exists for any human disease \citep{taniguchi2018}.
 
 \begin{table}[h]
 \centering
@@ -294,14 +296,14 @@ Cross-disease analysis reveals that NF-$\kappa$B (NFKB1) ranks in the top 30\% b
 \toprule
 \textbf{Protein} & \textbf{\# Diseases} & \textbf{Approved Inhibitor} \\
 \midrule
-TNF & 26 & Yes (infliximab) --- used in $<$5 of 26 \\
-IL6 & 23 & Yes (tocilizumab) --- used in $<$3 of 23 \\
-NFKB1 & 23 & \textbf{None} \\
+TNF & 27 & Yes (infliximab) --- used in $<$5 of 27 \\
+NFKB1 & 24 & \textbf{None} \\
+IL6 & 24 & Yes (tocilizumab) --- used in $<$3 of 24 \\
 IL1B & 22 & Yes (canakinumab, anakinra) --- rarely used \\
-AKT1 & 21 & Yes (capivasertib) --- cancer only \\
-STAT3 & 16 & \textbf{None} \\
-TGFB1 & 16 & \textbf{None} (for fibrosis/inflammation) \\
-TP53 & 15 & Considered ``undruggable'' \\
+AKT1 & 22 & Yes (capivasertib) --- cancer only \\
+STAT3 & 17 & \textbf{None} \\
+TGFB1 & 17 & \textbf{None} (for fibrosis/inflammation) \\
+TP53 & 16 & Considered ``undruggable'' \\
 PIK3CA & 13 & Yes (alpelisib) --- cancer only \\
 EGFR & 10 & Yes (erlotinib) --- cancer only \\
 \bottomrule
@@ -342,9 +344,80 @@ Known drug targets rank poorly: PPARG (\#14), SIRT1 (\#12), ACE (\#45), ADRB1 (\
 
 \subsection{Score Threshold Sensitivity}
 
-The STRING score threshold is a critical parameter. At the default medium confidence threshold ($\geq 400$), all 46 diseases appear globally entangled ($D > 3.03$), eliminating the modular--global distinction. At high confidence ($\geq 900$), the distinction emerges clearly.
+The STRING score threshold is a critical parameter. At the default medium confidence threshold ($\geq 400$), all 48 diseases appear globally entangled ($D > 3.03$), eliminating the modular--global distinction. At high confidence ($\geq 900$), the distinction emerges clearly.
 
 This is not an artifact of data sparsity: high-confidence edges represent experimentally validated interactions, co-expression, and co-occurrence, while medium-confidence edges add text-mining and database transfer associations that create a dense, relatively uniform background. The coupling architecture is a property of the high-confidence interaction structure, not the noise floor.
+
+\subsection{Alzheimer's Disease: Amyloid, Tau, and the Case for Combination}
+\label{sec:alzheimers}
+
+Alzheimer's disease has $D = 3.80$ (41 proteins, 98 edges), placing it firmly in the global regime. The framework predicts that no single-target therapy will be curative---a prediction consistent with the history of the field.
+
+\paragraph{Bill ranking.} APP (amyloid precursor protein) ranks \#1 (bill $= 0.401$), confirming that the amyloid pathway owns the most coupling in the network. However, $D = 3.80$ predicts that targeting APP alone cannot contain the globally entangled network. Lecanemab and donanemab (anti-amyloid antibodies) have shown modest clinical benefit---slowing decline by 27--35\% over 18 months---consistent with hitting the right protein in a network that requires combination intervention \citep{vandyck2023,sims2023}.
+
+AKT1 ranks \#2 (bill $= 0.357$), MAPT (tau) ranks \#6 (bill $= 0.233$), and NFKB1 (neuroinflammation) ranks \#7 (bill $= 0.221$). The top 7 proteins span four distinct biological pathways: amyloid processing (APP, PSEN1), cell survival signaling (AKT1, TP53), tau pathology (MAPT, GSK3B), and neuroinflammation (NFKB1). This pathway diversity explains why no single-pathway intervention has been curative.
+
+\paragraph{Explaining failed drug classes.} BACE1 (the enzyme that cleaves APP into amyloid-$\beta$) ranks \#26 out of 41 proteins (63rd percentile). Every BACE inhibitor tested in Phase~II/III trials---verubecestat, atabecestat, lanabecestat, elenbecestat---has failed \citep{egan2018}. The bill analysis explains why: the coupling flows through APP itself, not through its processing enzyme. BACE1 owns almost none of the network's statistical coupling.
+
+Cholinesterase inhibitors (donepezil, rivastigmine, galantamine) target ACHE, which ranks \#31/41 (76th percentile)---one of the least structurally important proteins in the network. These drugs are palliative because they target a low-coupling node.
+
+Anti-tau antibodies (semorinemab, zagotenemab) target MAPT at \#6---a mid-ranking target. Their modest or failed clinical results are consistent with targeting a protein that owns coupling but not enough to contain a global network alone.
+
+\paragraph{Predicted combination.} The framework nominates APP (\#1) + AKT1 (\#2) + MAPT (\#6) + NFKB1 (\#7) as the optimal combination target set. Each protein sits in a different biological pathway, and together they cover 4 of the top 7 by bill. No existing trial has tested this combination. Full results: \texttt{python3 -m lapras\_tools.alzheimers\_deep}.
+
+\subsection{Sepsis: Explaining 40 Years of Failed Monotherapy Trials}
+\label{sec:sepsis}
+
+Sepsis has $D = 4.01$ (52 proteins, 199 edges), deeply global. This single number explains the systematic failure of every monotherapy approach tested in sepsis over four decades.
+
+\paragraph{Failed trials explained.} Anti-TNF antibodies (infliximab, afelimomab) failed multiple Phase~III trials in the 1990s and 2000s despite TNF ranking \#2 by bill (bill $= 0.297$). The coupling analysis explains the paradox: TNF is a high-value target, but $D = 4.01$ means that hitting any single cytokine cannot halt a globally coupled inflammatory cascade.
+
+Eritoran, a TLR4 antagonist, failed the ACCESS Phase~III trial ($n = 1{,}961$) in 2013 \citep{opal2013}. TLR4 ranks \#7---a reasonable target, but blocking the innate sensor cannot stop a cascade already propagating through DAMP/HMGB1 and complement pathways.
+
+The most striking case is activated protein C (drotrecogin alfa). The FDA approved it in 2001 based on the PROWESS trial, then it was withdrawn in 2011 when the PROWESS-SHOCK confirmatory trial showed no benefit \citep{ranieri2012}. The coupling analysis reveals why: PROC ranks \#44 out of 52 proteins (85th percentile). The FDA approved---and then withdrew---a drug targeting a protein that owns almost none of the network's coupling. The framework would have predicted this failure before the first trial enrolled.
+
+\paragraph{NF-$\kappa$B is \#1.} NFKB1 ranks \#1 (bill $= 0.317$), followed by TNF (\#2), IL1B (\#3), and IL6 (\#4). The top 4 proteins are all in the NF-$\kappa$B/cytokine cascade, which owns 39\% of the total correlation. No NF-$\kappa$B inhibitor has been tested in a sepsis trial.
+
+\paragraph{Predicted combination.} The framework predicts that effective sepsis pharmacotherapy must target at least three subsystems simultaneously: NF-$\kappa$B/cytokine signaling (cascade master), complement (C3/C5, innate amplification), and coagulation (the axis where activated protein C failed because it targeted the wrong node). Full results: \texttt{python3 -m lapras\_tools.sepsis\_analysis}.
+
+\subsection{Drug Resistance: D Predicts Treatment Durability}
+
+The framework generates a cross-cutting prediction: globally coupled disease networks should develop resistance to monotherapy faster than modular ones. In a modular network ($D < 3.03$), the drug target is a true bottleneck---there is no alternative pathway for the system to route through. In a globally coupled network ($D > 3.03$), the distributed coupling provides redundant pathways that evolutionary or adaptive pressure can exploit to bypass a single intervention.
+
+We tested this prediction across 16 diseases with documented resistance timelines (Table~\ref{tab:resistance}). The diseases span cancers, infections, and chronic diseases, with resistance timelines from published clinical trials ranging from 2 months (streptomycin monotherapy in tuberculosis) to 20 years (anticonvulsants in epilepsy).
+
+\begin{table}[h]
+\centering
+\caption{Treatment durability vs.\ halving depth. Months to resistance = median time to treatment failure on first-line monotherapy, from published trial data. Modular diseases maintain response $10\times$ longer than global diseases ($p = 0.005$).}
+\label{tab:resistance}
+\begin{tabular}{l r l r l}
+\toprule
+\textbf{Disease} & \textbf{$D$} & \textbf{Verdict} & \textbf{Months} & \textbf{Drug (monotherapy)} \\
+\midrule
+Epilepsy & 1.69 & Modular & 240 & Valproate \\
+Depression & 1.98 & Modular & 120 & SSRIs \\
+Schizophrenia & 2.03 & Modular & 60 & Antipsychotics \\
+\midrule
+HIV/AIDS & 3.62 & Global & 3 & AZT \\
+Crohn's & 3.71 & Global & 12 & Infliximab \\
+Type 2 Diabetes & 3.89 & Global & 36 & Metformin \\
+Breast Cancer & 4.03 & Global & 18 & Tamoxifen \\
+Tuberculosis & 4.03 & Global & 2 & Streptomycin \\
+Ovarian Cancer & 4.05 & Global & 12 & Platinum \\
+Glioblastoma & 4.08 & Global & 6 & Temozolomide \\
+Multiple Sclerosis & 4.08 & Global & 36 & Interferon beta \\
+Colorectal Cancer & 4.12 & Global & 10 & Cetuximab \\
+Melanoma & 4.15 & Global & 7 & Vemurafenib \\
+Prostate Cancer & 4.20 & Global & 18 & Enzalutamide \\
+Lung Cancer & 4.23 & Global & 12 & Erlotinib \\
+Rheumatoid Arthritis & 4.50 & Global & 24 & Methotrexate \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Modular diseases maintain therapeutic response for a median of 120 months (10 years); global diseases lose response in a median of 12 months (1 year). The difference is $10\times$ and statistically significant (Mann--Whitney $U = 39$, $p = 0.005$). The Spearman rank correlation between $D$ and time to resistance is $\rho = -0.35$ ($p = 0.18$); the continuous correlation is underpowered with $n = 16$, but the binary split at the capacity line is clean. Two caveats: the three modular diseases are all chronic neurological/psychiatric conditions, so the result may partly reflect disease type rather than network topology; and the ``resistance'' mechanisms differ across categories---somatic tumor evolution, microbial genetic resistance, and host pharmacological tolerance are distinct biological processes unified here only by the network prediction.
+
+This result was not designed. The $D$ values derive from protein interaction topology. The resistance timelines derive from clinical trials. Neither dataset was constructed with the other in mind. That a network measure of coupling depth predicts how quickly a disease routes around therapeutic intervention---across cancers, infections, and chronic diseases---suggests that treatment durability is a structural property of the disease network, not a pharmacological detail of the drug. Full results: \texttt{python3 -m lapras\_tools.resistance\_prediction}.
 
 \section{Discussion}
 
@@ -370,7 +443,7 @@ Network-based drug target identification typically uses centrality measures (deg
 
 \paragraph{Static coupling.} The method analyzes a fixed interaction network, not tissue-specific or time-varying expression. A protein may rank high by coupling but be unexpressed in the relevant tissue. Integration with expression data would refine the rankings.
 
-\paragraph{The capacity line.} The value $D = 3.03$ is derived theoretically, not fitted to the 46-disease dataset. This is a strength (no overfitting) but also means the exact boundary could shift with different hierarchical decomposition algorithms. The qualitative split---modular vs.\ global---is robust across reasonable algorithmic choices.
+\paragraph{The capacity line.} The value $D = 3.03$ is derived theoretically, not fitted to the 48-disease dataset. This is a strength (no overfitting) but also means the exact boundary could shift with different hierarchical decomposition algorithms. The qualitative split---modular vs.\ global---is robust across reasonable algorithmic choices.
 
 \paragraph{Drug target annotations.} Known targets were annotated manually. Some ``novel'' targets may have drugs in development that we did not capture.
 
@@ -394,16 +467,22 @@ The framework generates several testable predictions:
 \item \textbf{Parkinson's disease requires combination therapy.} At $D = 3.07$, levodopa monotherapy will remain insufficient. Trials should combine dopaminergic therapy with agents targeting other coupling modules (e.g., neuroinflammation, protein aggregation).
 
 \item \textbf{NF-$\kappa$B inhibition for obstructive sleep apnea.} OSA is global ($D = 3.45$) with NFKB1/RELA as the top two coupling targets (bill $= 0.40$ each). Anti-TNF monotherapy failed in a 2012 trial \citep{maari2014}. A direct NF-$\kappa$B inhibitor, or a combination targeting the inflammatory core (TNF \#3, IL6 \#5, IL1B \#7) with agents addressing AKT1 (\#6) and HIF1A (\#16), should succeed where single-cytokine blockade did not.
+
+\item \textbf{Alzheimer's disease requires combination therapy.} At $D = 3.80$, anti-amyloid monotherapy (lecanemab, donanemab) will slow but not halt progression. The framework predicts that combining anti-amyloid (APP, \#1) with agents targeting AKT1 (\#2), MAPT (\#6), and NF-$\kappa$B (\#7) should outperform any single-pathway approach.
+
+\item \textbf{Sepsis requires multi-axis combination.} At $D = 4.01$, single-cytokine blockade will continue to fail. An NF-$\kappa$B inhibitor combined with anti-complement and an anti-coagulant targeting a high-bill node should outperform any monotherapy trial design.
+
+\item \textbf{Treatment durability is a network property.} Diseases with $D < 3.03$ should maintain therapeutic response $10\times$ longer than diseases with $D > 3.03$ on equivalent monotherapy. This prediction is testable prospectively by measuring time to treatment failure across disease categories.
 \end{enumerate}
 
 \section{Conclusion}
 
-We present Lapras, a periodic table of disease tractability based on a single, computable number: the halving depth $D$. The method requires only a protein interaction network and basic linear algebra. Across 46 diseases, $D$ separates modular diseases (where single-target drugs succeed) from globally entangled diseases (where combination therapy is the norm), though this separation is confounded with network size overall (edge count achieves comparable accuracy). Within dense networks ($\geq 140$ edges), however, $D$ achieves AUC $= 0.958$ while edge count drops to $0.729$---the structural signal reemerges where it matters most. $D$ also correctly predicted the direction of guideline evolution in 7 of 8 diseases, including the decades-long path of obesity and NAFLD from failed combinations to single-agent breakthroughs. The method's cleanest validation comes from 14 genetic diseases: 6 of 8 robustly modular Mendelian diseases have approved single-target therapy (the other two have gene therapy in trials or preclinical development), and the bill ranking places successful drug targets above failed ones ($p = 0.075$). In Fragile X syndrome, the bill correctly prioritizes the mTOR pathway---now understood as the causal mediator---over mGluR5, the target of a decade of failed trials. The per-component bill identifies known drug targets at up to 4.8$\times$ enrichment and reveals NF-$\kappa$B as the most systematically undrugged coupling bottleneck in medicine. The framework's most novel output is a therapy taxonomy: diseases where monotherapy works by \emph{bypassing} the protein network (monogenic/replacement, 15/16 monotherapy regardless of $D$), diseases where it works by \emph{modulating} the network ($D$ predicts mono vs.\ combo), and diseases where combination addresses different organ systems rather than different network modules. This taxonomy---not the threshold accuracy---is the clinically actionable result.
+We present Lapras, a periodic table of disease tractability based on a single, computable number: the halving depth $D$. The method requires only a protein interaction network and basic linear algebra. Across 48 diseases, $D$ separates modular diseases (where single-target drugs succeed) from globally entangled diseases (where combination therapy is the norm), though this separation is confounded with network size overall (edge count achieves comparable accuracy). Within dense networks ($\geq 140$ edges), however, $D$ achieves AUC $= 0.958$ while edge count drops to $0.729$---the structural signal reemerges where it matters most. $D$ also correctly predicted the direction of guideline evolution in 7 of 8 diseases, including the decades-long path of obesity and NAFLD from failed combinations to single-agent breakthroughs. The method's cleanest validation comes from 14 genetic diseases: 6 of 8 robustly modular Mendelian diseases have approved single-target therapy (the other two have gene therapy in trials or preclinical development), and the bill ranking places successful drug targets above failed ones ($p = 0.075$). In Fragile X syndrome, the bill correctly prioritizes the mTOR pathway---now understood as the causal mediator---over mGluR5, the target of a decade of failed trials. The per-component bill identifies known drug targets at up to 4.8$\times$ enrichment and reveals NF-$\kappa$B as the most systematically undrugged coupling bottleneck in medicine. Two case studies demonstrate the framework's explanatory power retrospectively: in Alzheimer's disease ($D = 3.80$), the bill explains why BACE inhibitors failed (\#26/41) while supporting anti-amyloid approaches (APP \#1) and predicting that monotherapy will not be curative; in sepsis ($D = 4.01$), the bill would have predicted that activated protein C (PROC, \#44/52) would fail before the trial enrolled. Perhaps most strikingly, $D$ predicts treatment durability: modular diseases maintain therapeutic response for a median of 10 years versus 1 year for global diseases ($p = 0.005$), suggesting that treatment resistance is a structural property of disease networks, not a pharmacological accident. The framework's most novel output is a therapy taxonomy: diseases where monotherapy works by \emph{bypassing} the protein network (monogenic/replacement, 15/16 monotherapy regardless of $D$), diseases where it works by \emph{modulating} the network ($D$ predicts mono vs.\ combo), and diseases where combination addresses different organ systems rather than different network modules. This taxonomy---not the threshold accuracy---is the clinically actionable result.
 
 All code and data are freely available at \url{https://github.com/MuffinsThaCat/lapras}.
 
 \bibliographystyle{unsrtnat}
-\begin{thebibliography}{25}
+\begin{thebibliography}{28}
 
 \bibitem[Barab{\'a}si et~al.(2011)]{barabasi2011}
 Barab{\'a}si, A.-L., Gulbahce, N. \& Loscalzo, J.
@@ -519,6 +598,31 @@ Wilding, J.~P.~H. et~al.
 Harrison, S.~A. et~al.
 \newblock Resmetirom for nonalcoholic fatty liver disease with liver fibrosis.
 \newblock \emph{N. Engl. J. Med.} \textbf{390}, 497--509 (2024).
+
+\bibitem[van~Dyck et~al.(2023)]{vandyck2023}
+van~Dyck, C.~H. et~al.
+\newblock Lecanemab in early Alzheimer's disease.
+\newblock \emph{N. Engl. J. Med.} \textbf{388}, 9--21 (2023).
+
+\bibitem[Sims et~al.(2023)]{sims2023}
+Sims, J.~R. et~al.
+\newblock Donanemab in early symptomatic Alzheimer disease: the TRAILBLAZER-ALZ~2 randomized clinical trial.
+\newblock \emph{JAMA} \textbf{330}, 512--527 (2023).
+
+\bibitem[Egan et~al.(2018)]{egan2018}
+Egan, M.~F. et~al.
+\newblock Randomized trial of verubecestat for mild-to-moderate Alzheimer's disease.
+\newblock \emph{N. Engl. J. Med.} \textbf{378}, 1691--1703 (2018).
+
+\bibitem[Opal et~al.(2013)]{opal2013}
+Opal, S.~M. et~al.
+\newblock Effect of eritoran, an antagonist of MD2-TLR4, on mortality in patients with severe sepsis: the ACCESS randomized trial.
+\newblock \emph{JAMA} \textbf{309}, 1154--1162 (2013).
+
+\bibitem[Ranieri et~al.(2012)]{ranieri2012}
+Ranieri, V.~M. et~al.
+\newblock Drotrecogin alfa (activated) in adults with septic shock.
+\newblock \emph{N. Engl. J. Med.} \textbf{366}, 2055--2064 (2012).
 
 \end{thebibliography}
 

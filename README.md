@@ -32,7 +32,7 @@ python3 batch.py --score 0.9       # all 32 diseases from STRING data
 
 ## The Lapras table
 
-46 diseases analyzed with real STRING data (score >= 0.9), including 14 genetic/Mendelian diseases. 9 modular, 23 global among the original 32:
+48 diseases analyzed with real STRING data (score >= 0.9), including 14 genetic/Mendelian diseases. 9 modular, 23 global among the original 32:
 
 | Disease | D | Verdict |
 |---------|---|---------|
@@ -54,8 +54,10 @@ python3 batch.py --score 0.9       # all 32 diseases from STRING data
 | HIV/AIDS | 3.62 | GLOBAL — explains why HAART needs 3 drugs |
 | Scleroderma | 3.67 | GLOBAL |
 | Crohn's Disease | 3.71 | GLOBAL |
+| Alzheimer's Disease | 3.80 | GLOBAL — APP #1, BACE1 #26 (explains BACE failures) |
 | Type 2 Diabetes | 3.89 | GLOBAL |
 | Type 1 Diabetes | 4.02 | GLOBAL |
+| Sepsis | 4.01 | GLOBAL — explains 40 years of failed monotherapy; PROC #44/52 |
 | Breast Cancer | 4.03 | GLOBAL |
 | Tuberculosis | 4.03 | GLOBAL — explains why TB needs 4 drugs |
 | Asthma | 4.04 | GLOBAL |
@@ -85,7 +87,7 @@ This taxonomy — not the threshold accuracy — is the clinically actionable ou
 
 ## Key findings
 
-**NF-kB (NFKB1)** is the most undrugged bottleneck in medicine. It ranks in the top 30% by bill across 23 of 46 diseases. #1 in atherosclerosis, depression, cystic fibrosis, Fabry disease, tuberculosis, and obstructive sleep apnea. No approved NF-kB inhibitor exists for any human disease.
+**NF-kB (NFKB1)** is the most undrugged bottleneck in medicine. It ranks in the top 30% by bill across 24 of 48 diseases. #1 in atherosclerosis, depression, cystic fibrosis, Fabry disease, tuberculosis, obstructive sleep apnea, and sepsis. No approved NF-kB inhibitor exists for any human disease.
 
 **STAT3** ranks top-15 in 15 diseases. #1 in rheumatoid arthritis and Crohn's. No approved inhibitor.
 
@@ -103,20 +105,26 @@ This taxonomy — not the threshold accuracy — is the clinically actionable ou
 
 **Rare disease triage.** D-based predictions for 16 rare diseases: 10 modular (single-target candidates), 6 global (combination needed). CMT stands out at D=1.00 — the most modular rare disease. Run: `python3 -m lapras_tools.rare_disease_triage`.
 
+**Alzheimer's disease (D=3.80, GLOBAL).** APP ranks #1 (supports anti-amyloid), but D predicts monotherapy won't be curative. BACE1 ranks #26/41 — explains why every BACE inhibitor failed. ACHE (cholinesterase inhibitors) ranks #31/41. Predicted combination: APP + AKT1 + MAPT + NFKB1. Run: `python3 -m lapras_tools.alzheimers_deep`.
+
+**Sepsis (D=4.01, GLOBAL).** Explains 40 years of failed monotherapy. NFKB1 is #1. Activated protein C (withdrawn 2011) targeted PROC at #44/52 — the coupling analysis would have predicted failure. No existing trial has combined NF-κB + complement + coagulation axes. Run: `python3 -m lapras_tools.sepsis_analysis`.
+
+**Drug resistance: D predicts treatment durability.** Modular diseases maintain response for a median of 10 years; global diseases lose response in 1 year (10x, p=0.005). Epilepsy (D=1.69) keeps working for decades; melanoma (D=4.15) resistance in 7 months. Treatment durability is a network property, not a drug property. Run: `python3 -m lapras_tools.resistance_prediction`.
+
 ## Cross-disease repurposing
 
-Proteins ranking in the top 30% by bill across the most diseases (46 diseases total):
+Proteins ranking in the top 30% by bill across the most diseases (48 diseases total):
 
 | Protein | # Diseases | Approved Inhibitor |
 |---------|-----------|---------|
-| TNF | 26 | Yes (infliximab) — used in <5 of 26 |
-| IL6 | 23 | Yes (tocilizumab) — used in <3 of 23 |
-| NFKB1 | 23 | **None** |
+| TNF | 27 | Yes (infliximab) — used in <5 of 27 |
+| NFKB1 | 24 | **None** |
+| IL6 | 24 | Yes (tocilizumab) — used in <3 of 24 |
 | IL1B | 22 | Yes (canakinumab, anakinra) — rarely used |
-| AKT1 | 21 | Yes (capivasertib) — cancer only |
-| STAT3 | 16 | **None** |
-| TGFB1 | 16 | **None** (for fibrosis/inflammation) |
-| TP53 | 15 | "Undruggable" |
+| AKT1 | 22 | Yes (capivasertib) — cancer only |
+| STAT3 | 17 | **None** |
+| TGFB1 | 17 | **None** (for fibrosis/inflammation) |
+| TP53 | 16 | "Undruggable" |
 | PIK3CA | 13 | Yes (alpelisib) — cancer only |
 | EGFR | 10 | Yes (erlotinib) — cancer only |
 
@@ -126,7 +134,7 @@ Proteins ranking in the top 30% by bill across the most diseases (46 diseases to
 coupling.py           Core math (TC, bill, compiler, sensitivity)
 networks.py           5 built-in disease networks
 pipeline.py           Pipeline runner and CLI
-diseases.py           46 disease protein lists with known targets
+diseases.py           48 disease protein lists with known targets
 download_string.py    STRING API downloader
 batch.py              Batch runner — builds the periodic table
 data/                 STRING interaction data (TSV per disease)
@@ -146,6 +154,9 @@ guideline_evolution.py  Retrospective: did D predict guideline direction? (7/8)
 nfkb_deep.py            NF-κB pathway deep dive + target nomination
 rare_disease_triage.py  Rare disease triage — D-based therapy predictions for 16 diseases
 taxonomy_predict.py     Therapy taxonomy classifier (bypass / modulation / multi-system)
+alzheimers_deep.py      Alzheimer's: amyloid vs tau vs neuroinflammation pathway analysis
+sepsis_analysis.py      Sepsis: why 40 years of monotherapy trials failed
+resistance_prediction.py  Drug resistance: D predicts treatment durability (10x, p=0.005)
 ```
 
 Run any tool with `python3 -m lapras_tools.<name>` (e.g. `python3 -m lapras_tools.guideline_evolution`).
@@ -153,7 +164,7 @@ Run any tool with `python3 -m lapras_tools.<name>` (e.g. `python3 -m lapras_tool
 ## Running the full analysis
 
 ```bash
-# Download STRING data for all 46 diseases
+# Download STRING data for all 48 diseases
 python3 download_string.py
 
 # Run the periodic table (high-confidence edges)

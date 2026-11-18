@@ -1176,6 +1176,58 @@ DISEASES = {
             "LOXL2": "simtuzumab (failed trials)",
         },
     },
+    # ── Neurodegenerative ────────────────────────────────────────────────
+
+    "alzheimers": {
+        "label": "Alzheimer's Disease",
+        "proteins": [
+            "APP", "PSEN1", "PSEN2", "MAPT", "APOE", "TREM2", "BACE1",
+            "ADAM10", "GSK3B", "CDK5", "DYRK1A", "CLU", "BIN1", "PICALM",
+            "CR1", "CD33", "MS4A6A", "ABCA7", "EPHA1", "CD2AP",
+            "SORL1", "FERMT2", "SLC24A4", "CASS4", "PTK2B",
+            "NFKB1", "TNF", "IL6", "IL1B", "TGFB1", "NLRP3",
+            "AKT1", "MTOR", "PIK3CA", "BDNF", "NTRK2",
+            "GRIN2A", "GRIN2B", "GRIN1", "SYP", "DLG4",
+            "TOMM40", "CASP3", "BAX", "BCL2", "TP53",
+            "IDE", "MME", "ACE", "CHAT", "ACHE",
+        ],
+        "known_targets": {
+            "ACHE": "donepezil, rivastigmine, galantamine (cholinesterase inhibitors)",
+            "GRIN2B": "memantine (NMDA antagonist)",
+            "APP": "lecanemab, donanemab (anti-amyloid antibodies)",
+            "BACE1": "verubecestat, atabecestat (BACE inhibitors — all failed)",
+            "GSK3B": "tideglusib (failed Phase II)",
+            "MAPT": "semorinemab, zagotenemab (anti-tau — failed/modest)",
+        },
+    },
+
+    # ── Critical Care ──────────────────────────────────────────────────
+
+    "sepsis": {
+        "label": "Sepsis",
+        "proteins": [
+            "TNF", "IL6", "IL1B", "IL10", "IL18", "IFNG", "IL1A",
+            "NFKB1", "RELA", "NFKBIA", "IKBKB",
+            "TLR4", "TLR2", "MYD88", "IRAK4", "TRAF6", "RIPK1",
+            "HMGB1", "S100A8", "S100A9", "AGER",
+            "C3", "C5", "C5AR1", "CFB", "MASP2",
+            "F2", "F3", "SERPINE1", "PROC", "THBD", "TFPI",
+            "VCAM1", "ICAM1", "SELE", "SELP",
+            "NOS2", "NOS3", "PTGS2",
+            "CASP1", "NLRP3", "PYCARD", "GSDMD",
+            "JAK1", "JAK2", "STAT3", "STAT1",
+            "AKT1", "MTOR", "PIK3CA", "HIF1A",
+            "VEGFA", "ANGPT2", "TEK",
+        ],
+        "known_targets": {
+            "TNF": "infliximab, adalimumab (anti-TNF — failed in sepsis trials)",
+            "PROC": "drotrecogin alfa (activated protein C — approved then withdrawn)",
+            "TLR4": "eritoran (TLR4 antagonist — failed Phase III ACCESS trial)",
+            "IL1B": "anakinra (IL-1Ra — modest benefit in some subgroups)",
+            "C5": "eculizumab (anti-C5 — in trials for sepsis)",
+            "IFNG": "emapalumab (anti-IFNγ — approved for HLH, not sepsis)",
+        },
+    },
 }
 
 
